@@ -1,0 +1,303 @@
+\documentclass[a4paper]{article}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\usepackage[framed]{ntheorem}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
+
+\usepackage{parskip}
+
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+
+\newcounter{Sec}
+
+\theoremstyle{marginbreak}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{Definition}[Sec]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{defsatz}[definition]{Definition und Satz}
+\newtheorem{verfahren}[definition]{Verfahren}
+\newtheorem{defver}[definition]{Definition und Verfahren}
+
+\MakeOuterQuote{"}
+
+\DeclareMathOperator{\chop}{char}
+\newcommand{\sep}{%
+	\rule{\textwidth}{0.3pt}%
+	\stepcounter{Sec}%
+	}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\begin{document}
+
+	\sep
+	\begin{definition}[Gruppe]
+		Tupel $(G, *)$ mit
+		\begin{description}
+			\item[G1 (assoziativ)] $\forall a, b, c \in G: (a * b) * c = a * (b * c)$
+			\item[G2 (neutrales Element)] $\exists e \in G~\forall a \in G: e * a = a = a * e$
+			\item[G3 (inverses Element)] $\forall a \in G~\exists a^{-1} \in G: a^{-1} * a = e = a * a^{-1}$
+		\end{description}
+	\end{definition}
+	\begin{definition}[Abelsche Gruppe]
+		\begin{description}
+			\item[G4 (kommutativ)] $\forall a, b \in G: a * b = b * a$
+		\end{description}
+	\end{definition}
+	\begin{satz}[Untergruppe]
+		\begin{description}
+			\item[UG1] $U \neq \varnothing$
+			\item[UG2] $\forall a, b \in U: a * b^{-1} \in U$
+		\end{description}
+	\end{satz}
+	\begin{definition}[Erzeugte Gruppe]
+		Für $G$ Gruppe und $M \subset G$: $\langle M\rangle \coloneqq \text{Kleinste Untergruppe von $G$, die $M$ enthält}$
+	\end{definition}
+	\begin{definition}[Zyklische Gruppe]
+		Für $a \in G$: $\langle a\rangle \coloneqq \langle\set{a}\rangle$
+	\end{definition}
+	\sep
+	\begin{definition}[Symmetrische Gruppe]
+		Menge der bijektiven Selbstabbildungen (Permutationen) einer endlichen Menge $M$.
+		Verknüpfung ist die Verkettung $\circ$.
+	\end{definition}
+	\begin{definition}[Fehlstandszahl]
+		Für endliche Menge $M$ und Permutation $\pi$:
+		$F(\pi) \coloneqq \abs{\set{1 \leq i, j \leq \abs{M} \given i < j \wedge \pi(i) > \pi(j)}}$
+
+		$\pi~\text{gerade} :\Longleftrightarrow F(\pi)~\text{gerade}$
+	\end{definition}
+	\begin{satz}[Anzahl Transpositionen]
+		Für $\pi$ Permutation und $\tau_1, \ldots, \tau_n$ Transpositionen mit
+		$\pi = \tau_1 \circ \ldots \circ \tau_n$: $\pi~\text{gerade} \iff n~\text{gerade}$.
+	\end{satz}
+	\sep
+	\begin{definition}[Ring]
+		Tupel $(R, +, \cdot)$ mit
+		\begin{description}
+			\item[R1] $(R, +)~\text{abelsch}$
+			\item[R2] $\cdot~\text{assoziativ}$
+			\item[R3] $\forall a, b, c \in R$ gilt: $a\cdot(b + c) = a\cdot b + a\cdot c$ und $(b + c)\cdot a = b\cdot a + c\cdot a$
+		\end{description}
+
+		Neutrales Element von $(R, +)$ heißt $0$, inverses Element zu $a \in R$ heißt $-a$, $b - a \coloneqq b + (-a)$.
+	\end{definition}
+	\begin{definition}[Kommutativer Ring]
+		\begin{description}
+			\item[R4] $\forall a, b \in R: a \cdot b = b \cdot a$
+		\end{description}
+	\end{definition}
+	\begin{definition}[Ring mit Eins]
+		\begin{description}
+			\item[R5] $\exists 0 \neq 1 \in R~\forall a \in R: 1 \cdot a = a = a \cdot 1$
+		\end{description}
+	\end{definition}
+	\begin{definition}[Nullteiler]
+		Wenn $a, b \in R$, $a \neq 0 \neq b$ und $ab = 0$, dann ist $a$ linker Nullteiler
+		und $b$ rechter Nullteiler von $R$.
+	\end{definition}
+	\sep
+	\begin{definition}[Körper]
+		$(\mathbb{K}, +, \cdot)~\text{Körper} :\Longleftrightarrow (\mathbb{K}, +, \cdot)~\text{Ring}
+		\wedge (\mathbb{K}\setminus\set{0}, \cdot)~\text{abelsch}$
+	\end{definition}
+	\begin{satz}
+		Körper haben keine Nullteiler.
+	\end{satz}
+	\begin{satz}
+		$\mathbb{Z}/n\mathbb{Z}~\text{Körper} \iff n~\text{prim}$
+	\end{satz}
+	\begin{definition}[Charakteristik]
+		\[\chop\mathbb{K} \coloneqq\begin{cases}
+			m, &\text{falls ein kleinstes $m$ existiert, sodass $\underbrace{1 + \ldots + 1}_{\text{$m$ mal}} = 0$}\\
+			0, & \text{falls kein solches $m$ existiert}
+		\end{cases}\]
+	\end{definition}
+	\begin{satz}
+		$\chop\mathbb{K}$ ist entweder 0 oder eine Primzahl.
+	\end{satz}
+	\sep
+	\begin{definition}[Matrixmultiplikation]
+		Für $A = (a_{ij}) \in \mathbb{K}^{p\cross q}$ und $B = (b_{ij}) \in \mathbb{K}^{q\cross r}$
+		ist $AB = C = (c_{jk}) \in \mathbb{K}^{p\cross r}$ mit
+		\[ c_{jk} \coloneqq \sum_{s = 1}^q a_{js}b_{sk}\]
+	\end{definition}
+	\begin{defsatz}[Allgemeine lineare Gruppe]
+		Die Menge $\mathbf{GL}(n, \mathbb{K})$ der regulären/invertierbaren $n\cross n$-Matrizen ist eine Gruppe.
+	\end{defsatz}
+	\begin{verfahren}[Inverse Matrix berechnen]
+		Um eine $n\cross n$-Matrix zu invertieren, setzt man die $n\cross n$-Einheitsmatrix daneben und wendet
+		den Gauß-Algorithmus an.
+	\end{verfahren}
+	\sep
+	\begin{definition}[Grad eines Polynoms]
+		\[\deg f\coloneqq\begin{cases}
+			n, &\text{falls $a_n \neq 0$ und $a_k = 0$ für alle $k < n$}\\
+			-\infty,  &\text{falls $a_k = 0$ für alle $k \geq 0$}
+		\end{cases}\]
+	\end{definition}
+	\begin{satz}
+		$(\mathbb{K}[X], +, \cdot)$ ist ein kommutativer Ring mit Eins.
+	\end{satz}
+	\sep
+	\begin{definition}[Vektorraum]
+		Die Menge $V$ heißt mit den Abbildungen $+\colon V\cross V\to V$, $\cdot\colon\mathbb{K}\cross V\to V$ ein $\mathbb{K}$-Vektorraum, wenn
+		\begin{description}
+			\item[V1] $(V, +)$ abelsch
+			\item[V2] Für alle $\lambda,\mu\in\mathbb{K}$ und $x, y\in V$ gilt:
+				\begin{enumerate}[label=(\alph*)]
+					\item $1 \cdot x = x$
+					\item $\lambda \cdot (\mu \cdot x) = (\lambda \cdot \mu) \cdot x$
+					\item $(\lambda + \mu) \cdot x = \lambda \cdot x + \mu \cdot x$
+					\item $\lambda \cdot (x + y) = \lambda \cdot x + \lambda \cdot y$
+				\end{enumerate}
+		\end{description}
+	\end{definition}
+	\begin{definition}[Lineare Unabhängigkeit]
+		Endlich viele Vektoren $v_1,\ldots,v_k \in V$ heißen linear unabhängig, wenn
+		\[\sum_{i=1}^k\lambda_iv_i=0\implies\lambda_1=\ldots=\lambda_k=0\]
+		Eine unendlich große Menge heißt linear unabhängig, wenn jede endliche Teilmenge
+		linear unabhängig ist.
+	\end{definition}
+	\begin{satz}
+		Eine Obermenge einer linear abhängigen Menge ist linear abhängig.
+		Eine Teilmenge einer linear unabhängigen Menge ist linear unabhängig.
+	\end{satz}
+	\begin{satz}
+		$k + 1$ Linearkombinationen von $k$ Vektoren sind linear abhängig.
+	\end{satz}
+	\begin{definition}[Lineare Hülle]
+		Für $M \subset V$ ist $[M]$ die Menge der Linearkombinationen von Vektoren aus $M$.
+		$[\varnothing] \coloneqq \set{0}$.
+	\end{definition}
+	\begin{definition}[Erzeugendensystem]
+		$M \subset V~\text{erzeugend} :\Longleftrightarrow [M] = V$
+	\end{definition}
+	\sep
+	\begin{defsatz}[Basis]%
+		\begin{align*}%
+			\text{$B \subset V$ ist Basis von $V$} :\Longleftrightarrow &~\text{$B$ ist erzeugend und linear unabhängig}\\
+			\Longleftrightarrow &~\text{$B$ ist erzeugend und minimal}\\
+			\Longleftrightarrow &~\text{$B$ ist linear unabhängig und maximal}
+		\end{align*}
+	\end{defsatz}
+	\begin{satz}[Basisergänzungssatz]
+		Für Vektorraum $V \neq \set{0}$, $E \subset V$ erzeugend und $L \subset E$ linear unabhängig
+		existiert eine Basis $B$ von $V$ mit $L \subset B \subset E$.
+	\end{satz}
+	\begin{satz}
+		Jeder Vektorraum hat eine Basis.
+	\end{satz}
+	\begin{defsatz}[Dimension]
+		Ist $B \subset V$ eine Basis, dann $\dim V \coloneqq \abs{B}$. Die Dimension eines Vektorraums ist eindeutig.
+	\end{defsatz}
+	\begin{satz}
+		Ist $\dim V = n$, dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $n + 1$ Vektoren aus $V$ sind linear abhängig.
+			\item $n$ linear unabhängige Vektoren sind eine Basis von $V$.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}[Komponentenvektor]
+		Ist $b_1, \ldots, b_n \in V$ eine geordnete Basis von $V$, dann hat $v \in V$ die
+		eindeutige Basisdarstellung $v = \sum_{i = 1}^nv_ib_i$. Dann
+		$\Theta_B(v) \coloneqq (v_1,\ldots,v_n) \in \mathbb{K}^n$.
+	\end{definition}
+	\begin{defver}[Basiswechsel]
+		Für Basen $B, \bar{B}$ heißt die eindeutige Matrix $A$ mit der Eigenschaft
+		$\Theta_{\bar{B}}(v) = A\cdot\Theta_B(v)$ für alle $v \in V$ die Übergangsmatrix von
+		$B$ nach $\bar{B}$. Die $i$-te Spalte der Basiswechselmatrix sind die Komponenten
+		des $i$-ten Basisvektors der Ursprungsbasis bezüglich der neuen Basis, also
+		$b_i = a_{1i}\bar{b}_1 + a_{2i}\bar{b}_2 + \ldots + a_{ni}\bar{b}_n$.
+	\end{defver}
+	\begin{satz}
+		Wenn $\Theta_{\bar{B}}(v) = A\cdot\Theta_B(v)$, dann
+		$\Theta_B(v) = A^{-1}\cdot\Theta_{\bar{B}}(v)$.
+	\end{satz}
+	\sep
+	\begin{satz}[Untervektorraum]
+		\begin{description}
+			\item[U1] $U\neq\varnothing$
+			\item[U2] $\forall x, y \in U~\forall \lambda\in\mathbb{K}: x + y \in U \wedge \lambda x\in U$
+		\end{description}
+	\end{satz}
+	\begin{satz}
+		Für $M \subset V$ ist $[M]$ ein Untervektorraum von $V$.
+	\end{satz}
+	\begin{satz}
+		Für $\varnothing\neq\mathfrak{U}\subset\mathcal{P}(V)$ ist $\bigcap_{U\in\mathfrak{U}}U$
+		ein Untervektorraum von U.
+	\end{satz}
+	\begin{definition}[Summe und direkte Summe]
+		$U_1 + U_2 \coloneqq [U_1 \cup U_2]$. Falls $U_1 \cap U_2 = \set{0}$, dann
+		$U_1 \oplus U_2 \coloneqq U_1 + U_2$.
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item $U_1 + U_2 = \set{v \in V \given \exists u_1 \in U_1, u_2 \in U_2: v = u_1 + u_2}$
+			\item Die Summe ist genau dann direkt, wenn die Wahl von $u_1$ und $u_2$ immer eindeutig ist.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Komplement]
+		Für $U_1$ Untervektorraum von V existiert ein Untervektorraum $U_2$ von $V$ mit $U_1 \oplus U_2 = V$.
+	\end{satz}
+	\sep
+	\begin{satz}[Dimension Untervektorraum]
+		Ist $V$ endlich-dimensional und $U$ Untervektorraum von $V$, dann $\dim U\leq\dim V$.
+		$\dim U=\dim V \iff U = V$.
+	\end{satz}
+	\begin{satz}[Dimension Summe]
+		Ist $V$ endlich-dimensional und $U_1, U_2$ Untervektorräume von $V$, dann
+		\[\dim(U_1 + U_2) = \dim U_1 + \dim U_2 - \dim(U_1 \cap U_2).\]
+	\end{satz}
+	\sep
+	\begin{verfahren}[Linear unbhängige Teilmenge finden]
+		Vektoren als Spaltenvektoren schreiben, Gauß-Algorithmus anwenden.
+		Aus der Treppenform ergibt sich, welche Vektoren entfernt werden können.
+	\end{verfahren}
+	\begin{verfahren}[Einfache Basis der linearen Hülle finden]
+		Vektoren als Zeilenvektoren schreiben, Gauß-Algorithmus anwenden.
+		Die Zeilen, die nicht null sind, sind eine Basis der linearen Hülle.
+	\end{verfahren}
+	\begin{satz}
+		Der Zeilenrang und Spaltenrang einer Matrix sind gleich.
+	\end{satz}
+	\sep
+	\begin{definition}[Gruppenhomomorphismus]
+		Für $(G, *)$, $(H, \circ)$ Gruppen und $\Phi\colon G \to H$:
+		\[\Phi~\text{Gruppenhomomorphismus} :\Longleftrightarrow \forall x, y \in G: \Phi(x * y) = \Phi(x)\circ\Phi(y)\]
+	\end{definition}
+	\begin{definition}[Ringhomomorphismus]
+		Für $(R_1, +, \cdot)$, $(R_2, +, \cdot)$ Ringe und $\Phi\colon R_1\to R_2$:
+		\[\Phi~\text{Ringhomomorphismus} :\Longleftrightarrow \forall x, y \in R_1: \Phi(x + y) = \Phi(x) + \Phi(y) \wedge
+		\Phi(x \cdot y) = \Phi(x) \cdot \Phi(y)\]
+	\end{definition}
+	\begin{definition}[Körperhomomorphismus]
+		Für $(\mathbb{K}_1, +, \cdot)$, $(\mathbb{K}_2, +, \cdot)$ Körper und $\Phi\colon\mathbb{K}_1\to \mathbb{K}_2$:
+		\[\Phi~\text{Körperhomomorphismus} :\Longleftrightarrow \forall x, y \in \mathbb{K}_1: \Phi(x + y) = \Phi(x) + \Phi(y) \wedge
+		\Phi(x \cdot y) = \Phi(x) \cdot \Phi(y)\]
+	\end{definition}
+	\begin{definition}[Endomorphismus]
+		Homorphismus, der gleichzeitig Selbstabbildung ist
+	\end{definition}
+	\begin{definition}[Isomorhpismus, Automorphismus]
+		Bijektiver Homomorphismus bzw. bijektiver Endomorphismus
+	\end{definition}
+\end{document}
