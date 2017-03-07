@@ -352,3 +352,5 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/linux,vim,tex,latex
+
+*.pdf

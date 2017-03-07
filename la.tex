@@ -34,10 +34,16 @@
 \newtheorem{defsatz}[definition]{Definition und Satz}
 \newtheorem{verfahren}[definition]{Verfahren}
 \newtheorem{defver}[definition]{Definition und Verfahren}
+\newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
 
 \MakeOuterQuote{"}
 
 \DeclareMathOperator{\chop}{char}
+\DeclareMathOperator{\Kern}{Kern}
+\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\Rang}{Rang}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
 \newcommand{\sep}{%
 	\rule{\textwidth}{0.3pt}%
 	\stepcounter{Sec}%
@@ -45,6 +51,8 @@
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
 \begin{document}
+
+	\textsc{Lineare Algebra I}
 
 	\sep
 	\begin{definition}[Gruppe]
@@ -132,6 +140,27 @@
 	\begin{satz}
 		$\chop\mathbb{K}$ ist entweder 0 oder eine Primzahl.
 	\end{satz}
+	\sep
+	\begin{definition}[Gruppenhomomorphismus]
+		Für $(G, *)$, $(H, \circ)$ Gruppen und $\Phi\colon G \to H$:
+		\[\Phi~\text{Gruppenhomomorphismus} :\Longleftrightarrow \forall x, y \in G: \Phi(x * y) = \Phi(x)\circ\Phi(y)\]
+	\end{definition}
+	\begin{definition}[Ringhomomorphismus]
+		Für $(R_1, +, \cdot)$, $(R_2, +, \cdot)$ Ringe und $\Phi\colon R_1\to R_2$:
+		\[\Phi~\text{Ringhomomorphismus} :\Longleftrightarrow \forall x, y \in R_1: \Phi(x + y) = \Phi(x) + \Phi(y) \wedge
+		\Phi(x \cdot y) = \Phi(x) \cdot \Phi(y)\]
+	\end{definition}
+	\begin{definition}[Körperhomomorphismus]
+		Für $(\mathbb{K}_1, +, \cdot)$, $(\mathbb{K}_2, +, \cdot)$ Körper und $\Phi\colon\mathbb{K}_1\to \mathbb{K}_2$:
+		\[\Phi~\text{Körperhomomorphismus} :\Longleftrightarrow \forall x, y \in \mathbb{K}_1: \Phi(x + y) = \Phi(x) + \Phi(y) \wedge
+		\Phi(x \cdot y) = \Phi(x) \cdot \Phi(y)\]
+	\end{definition}
+	\begin{definition}[Endomorphismus]
+		Homorphismus, der gleichzeitig Selbstabbildung ist
+	\end{definition}
+	\begin{definition}[Isomorhpismus, Automorphismus]
+		Bijektiver Homomorphismus bzw. bijektiver Endomorphismus
+	\end{definition}
 	\sep
 	\begin{definition}[Matrixmultiplikation]
 		Für $A = (a_{ij}) \in \mathbb{K}^{p\cross q}$ und $B = (b_{ij}) \in \mathbb{K}^{q\cross r}$
@@ -280,24 +309,162 @@
 		Der Zeilenrang und Spaltenrang einer Matrix sind gleich.
 	\end{satz}
 	\sep
-	\begin{definition}[Gruppenhomomorphismus]
-		Für $(G, *)$, $(H, \circ)$ Gruppen und $\Phi\colon G \to H$:
-		\[\Phi~\text{Gruppenhomomorphismus} :\Longleftrightarrow \forall x, y \in G: \Phi(x * y) = \Phi(x)\circ\Phi(y)\]
+	\begin{definition}[Faktorraum]
+		Ist $U$ ein Untervektorraum von $V$, dann ist $V/U$ die Menge der Äquivalenzklassen
+		bezüglich der Äquivalenzrelation $x\sim y :\Longleftrightarrow x-y\in U$. Ist $x\in V$,
+		dann ist $\tilde{x} = \set{x + u \given u\in U} \eqqcolon x + U$ ein Element von
+		$V/U$.
 	\end{definition}
-	\begin{definition}[Ringhomomorphismus]
-		Für $(R_1, +, \cdot)$, $(R_2, +, \cdot)$ Ringe und $\Phi\colon R_1\to R_2$:
-		\[\Phi~\text{Ringhomomorphismus} :\Longleftrightarrow \forall x, y \in R_1: \Phi(x + y) = \Phi(x) + \Phi(y) \wedge
-		\Phi(x \cdot y) = \Phi(x) \cdot \Phi(y)\]
+	\begin{satz}
+		Ist $V$ $n$-dimensional und $U$ ein Untervektorraum von $B$ mit Basis
+		$\set{b_1,\ldots,b_d}$, dann lässt sich die Basis zur Basis
+		$\set{b_1,\ldots,b_d,b_{d+1},\ldots,b_n}$ von $V$ vervollständigen und $V/U$
+		hat die Basis $\set{\tilde{b}_{d+1},\ldots,\tilde{b}_n}$.
+	\end{satz}
+	\begin{satz}[Dimensionssatz Faktorraum]
+		Ist $V$ endlichdimensional und $U$ ein Untervektorraum von $V$, dann gilt
+		$\dim V/U = \dim V - \dim U$.
+	\end{satz}
+	\sep
+	\begin{definition}[Lineare Abbildung]
+		Für Vektorräume $V$, $W$ heißt $\Phi\colon V\to W$ linear, wenn:
+		\begin{description}
+			\item[L1] $\forall x, y \in V, \lambda\in\mathbb{K}: \Phi(x + y) = \Phi(x) + \Phi(y)$
+			\item[L2] $\forall x, y \in V, \lambda\in\mathbb{K}: \Phi(\lambda x) = \lambda\Phi(x)$
+		\end{description}
 	\end{definition}
-	\begin{definition}[Körperhomomorphismus]
-		Für $(\mathbb{K}_1, +, \cdot)$, $(\mathbb{K}_2, +, \cdot)$ Körper und $\Phi\colon\mathbb{K}_1\to \mathbb{K}_2$:
-		\[\Phi~\text{Körperhomomorphismus} :\Longleftrightarrow \forall x, y \in \mathbb{K}_1: \Phi(x + y) = \Phi(x) + \Phi(y) \wedge
-		\Phi(x \cdot y) = \Phi(x) \cdot \Phi(y)\]
+	\begin{satz}
+		Für Vektorräume $V$, $W$ ist $\Phi\colon V\to W$ genau dann linear, wenn:
+		\begin{description}
+			\item[L] $\forall x, y\in V, \lambda, \mu\in\mathbb{K}: \Phi(\lambda x + \mu y) = \lambda\Phi(x) + \mu\Phi(y)$
+		\end{description}
+	\end{satz}
+	\begin{definition}[Vektorraumisomorphie]
+		Falls es eine bijektive lineare Abbildungen zwischen Vektorräumen $V$ und $W$
+		gibt, dann nennt man diese isomorph und schreibt $V \cong W$.
 	\end{definition}
-	\begin{definition}[Endomorphismus]
-		Homorphismus, der gleichzeitig Selbstabbildung ist
+	\sep
+	\begin{satz}[Lineare Fortsetzung]
+		Für einen Vektorraum $V$, eine Basis ${v_1,\ldots,v_n}$ und Vektoren
+		$w_1,\ldots,w_n \in W$ existiert genau eine lineare Abbildung $\Phi\colon V\to W$
+		mit $\Phi(v_i) = w_i$ für $ 1 \leq i \leq n$.
+	\end{satz}
+	\sep
+	\begin{satz}
+		Bei einer linearen Abbildung gehen linear abhängige Vektoren in linear
+		abhängige Vektoren über.
+	\end{satz}
+	\begin{satz}
+		Bei einer injektiven linearen Abbildung gehen linear unabhängige Vektoren in
+		linear unabhängige Vektoren über.
+	\end{satz}
+	\begin{defsatz}[Kern]
+		$\Kern\Phi\coloneqq\set{v\in V\given\Phi(v)=0}$ ist ein Untervektorraum von $V$.
+	\end{defsatz}
+	\begin{satz}
+		Eine lineare Abbildung $\Phi\colon V\to W$ ist genau dann injektiv, wenn $\Kern\Phi = \set{0}$.
+	\end{satz}
+	\begin{defsatz}[Bild]
+		$\Bild\Phi\coloneqq\Phi(V)$ ist ein Untervektorraum von $V$.
+	\end{defsatz}
+	\begin{satz}
+		Eine lineare Abbildung $\Phi\colon V\to W$ ist genau dann surjektiv, wenn $\Bild\Phi = W$.
+	\end{satz}
+	\begin{definition}[Menge der Urbilder]
+		$\Phi^{-1}\coloneqq\set{x\in V\given\Phi(x)=w}$.
 	\end{definition}
-	\begin{definition}[Isomorhpismus, Automorphismus]
-		Bijektiver Homomorphismus bzw. bijektiver Endomorphismus
+	\begin{satz}[Menge der Mengen der Urbilder ist Faktorraum]
+		Für $w\in\Bild\Phi$ gilt $\Phi^{-1}(w) = x + \Kern\Phi \in V/\Kern\Phi$
+		für ein $x$ mit $\Phi(x) = w$.
+	\end{satz}
+	\begin{defsatz}[Kanonische Projektion]
+		Für $\Phi\colon V\to W$ ist die Abbildung $\pi\colon V\to V/\Kern\Phi$ mit
+		$\pi(x)\coloneqq\tilde{x}$ surjektiv.
+	\end{defsatz}
+	\begin{satz}[Homomorphiesatz]
+		Für $\Phi\colon V\to W$ ist $\tilde{\Phi}\colon V/\Kern\Phi\to W$ mit
+		$\tilde{\Phi}(\tilde{x})\coloneqq\Phi(x)$ injektiv und linear und es ist
+		$\Phi = \tilde{\Phi}\circ\pi$.
+	\end{satz}
+	\begin{satz}[Isomorphiesatz]
+		Für $\Phi\colon V\to W$ surjektiv ist $\tilde{\Phi}$ surjektiv und somit
+		bijektiv. Für allgemeines $\Phi\colon V\to W$ gilt dann $V/\Kern\Phi\cong\Bild\Phi$,
+		im surjektiven Fall folgt $V/\Kern\Phi\cong W$.
+	\end{satz}
+	\sep
+	\begin{defsatz}[Rang einer linearen Abbildung]
+		Für $\Phi\colon V\to W$ linear ist $\Rang\Phi\coloneqq\dim\Phi(V)=\dim\Bild\Phi\leq\dim W$.
+		Ferner $\Rang\Phi\leq\dim V$.
+	\end{defsatz}
+	\begin{satz}[Dimensionssatz]
+		Für $\Phi\colon V\to W$ linear gilt $\Rang\Phi = \dim V - \dim\Kern\Phi$.
+	\end{satz}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Phi\colon V\to W$ linear ist genau dann injektiv, wenn $\Rang\Phi=\dim V$.
+			\item $\Phi\colon V\to W$ linear ist genau dann surjektiv, wenn $\Rang\Phi=\dim W$.
+			\item Zwei Vektorräume sind genau dann isomorph, wenn sie die gleiche Dimension haben.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Menge der linearen Abbildungen]
+		Sind $V$ und $W$ $\mathbb{K}$-Vektorräume, so ist die Menge $\Hom(V, W)$ aller
+		linearen Abboldungen $\Phi\colon V\to W$ ein $\mathbb{K}$-Vektorraum.
+	\end{defsatz}
+	\begin{satz}
+		Sind $V$ und $W$ endlichdimensional, dann gilt $\dim\Hom(V, W) = \dim V\cdot\dim W$.
+	\end{satz}
+	\begin{defsatz}[Dualraum]
+		Ist $V$ ein $\mathbb{K}$-Vektorraum, dann ist $V^*\coloneqq\Hom(V,\mathbb{K})$.
+		Ist $\set{v_1,\ldots,v_n}$ eine Basis von $V$, dann ist $\set{v_1^*,\ldots,v_n^*}$
+		mit $v_j^*(v_k)\coloneqq\delta_{jk}$ eine Basis von $V^*$.
+	\end{defsatz}
+	\begin{defsatz}[Bidualraum]
+		Ist $V$ endlichdimensional und $\dim V \geq 1$, dann ist $V^{**}\coloneqq(V^*)^*\cong V$,
+		denn $F\colon V\to V^{**}$ mit $F(x)(\Phi)\coloneqq\Phi(x)$ ist ein Vektorraumisomorphismus.
+	\end{defsatz}
+	\sep
+	\begin{defsatzver}[Abbildungsmatrix]
+		Die Abbildung $M^B_C\colon\Hom(V, W)\to \mathbb{K}^{m\cross n}$, die jeder
+		linearen Abbildung ihre Abbildungsmatrix zuordnet, ist ein Vektorraumisomorphismus.
+		Die $k$-te Spalte der Abbildungsmatrix ist $\Theta_C(\Phi(b_k))$.
+	\end{defsatzver}
+	\begin{satz}
+		Für endlichdimensionale $\mathbb{K}$-Vektorräume $V_1$, $V_2$, $V_3$ mit $\dim V_1=l$, $\dim V_2=m$,
+		$\dim V_2=n$, Basen $B_1$, $B_2$, $B_3$ und $\Phi\colon V_1\to V_2$ und
+		$\Psi\colon V_2\to V_3$ linear gilt $M_{B_3}^{B_1}(\Psi\circ\Phi) = M_{B_3}^{B_2}(\Psi)\cdot M_{B_2}^{B_1}(\Phi)$.
+	\end{satz}
+	\begin{satz}
+		Für endlichdimensionale $\mathbb{K}$-Vektorräume $V$, $W$ mit Basen $B$, $C$ ist
+		$\Phi\colon V\to W$ genau dann ein Isomorphismus, wenn $M_C^B(\Phi)$ invertierbar.
+		Dann $M_B^C(\Phi^{-1}) = (M_C^B(\Phi))^{-1}$.
+	\end{satz}
+	\begin{defsatz}[Duale Abbildung]
+		Für endlichdimensionale $\mathbb{K}$-Vektorräume $V$, $W$ und $\Phi\colon V\to W$
+		linear ist $\Phi^*\colon W^*\to V^*$ mit $\Phi^*(\alpha)\coloneqq\alpha\circ\Phi$
+		ebenfalls linear und es gilt $M_{B^*}^{C^*}(\Phi^*) = M_C^B(\Phi)^{\mathsf{T}}$.
+	\end{defsatz}
+	\begin{defsatz}
+		$\hat{\Phi}\colon\mathbb{K}^n\to\mathbb{K}^m$ ist gegeben durch
+		$\Theta_C^{_1}\circ\hat{\Phi}\circ\Theta_B=\Phi$ und $\hat{\Phi}=\Theta_C\circ\Phi\circ\Theta_B^{-1}$.
+	\end{defsatz}
+	\begin{satz}
+		Für $\Phi\colon V\to W$ linear und beliebige Basen $B$, $C$ gilt $\Rang\Phi=\Rang M_C^B$.
+	\end{satz}
+	\sep
+	\begin{satz}
+		Für $\Phi\colon V\to W$ linear und Basen $B$, $\tilde{B}$ von $V$ und
+		$C$, $\tilde{C}$ von $W$ gilt $M_{\tilde{C}}^{\tilde{B}}(\Phi) = M_{\tilde{C}}^C(\id_W)\cdot M_B^C(\Phi)\cdot M_B^{\tilde{B}}(\id_V)$.
+	\end{satz}
+	\begin{defsatz}[Äquivalente Matrizen]
+		Matrizen $A, \tilde{A} \in \mathbb{K}^{m\cross n}$ heißen äquivalent, wenn es
+		invertierbare Matrizen $S \in \mathbb{K}^{n\cross n}$ und $T \in \mathbb{K}^{m\cross m}$
+		gibt mit $\tilde{A}=TAS$. Äquivalenz ist eine Äquivalenzrelation und elementare
+		Zeilen- und Spaltenumformungen geben eine äquivalente Matrix. Zwei Matrizen sind
+		genau dann äquivalent, wenn sie den gleichen Rang haben.
+	\end{defsatz}
+	\begin{definition}[Ähnliche Matrizen]
+		Matrizen $A, \tilde{A} \in \mathbb{K}^{n\cross n}$ heißen ähnlich, wenn es eine
+		invertierbare Matrix $T\in \mathbb{K}^{n\cross n}$ mit $\tilde{A} = TAT^{-1}$ gibt.
 	\end{definition}
 \end{document}
