@@ -23,7 +23,7 @@
 
 \usepackage{parskip}
 
-\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
 
 \newcounter{Sec}
 
@@ -506,7 +506,7 @@
 		\end{description}
 		erfüllt, heißt Determinantenfunktion, existiert und ist eindeutig.
 	\end{defsatz}
-	\begin{satz}[Eigenschaften der Determinanten]
+	\begin{satz}[Eigenschaften der Determinantenfunktion]
 		\begin{enumerate}[label=(\alph*)]
 			\item
 				\[ D(a_1,\ldots,\sum_{k=1}^m\lambda_kb_k,\ldots,a_n)=\sum_{k=1}^m\lambda_kD(a_1,\ldots,b_k,\ldots,a_n) \]
@@ -596,7 +596,7 @@
 			\item In $V$ gibt es eine Basis aus Eigenvektoren von $\Phi$.
 			\item $V$ ist die direkte Summe der Eigenräume von $\Phi$.
 			\item Die Summe der Dimensionen der Eigenräume von $\Phi$ ist $n$.
-			\item Daas charakteristische Polynom zerfällt in Linearfaktoren und
+			\item Das charakteristische Polynom zerfällt in Linearfaktoren und
 			für alle Eigenwerte sind die geometrische und algebraische Vielfalt gleich.
 		\end{enumerate}
 	\end{satz}
@@ -606,7 +606,11 @@
 		charakterisitische Polynom in Linearfaktoren zerfällt.
 	\end{defsatz}
 	\sep
-	\begin{satz}[Satz von Cayley-Hamilton]
+	\begin{defsatz}[Einsetzungshomomorphismus]
+		Für $p = a_0 + a_1X + \ldots + a_nX^n \in\mathbb{K}[X]$ ist $p(\Phi)\coloneqq a_0\id_V+a_1\Phi+\ldots a_n\Phi^n \in\Hom(V, V)$.
+		Die Abbildung $\mathbb{K}[X]\to\Hom(V, V)$ mit $p\mapsto p(\Phi)$ ist ein Ringhomomorphismus und eine lineare Abbildung.
+	\end{defsatz}
+	\begin{satz}[von Cayley-Hamilton]
 		Für einen Endomorphismus $\Phi$ ist $p_\Phi(\Phi) = 0$, also $\forall v\in V: p_\Phi(\Phi)(v) = 0$.
 	\end{satz}
 \end{document}
