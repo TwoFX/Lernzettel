@@ -35,6 +35,7 @@
 \newtheorem{verfahren}[definition]{Verfahren}
 \newtheorem{defver}[definition]{Definition und Verfahren}
 \newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
+\newtheorem{satzver}[definition]{Satz und Verfahren}
 
 \MakeOuterQuote{"}
 
@@ -44,6 +45,7 @@
 \DeclareMathOperator{\Rang}{Rang}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\sign}{sign}
 \newcommand{\sep}{%
 	\rule{\textwidth}{0.3pt}%
 	\stepcounter{Sec}%
@@ -94,6 +96,16 @@
 	\begin{satz}[Anzahl Transpositionen]
 		Für $\pi$ Permutation und $\tau_1, \ldots, \tau_n$ Transpositionen mit
 		$\pi = \tau_1 \circ \ldots \circ \tau_n$: $\pi~\text{gerade} \iff n~\text{gerade}$.
+	\end{satz}
+	\begin{definition}[Signum]
+		$\sign\sigma\coloneqq(-1)^{F(\sigma)}$.
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $\sigma$ die Verkettung von $r$ Transpositionen, dann $\sign\sigma = (-1)^r$.
+			\item $\sign(\sigma_1\circ\sigma_2) = \sign(\sigma_1)\cdot\sign(\sigma_2)$.
+			\item $\sign\sigma=\sign\sigma^{-1}$.
+		\end{enumerate}
 	\end{satz}
 	\sep
 	\begin{definition}[Ring]
@@ -184,6 +196,9 @@
 	\begin{satz}
 		$(\mathbb{K}[X], +, \cdot)$ ist ein kommutativer Ring mit Eins.
 	\end{satz}
+	\begin{definition}[Nullstelle eines Polynoms]
+		$\alpha\in\mathbb{K}~\text{ist Nullstelle von $p\in\mathbb{K}[X]$} :\Longleftrightarrow f_p(\alpha) = 0$.
+	\end{definition}
 	\sep
 	\begin{definition}[Vektorraum]
 		Die Menge $V$ heißt mit den Abbildungen $+\colon V\cross V\to V$, $\cdot\colon\mathbb{K}\cross V\to V$ ein $\mathbb{K}$-Vektorraum, wenn
@@ -446,7 +461,7 @@
 	\end{defsatz}
 	\begin{defsatz}
 		$\hat{\Phi}\colon\mathbb{K}^n\to\mathbb{K}^m$ ist gegeben durch
-		$\Theta_C^{_1}\circ\hat{\Phi}\circ\Theta_B=\Phi$ und $\hat{\Phi}=\Theta_C\circ\Phi\circ\Theta_B^{-1}$.
+		$\Theta_C^{-1}\circ\hat{\Phi}\circ\Theta_B=\Phi$ und $\hat{\Phi}=\Theta_C\circ\Phi\circ\Theta_B^{-1}$.
 	\end{defsatz}
 	\begin{satz}
 		Für $\Phi\colon V\to W$ linear und beliebige Basen $B$, $C$ gilt $\Rang\Phi=\Rang M_C^B$.
@@ -467,4 +482,131 @@
 		Matrizen $A, \tilde{A} \in \mathbb{K}^{n\cross n}$ heißen ähnlich, wenn es eine
 		invertierbare Matrix $T\in \mathbb{K}^{n\cross n}$ mit $\tilde{A} = TAT^{-1}$ gibt.
 	\end{definition}
+	\sep
+	\begin{satz}
+		Das LGS $Ax = b$ ist genau dann lösbar, wenn $\Rang A = \Rang(A \mid b)$.
+	\end{satz}
+	\begin{satz}
+		Ist $Ax = \Phi(x) = b$ lösbar und ist $x_0$ eine beliebige Lösung, dann
+		ist $\mathcal{L} = x_0 + \mathcal{L}_h = x_0 + \Kern\Phi$.
+	\end{satz}
+	\begin{satz}
+		Ein homogenes LGS ist genau dann nichttrivial lösbar, wenn $\Rang A < n$.
+		Es ist $\dim\mathcal{L}_h = n - \Rang A$.
+	\end{satz}
+	\sep
+	\begin{defsatz}[Determinante]
+		Die Funktion $D$, die geordneten $n$-Tupeln aus $\mathbb{K}^n$ einen Skalar aus
+		$\mathbb{K}$ zuordnet und die Eigenschaften
+		\begin{description}
+			\item[D1] $\forall\lambda\in\mathbb{K},1\leq i\leq n: D(a_1,\ldots,\lambda a_i,\ldots,a_n) = \lambda D(a_1,\ldots,a_i,\ldots,a_n)$
+			\item[D2] $D(a_1,\ldots,a_i'+a_i'',\ldots,a_n) = D(a_1,\ldots,a_i',\ldots,a_n) + D(a_1,\ldots,a_i'',\ldots,a_n)$
+			\item[D3] Aus $a_i = a_j$ für $i \neq j$ folgt $D(a_1,\ldots,a_i,\ldots,a_j,\ldots,a_n) = 0$
+			\item[D4] Für die Standardbassis $e_1,\ldots,e_n$ von $\mathbb{K}^n$ ist $D(e_1,\ldots,e_n) = 1$
+		\end{description}
+		erfüllt, heißt Determinantenfunktion, existiert und ist eindeutig.
+	\end{defsatz}
+	\begin{satz}[Eigenschaften der Determinanten]
+		\begin{enumerate}[label=(\alph*)]
+			\item
+				\[ D(a_1,\ldots,\sum_{k=1}^m\lambda_kb_k,\ldots,a_n)=\sum_{k=1}^m\lambda_kD(a_1,\ldots,b_k,\ldots,a_n) \]
+			\item
+				\[ D(a_1,\ldots,a_i+\sum_{\substack{k=1\\k\neq i}}^m\lambda_ka_k,\ldots,a_n) = D(a_1,\ldots,a_i,\ldots,a_n) \]
+			\item
+				\[ D(a_1,\ldots,a_i,\ldots,a_j,\ldots,a_n) = -D(a_1,\ldots,a_j,\ldots,a_i,\ldots,a_n) \]
+			\item
+				\[ D(a_{\sigma(1)},\ldots,a_{\sigma(n)}) = \sign\sigma D(a_1,\ldots,a_n) \]
+			\item Die Determinante linear abhängiger Vektoren ist $0$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Formel von Leibniz]
+		\[ D(a_1,\ldots,a_n) = \sum_{\sigma\in S_n}\sign\sigma\cdot a_{1\sigma(1)}\cdots a_{n\sigma(n)} \]
+	\end{satz}
+	\begin{definition}[Determinante einer quadratischen Matrix]
+		$\det A\coloneqq D(a_1,\ldots,a_n)$. Die $a_i$ sind per Definition Zeilenvektoren, das spielt aber keine Rolle.
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item $\det A = \det A^{\mathsf{T}}$
+			\item $\det(A\cdot B) = \det A\cdot \det B$
+			\item Eine quadratische Matrix $A$ ist genau dann regulär, wenn $\det A\neq 0$. Dann $\det A^{-1} = (\det A)^{-1} = \frac{1}{\det A}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satzver}[Berechnung der Determinante]
+		\begin{enumerate}[label=(\alph*)]
+			\item Entwicklung nach der $k$-ten Spalte:
+				\[ D(a_1,\ldots,a_n) = \sum_{j=1}^n(-1)^{k+j}a_{jk}D_{jk} \]
+			\item Entwicklung nach der $i$-ten Zeile:
+				\[ D(a_1,\ldots,a_n) = \sum_{k=1}^n(-1)^{i+k}a_{ik}D_{ik} \]
+			\item Beim Vertauschen von zwei Zeilen muss mit $-1$ multipliziert werden.
+			\item Wird eine Zeile mit $k$ multipliziert, muss mit $k^{-1}$ multipliziert werden.
+			\item Wird das Vielfache einer Zeile auf eine andere Zeile addiert, wird nicht multipliziert.
+		\end{enumerate}
+	\end{satzver}
+	\sep
+	\begin{satz}
+		Ein homogenes LGS $Ax=0$ hat genau dann nur die triviale Lösung, wenn $\det A\neq0$.
+	\end{satz}
+	\begin{satz}[Kramersche Regel]
+		Ein LGS $Ax=b$ mit $\det A\neq 0$ hat genau eine Lösung $x = (x_1,\ldots,x_n)$ und es gilt
+		$x_k = \frac{D_k}{\det A}$, wobei $D_k\coloneqq\det(a_{\cdot1}\cdots a_{\cdot k} \mid b \mid a_{\cdot k+1}\cdots a_{\cdot n})$.
+	\end{satz}
+	\sep
+	\begin{definition}[Eigenwert]
+		Für $\Phi\colon V\to V$ heißt $\lambda\in\mathbb{K}$ Eigenwert, wenn $0\neq x\in V$
+		existiert mit $\Phi(x)=\lambda x \iff (\Phi-\lambda\id_V)(x)=0$.
+	\end{definition}
+	\begin{definition}[Eigenraum]
+		$E_\lambda\coloneqq\set{x\given\Phi(x)=\lambda x}=\Kern(\Phi-\lambda\id_V)$
+	\end{definition}
+	\begin{definition}[Spektrum]
+		$\set{\lambda\given\exists x\neq0:\Phi(x)=\lambda x}$ heißt Spektrum von $\Phi$.
+	\end{definition}
+	\begin{satz}
+		Zu verschiedenen Eigenwerten gehörende Eigenvektoren eines Endomorphismus sind linear unabhängig.
+		Ein Endomorphismus hat somit maximal $n$ Eigenwerte.
+	\end{satz}
+	\begin{definition}[Charakteristisches Polynom]
+		$p_A\coloneqq\det(A-XE_n)$
+	\end{definition}
+	\begin{satzver}[Bestimmung der Eigenwerte]
+		$\lambda~\text{ist Eigenwert von $A \in\mathbb{K}^{n\cross n}$} \iff \det(A-\lambda E_n) = 0 \iff \lambda~\text{ist Nullstelle von $p_A$}$.
+	\end{satzver}
+	\begin{satzver}[Bestimmung des Eigenraums]
+		$E_\lambda$ entspricht der Lösungsmenge des homogenen LGS $(A-\lambda E_n)x = 0$.
+	\end{satzver}
+	\sep
+	\begin{definition}[Diagonalisierbar]
+		Eine quadratische Matrix heißt diagonalisierbar, wenn sie zu einer Diagonalmatrix
+		ähnlich ist. Ein Endomorphismus heißt diagonalisierbar, wenn er eine Abbildungsmatrix
+		in Diagonalgestalt hat.
+	\end{definition}
+	\begin{definition}[Geometrische Vielfalt]
+		Die Geometrische Vielfalt eines Eigenvektors $\lambda$ ist $\dim\Bild(\Phi-\lambda\id_V)$.
+	\end{definition}
+	\begin{definition}[Linearfaktoren und algebraische Vielfalt]
+		Ein $p_A$ zerfällt in Linearfaktoren, wenn es sich
+		in der Form $p_A=(-1)^n(X-\lambda_1)^{r_1}\cdots(X-\lambda_k)^{r_k}$ schreiben
+		lässt. $r_i$ ist dann die algebraische Vielfalt des Eigenvektors $\lambda_i$.
+	\end{definition}
+	\begin{satz}
+		Die folgenden Aussagen sind äquivalent.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Phi$ ist diagonalisierbar.
+			\item In $V$ gibt es eine Basis aus Eigenvektoren von $\Phi$.
+			\item $V$ ist die direkte Summe der Eigenräume von $\Phi$.
+			\item Die Summe der Dimensionen der Eigenräume von $\Phi$ ist $n$.
+			\item Daas charakteristische Polynom zerfällt in Linearfaktoren und
+			für alle Eigenwerte sind die geometrische und algebraische Vielfalt gleich.
+		\end{enumerate}
+	\end{satz}
+	\begin{defsatz}[Trigonalisierbarkeit]
+		Ein Endomorphismus heißt trigonalisierbar, wenn er eine Abbildungsmatrix hat,
+		die eine obere Dreiecksmatrix ist. Dies ist genau dann der Fall, wenn das
+		charakterisitische Polynom in Linearfaktoren zerfällt.
+	\end{defsatz}
+	\sep
+	\begin{satz}[Satz von Cayley-Hamilton]
+		Für einen Endomorphismus $\Phi$ ist $p_\Phi(\Phi) = 0$, also $\forall v\in V: p_\Phi(\Phi)(v) = 0$.
+	\end{satz}
 \end{document}
