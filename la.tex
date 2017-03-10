@@ -175,15 +175,15 @@
 	\end{definition}
 	\sep
 	\begin{definition}[Matrixmultiplikation]
-		Für $A = (a_{ij}) \in \mathbb{K}^{p\cross q}$ und $B = (b_{ij}) \in \mathbb{K}^{q\cross r}$
-		ist $AB = C = (c_{jk}) \in \mathbb{K}^{p\cross r}$ mit
+		Für $A = (a_{ij}) \in \mathbb{K}^{p\times q}$ und $B = (b_{ij}) \in \mathbb{K}^{q\times r}$
+		ist $AB = C = (c_{jk}) \in \mathbb{K}^{p\times r}$ mit
 		\[ c_{jk} \coloneqq \sum_{s = 1}^q a_{js}b_{sk}\]
 	\end{definition}
 	\begin{defsatz}[Allgemeine lineare Gruppe]
-		Die Menge $\mathbf{GL}(n, \mathbb{K})$ der regulären/invertierbaren $n\cross n$-Matrizen ist eine Gruppe.
+		Die Menge $\mathbf{GL}(n, \mathbb{K})$ der regulären/invertierbaren $n\times n$-Matrizen ist eine Gruppe.
 	\end{defsatz}
 	\begin{verfahren}[Inverse Matrix berechnen]
-		Um eine $n\cross n$-Matrix zu invertieren, setzt man die $n\cross n$-Einheitsmatrix daneben und wendet
+		Um eine $n\times n$-Matrix zu invertieren, setzt man die $n\times n$-Einheitsmatrix daneben und wendet
 		den Gauß-Algorithmus an.
 	\end{verfahren}
 	\sep
@@ -201,7 +201,7 @@
 	\end{definition}
 	\sep
 	\begin{definition}[Vektorraum]
-		Die Menge $V$ heißt mit den Abbildungen $+\colon V\cross V\to V$, $\cdot\colon\mathbb{K}\cross V\to V$ ein $\mathbb{K}$-Vektorraum, wenn
+		Die Menge $V$ heißt mit den Abbildungen $+\colon V\times V\to V$, $\cdot\colon\mathbb{K}\times V\to V$ ein $\mathbb{K}$-Vektorraum, wenn
 		\begin{description}
 			\item[V1] $(V, +)$ abelsch
 			\item[V2] Für alle $\lambda,\mu\in\mathbb{K}$ und $x, y\in V$ gilt:
@@ -440,7 +440,7 @@
 	\end{defsatz}
 	\sep
 	\begin{defsatzver}[Abbildungsmatrix]
-		Die Abbildung $M^B_C\colon\Hom(V, W)\to \mathbb{K}^{m\cross n}$, die jeder
+		Die Abbildung $M^B_C\colon\Hom(V, W)\to \mathbb{K}^{m\times n}$, die jeder
 		linearen Abbildung ihre Abbildungsmatrix zuordnet, ist ein Vektorraumisomorphismus.
 		Die $k$-te Spalte der Abbildungsmatrix ist $\Theta_C(\Phi(b_k))$.
 	\end{defsatzver}
@@ -469,18 +469,18 @@
 	\sep
 	\begin{satz}
 		Für $\Phi\colon V\to W$ linear und Basen $B$, $\tilde{B}$ von $V$ und
-		$C$, $\tilde{C}$ von $W$ gilt $M_{\tilde{C}}^{\tilde{B}}(\Phi) = M_{\tilde{C}}^C(\id_W)\cdot M_B^C(\Phi)\cdot M_B^{\tilde{B}}(\id_V)$.
+		$C$, $\tilde{C}$ von $W$ gilt $M_{\tilde{C}}^{\tilde{B}}(\Phi) = M_{\tilde{C}}^C(\id_W)\cdot M_C^B(\Phi)\cdot M_B^{\tilde{B}}(\id_V)$.
 	\end{satz}
 	\begin{defsatz}[Äquivalente Matrizen]
-		Matrizen $A, \tilde{A} \in \mathbb{K}^{m\cross n}$ heißen äquivalent, wenn es
-		invertierbare Matrizen $S \in \mathbb{K}^{n\cross n}$ und $T \in \mathbb{K}^{m\cross m}$
+		Matrizen $A, \tilde{A} \in \mathbb{K}^{m\times n}$ heißen äquivalent, wenn es
+		invertierbare Matrizen $S \in \mathbb{K}^{n\times n}$ und $T \in \mathbb{K}^{m\times m}$
 		gibt mit $\tilde{A}=TAS$. Äquivalenz ist eine Äquivalenzrelation und elementare
 		Zeilen- und Spaltenumformungen geben eine äquivalente Matrix. Zwei Matrizen sind
 		genau dann äquivalent, wenn sie den gleichen Rang haben.
 	\end{defsatz}
 	\begin{definition}[Ähnliche Matrizen]
-		Matrizen $A, \tilde{A} \in \mathbb{K}^{n\cross n}$ heißen ähnlich, wenn es eine
-		invertierbare Matrix $T\in \mathbb{K}^{n\cross n}$ mit $\tilde{A} = TAT^{-1}$ gibt.
+		Matrizen $A, \tilde{A} \in \mathbb{K}^{n\times n}$ heißen ähnlich, wenn es eine
+		invertierbare Matrix $T\in \mathbb{K}^{n\times n}$ mit $\tilde{A} = TAT^{-1}$ gibt.
 	\end{definition}
 	\sep
 	\begin{satz}
@@ -570,7 +570,7 @@
 		$p_A\coloneqq\det(A-XE_n)$
 	\end{definition}
 	\begin{satzver}[Bestimmung der Eigenwerte]
-		$\lambda~\text{ist Eigenwert von $A \in\mathbb{K}^{n\cross n}$} \iff \det(A-\lambda E_n) = 0 \iff \lambda~\text{ist Nullstelle von $p_A$}$.
+		$\lambda~\text{ist Eigenwert von $A \in\mathbb{K}^{n\times n}$} \iff \det(A-\lambda E_n) = 0 \iff \lambda~\text{ist Nullstelle von $p_A$}$.
 	\end{satzver}
 	\begin{satzver}[Bestimmung des Eigenraums]
 		$E_\lambda$ entspricht der Lösungsmenge des homogenen LGS $(A-\lambda E_n)x = 0$.
@@ -607,7 +607,7 @@
 	\end{defsatz}
 	\sep
 	\begin{defsatz}[Einsetzungshomomorphismus]
-		Für $p = a_0 + a_1X + \ldots + a_nX^n \in\mathbb{K}[X]$ ist $p(\Phi)\coloneqq a_0\id_V+a_1\Phi+\ldots a_n\Phi^n \in\Hom(V, V)$.
+		Für $p = a_0 + a_1X + \ldots + a_nX^n \in\mathbb{K}[X]$ ist $p(\Phi)\coloneqq a_0\id_V+a_1\Phi+\ldots+a_n\Phi^n \in\Hom(V, V)$.
 		Die Abbildung $\mathbb{K}[X]\to\Hom(V, V)$ mit $p\mapsto p(\Phi)$ ist ein Ringhomomorphismus und eine lineare Abbildung.
 	\end{defsatz}
 	\begin{satz}[von Cayley-Hamilton]
