@@ -2,7 +2,7 @@ pipeline:
   set:
     image: tianon/latex
     commands:
-      - pdflatex la.tex
+      - "ls *.tex | xargs -n 1 pdflatex"
 
   push:
     image: appleboy/drone-scp
@@ -10,6 +10,6 @@ pipeline:
     username: drone-deploy
     key: ${SSH_KEY}
     target: /home/drone-deploy/out
-    source: la.pdf
+    source: "*.pdf"
     when:
       status: success

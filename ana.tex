@@ -1,0 +1,111 @@
+\documentclass[a4paper]{article}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\usepackage[framed]{ntheorem}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
+
+\usepackage{parskip}
+\usepackage{multicol}
+
+\usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
+
+\newcounter{Sec}
+
+\theoremstyle{marginbreak}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{Definition}[Sec]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{defsatz}[definition]{Definition und Satz}
+\newtheorem{verfahren}[definition]{Verfahren}
+\newtheorem{defver}[definition]{Definition und Verfahren}
+\newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
+\newtheorem{satzver}[definition]{Satz und Verfahren}
+
+\MakeOuterQuote{"}
+
+\newcommand{\sep}{%
+	\rule{\textwidth}{0.3pt}%
+	\stepcounter{Sec}%
+	}
+\newcommand{\defiff}{:\Longleftrightarrow}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\begin{document}
+	\textsc{Analysis I}
+
+	\sep
+	\begin{defsatz}
+		Zu $\varnothing\neq M\subseteq\mathbb{R}$ heißt $\gamma\in\mathbb{R}$
+		\begin{description}
+			\item[Obere Schranke] $\defiff \forall x\in M: \gamma\geq x$
+			\item[Supremum] $\defiff \gamma~\text{ist OS} \wedge \forall~\text{OS $x$ von $M$}: \gamma\leq x$
+			\item[Maximum] $\defiff \gamma = \sup M\in M$
+		\end{description}
+		Besitzt $M$ eine obere Schranke, besitzt es auch ein Supremum.
+	\end{defsatz}
+	\begin{satz}
+		Für $\varnothing\neq M\subseteq\mathbb{R}$ und obere Schranke $\gamma$ von $M$ gilt
+		$\gamma = \sup M\iff\forall\varepsilon>0~\exists x\in M:x>\gamma-\varepsilon$.
+	\end{satz}
+	\sep
+	\begin{satz}[Betragssätze]
+		$\forall a,b\in\mathbb{R}:$
+		\begin{enumerate}[label=(\alph*)]
+			\item $\abs{ab}=\abs{a}\abs{b}$
+			\item $\pm a\leq\abs{a}$
+			\item $\abs{a+b}\leq\abs{a}+\abs{b}$
+		\end{enumerate}
+	\end{satz}
+	\begin{defsatz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $a\in\mathbb{R}$ ist $[a]$ mit $[a]\in\mathbb{Z}\wedge [a]\leq a<[a]+1$ existent und eindeutig.
+			\item Für $x,y\in\mathbb{R}$ mit $x<y$ existiert $r\in\mathbb{Q}$ mit $x<r<y$.
+		\end{enumerate}
+	\end{defsatz}
+	\sep
+	\begin{definition}[Folge]
+		Eine Abbildung $\mathbb{N}\to B$ heißt Folge in $B$.
+	\end{definition}
+	\begin{defsatz}
+		Eine nichtleere Menge $B$ heißt
+		\begin{description}
+			\item[endlich] $\defiff\exists n\in\mathbb{N},f\colon \set{1,\ldots,n}\to B~\text{surjektiv}$
+			\item[abzählbar] $\defiff\exists f\colon\mathbb{N}\to B~\text{surjektiv}$
+		\end{description}
+		Die abzählbaren Mengen sind über dem kartesischen Produkt und der
+		Vereinigung abzählbar vieler Mengen abgeschlossen.
+	\end{defsatz}
+	\sep
+	\begin{defsatz}
+		Für $n, k\in\mathbb{N}$ ist $\binom{n}{k}\coloneqq\frac{n!}{k!(n-k)!}$.
+		Für $a, b\in\mathbb{R}, n\in\mathbb{N}$ gilt
+		\[(a+b)^n = \sum_{k=0}^n\binom{n}{k}a^{n-k}b^k\]
+	\end{defsatz}
+	\begin{satz}
+		Für $n\in\mathbb{N}, 1\leq x\in\mathbb{R}$ gilt $(1+x)^n\geq1+nx$.
+	\end{satz}
+	\begin{satz}
+		Für $x\in\mathbb{R},n\in\mathbb{N}$ gilt \[\sum_{k=0}^nx^k=\begin{cases}
+			n+1 &\text{falls $x=1$}\\
+			\frac{1-x^{n+1}}{1-x} &\text{sonst}
+		\end{cases}\]
+	\end{satz}
+%	\end{multicols}
+\end{document}
