@@ -1,0 +1,15 @@
+pipeline:
+  set:
+    image: tianon/latex
+    commands:
+      - pdflatex la.tex
+
+  push:
+    image: appleboy/drone-scp
+    host: artanis.twofx.me
+    username: drone-deploy
+    key: ${SSH_KEY}
+    target: /home/drone-deploy/out
+    source: la.pdf
+    when:
+      status: success
