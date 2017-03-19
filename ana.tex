@@ -39,6 +39,7 @@
 \newtheorem{satzver}[definition]{Satz und Verfahren}
 
 \MakeOuterQuote{"}
+\DeclareMathOperator{\ffa}{ffa}
 
 \newcommand{\sep}{%
 	\rule{\textwidth}{0.3pt}%
@@ -99,13 +100,184 @@
 		\[(a+b)^n = \sum_{k=0}^n\binom{n}{k}a^{n-k}b^k\]
 	\end{defsatz}
 	\begin{satz}[Bernoullische Ungleichung]
-		Für $n\in\mathbb{N}, 1\leq x\in\mathbb{R}$ gilt $(1+x)^n\geq1+nx$.
+		Für $n\in\mathbb{N}, -1\leq x\in\mathbb{R}$ gilt $(1+x)^n\geq1+nx$.
+	\end{satz}
+	\sep
+	\begin{definition}
+		Eine Folge heißt beschränkt, wenn die Menge der Folgengleider beschränkt
+		ist. $\sup_{n\in\mathbb{N}}a_n\coloneqq\sup\set{a_n\given n\in\mathbb{N}}$.
+	\end{definition}
+	\begin{defsatz}[Konvergenz]
+		Eine Folge $(a_n)$ in $\mathbb{R}$ heißt konvergent, wenn ein $a\in\mathbb{R}$ existiert, sodass
+		\[\lim_{n\to\infty}(a_n) = a \defiff a_n\to a~(n\to\infty) \defiff
+			\forall\varepsilon>0~\exists n_0\in\mathbb{N}~\forall n>n_0:\abs{a_n-a}<\varepsilon\]
+		Falls der Grenzwert $a$ existiert, ist er eindeutig und $(a_n)$ ist beschränkt.
+	\end{defsatz}
+	\begin{satz}
+		Es seien $(a_n), (b_n)$ Folgen in $\mathbb{R}$ und $a\in\mathbb{R}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Aus $(a_n) = (b_n) \ffa n\in\mathbb{N}$ folgt für $a_n\to a~(n\to\infty) \iff b_n\to a~(n\to\infty)$.
+			\item $a_n\to a~(n\to\infty) \iff \abs{a_n-a}\to0~(b\to\infty)$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Konvergenzsätze]
+		Es seien $(a_n), (b_n), (c_n)$ Folgen in $\mathbb{R}$ und mit $(a_n)\to a,b_n\to b~(n\to\infty)$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $a_n\leq b_n\ffa n\in\mathbb{N}\implies a\leq b$.
+			\item $a=b\wedge a_n\leq b_n\leq c_n\ffa n\in\mathbb{N}\implies c_n\to a~(n\to\infty)$.
+			\item $\abs{a_n}\to\abs{a}~(n\to\infty)$.
+			\item $a_n+b_n\to a+b~(n\to\infty)$.
+			\item $\alpha a_n\to\alpha a~(n\to\infty)$ für $\alpha\in\mathbb{R}$.
+			\item $a_n b_n\to ab~(n\to\infty)$.
+			\item $b\neq0\implies \exists m\in\mathbb{N}: (\forall n\geq m: b_n\neq0) \wedge ((\frac{1}{b_n})_{n\geq m}\to\frac{1}{b}~(n\to\infty))$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}
+		Eine Folge $(a_n)\in\mathbb{R}$ heißt
+		\begin{description}
+			\item[monoton wachsend] $\defiff\forall n\in\mathbb{N}:a_{n+1}\geq a_n$
+			\item[streng monoton wachsend] $\defiff\forall n\in\mathbb{N}:a_{n+}>a_n$
+		\end{description}
+	\end{definition}
+	\begin{satz}
+		Ist $(a_n)$ streng monoton wachsend und nach oben beschränkt, dann ist $\lim_{n\to\infty}=\sup_{n\in\mathbb{N}}a_n$.
 	\end{satz}
 	\begin{satz}
-		Für $x\in\mathbb{R},n\in\mathbb{N}$ gilt \[\sum_{k=0}^nx^k=\begin{cases}
+		Für $(a_n)$ Folge in $\mathbb{R}$ mit $a_n>0~\forall n\in\mathbb{N}$ und $a_n\to a~(n\to\infty)$,
+		$p\in\mathbb{N}$ mit $p\geq2$. Dann $\sqrt[p]{a_n}\to\sqrt[p]{a}~(n\to\infty)$.
+	\end{satz}
+	\begin{satz}
+		Es sei $x\in\mathbb{R}$ und $\forall n\in\mathbb{N}:a_n\coloneqq x^n$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $(a_n)~\text{konvergiert}\iff x\in(-1,1]$.
+			\item $\lim_{n\to\infty}a_n=0\iff x\in(-1,1)$.
+			\item $\lim_{n\to\infty}a_n=1\iff x =1$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Für $x\in\mathbb{R},n\in\mathbb{N}$ gilt \[s_n\coloneqq\sum_{k=0}^nx^k=\begin{cases}
 			n+1 &\text{falls $x=1$}\\
 			\frac{1-x^{n+1}}{1-x} &\text{sonst}
 		\end{cases}\]
+		$(s_n)~\text{konvergiert}\iff\abs{x}<1$. In diesem Fall $\lim_{n\to\infty}s_n=\frac{1}{1-x}$.
 	\end{satz}
-%	\end{multicols}
+	\begin{satz}
+		$\sqrt[n]{n}\to1~(n\to\infty)$. $\forall c>0:\sqrt[n]{c}\to1~(n\to\infty)$.
+	\end{satz}
+	\begin{defsatz}[Die eulersche Zahl]
+		\[ e\coloneqq \lim_{n\to\infty}(1+\frac{1}{n})^n = \lim_{n\to\infty}\sum_{k=0}^n\frac{1}{k!}\]
+	\end{defsatz}
+	\sep
+	\begin{definition}[$\varepsilon$-Umgebung]
+		$\forall\alpha\in\mathbb{R},\varepsilon>0:U_\varepsilon(\alpha)\coloneqq\set{a\in\mathbb{R}\given\abs{a-\alpha}<\varepsilon}
+		=(\alpha-\varepsilon,\alpha+\varepsilon)$.
+	\end{definition}
+	\begin{definition}[Häufungswert]
+		Es sei $(a_n)$ Folge in $\mathbb{R}$. $\alpha\in\mathbb{R}~\text{ist Häufungswert von $(a_n)$}\defiff\forall\varepsilon>0:a_n\in
+		U_\varepsilon(\alpha)~\text{für unendlich viele}~n\in\mathbb{N}$. $\mathcal{H}(a_n)\coloneqq\set{\alpha\in\mathbb{R}\given
+		\alpha~\text{ist Häufungswert von $(a_n)$}}$.
+	\end{definition}
+	\begin{definition}[Teilfolge]
+		Für $(a_n)_n$ Folge in $\mathbb{R}$ und $(n_k)_k$ streng monoton wachsende
+		Folge in $\mathbb{N}$ heißt $(a_{n_k})_k$ Teilfolge von $(a_n)$.
+	\end{definition}
+	\begin{satz}
+		Für Folge $(a_n)$ in $\mathbb{R}$ und $\alpha\in\mathbb{R}$ gilt
+		$\alpha\in\mathcal{H}\iff\exists (n_k)_k~\text{streng monoton wachsend in}~\mathbb{N}:a_{n_k}\to\alpha~(k\to\infty)$.
+	\end{satz}
+	\begin{satz}
+		Für $(a_n)$ konvergent gilt $\mathcal{H}(a_n)=\set{\lim_{n\to\infty} a_n}$. Für jede Teilfolge $(a_{n_k})$ gilt
+		$\lim_{k\to\infty} a_{n_k} = \lim_{n\to\infty} a_n$.
+	\end{satz}
+	\begin{satz}[von Bolzano-Weierstraß]
+		Für $(a_n)$ beschränkt gilt $\mathcal{H}(a_n)\neq\varnothing$.
+	\end{satz}
+	\sep
+	\begin{defsatz}[Oberer und unterer Limes]
+		Für $(a_n)$ beschränkte Folge in $\mathbb{R}$ existieren $\lim\sup a_n\coloneqq\max\mathcal{H}(a_n)$
+		und $\lim\inf a_n\coloneqq\min\mathcal{H}(a_n)$.
+	\end{defsatz}
+	\begin{satz}
+		Für beschränkte Folge $(a_n)$ in $\mathbb{R}$ sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\lim\inf a_n=\lim\sup a_n$
+			\item $\abs{\mathcal{H}(a_n)} = 1$
+			\item $(a_n)$ ist konvergent
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Cauchy-Kriterium]
+		Eine Folge $(a_n)$ in $\mathbb{R}$ heißt Cauchyfolge, wenn
+		$\forall\varepsilon>0~\exists n_0\in\mathbb{N}~\forall n,m\geq n_0:\abs{a_n-a_m}<\varepsilon$.
+		Dies ist genau dann der Fall, wenn $(a_n)$ konvergent ist.
+	\end{defsatz}
+	\sep
+	\begin{definition}[Unendliche Reihe]
+		Ist $(a_n)$ eine Folge in $\mathbb{R}$, so heißt die Folge $\sum_{n=1}^\infty a_n\coloneqq(s_n)$
+		mit $\forall n\in\mathbb{N}:s_n\coloneqq\sum_{k=1}^na_k$ eine (unendliche)
+		Reihe. Falls $\sum_{n=1}^\infty a_n$ konvergent, so ist der Reihenwert
+		$\sum_{n=1}^\infty a_n\coloneqq\lim_{n\to\infty}s_n$.
+	\end{definition}
+	\begin{satz}
+		Ist $(a_n)$ eine Folge in $\mathbb{R}$ und $\sum_{n=1}^\infty a_n$ konvergent,
+		so ist $\lim a_n=0$.
+	\end{satz}
+	\begin{defsatz}[Absolute Konvergenz]
+		Eine Reihe $\sum_{n=1}^\infty a_n$ ist genau dann absolut konvergent, wenn
+		$\sum_{n=1}^\infty\abs{a_n}$ konvergent ist. Eine absolut konvergente
+		Reihe ist konvergent und es gilt
+		$\abs{\sum_{n=1}^\infty a_n}\leq\sum_{n=1}^\infty\abs{a_n}$.
+	\end{defsatz}
+	\begin{satz}[Leibnizkriterium]
+		Für monoton fallende Nullfolge $(a_n)$ ist $\sum_{n=1}^\infty (-1)^na_n$
+		konvergent.
+	\end{satz}
+	\begin{satz}[Majorantenkriterium]
+		$\abs{a_n}\leq b_n\ffa n\in\mathbb{N}\wedge\sum_{n=1}^\infty b_n~\text{konvergiert}
+		\implies\sum_{n=1}^\infty a_n~\text{konvergiert absolut}$.
+	\end{satz}
+	\begin{satz}[Minorantenkriterium]
+		$a_n\geq b_n\geq0\ffa n\in\mathbb{N}\wedge\sum_{n=1}^\infty b_n~\text{divergiert}
+		\implies\sum_{n=1}^\infty a_n~\text{divergiert}$.
+	\end{satz}
+	\begin{satz}[Wurzelkriterium]
+		Für Folge $(a_n)$ in $\mathbb{R}$ setze $\alpha\coloneqq\lim\sup\sqrt[n]{\abs{a_n}}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\alpha<1\implies\sum_{n=1}^\infty a_n~\text{konvergiert absolut}$
+			\item $\alpha>1\implies\sum_{n=1}^\infty a_n~\text{divergiert}$
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Quotientenkriterium]
+		Für Folge $(a_n)$ in $\mathbb{R}$ mit $a_n\neq0\ffa n\in\mathbb{N}$ definiere
+		$(\alpha_n)$ mit $\alpha_n\coloneqq\frac{a_{n+1}}{a_n}\ffa n\in\mathbb{N}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\abs{\alpha_n}\geq1\ffa n\in\mathbb{N}\implies\sum_{n=1}^\infty a_n~\text{ist divergent}$
+			\item Falls $(\alpha_n)$ beschränkt, $\beta\coloneqq\lim\inf\abs{\alpha_n}$,
+			$\alpha\coloneqq\lim\sup\abs{\alpha_n}$.
+			\begin{enumerate}[label=(\roman*)]
+				\item $\beta>1\implies\sum_{n=1}^\infty a_n~\text{ist divergent}$
+				\item $\alpha<1\implies\sum_{n=1}^\infty a_n~\text{ist absolut konvergent}$
+			\end{enumerate}
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}
+		Ist $(a_n)$ eine Folge und $\sigma\colon\mathbb{N}\to\mathbb{N}$ bijektiv,
+		dann heißt $(b_n)$ mit $b_n\coloneqq a_{\sigma(n)}$ eine Umordnung von
+		$(a_n)$. Die Reihe über die Umordnung wird als Umordnung der Reihe bezeichnet.
+	\end{definition}
+	\begin{satz}
+		$(b_n)$ sei eine Umordnung von $(a_n)$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $(a_n)~\text{konvergent}\implies\lim a_n=\lim b_n$
+			\item $\sum_{n=1}^\infty a_n~\text{absolut konvergent}\implies\sum_{n=1}^\infty b_n~\text{absolut konvergent}
+				\wedge\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty b_n$
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Riemannscher Umordnungssatz]
+		Ist $\sum_{n=1}^\infty a_n$ konvergent,
+		aber nicht absolut konvergent, so existiert für jedes $s\in\mathbb{R}\cup
+		\set{\infty,-\infty}$ eine Umordnung $(b_n)$ von $(a_n)$ mit
+		$\sum_{n=1}^\infty b_n = s$.
+	\end{satz}
 \end{document}
