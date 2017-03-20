@@ -372,6 +372,22 @@
 			\Longleftrightarrow&~\forall\varepsilon>0~\exists\delta>0~\forall x\in D_\delta(x_0):\abs{f(x)-f(x_0)}<\varepsilon
 		\end{align*}
 	\end{defsatz}
+	\begin{defsatz}
+		Für $\varnothing\neq D\subseteq\mathbb{R}$, $f\colon D\to\mathbb{R}$
+		ist
+		\begin{align*}
+			f\in C(D)\defiff
+			f~\text{stetig auf $D$}
+			\defiff&~\forall x_0\in D:f~\text{stetig in $x_0$}\\
+			\Longleftrightarrow&~\forall x_0\in D~\forall\varepsilon>0~\exists\delta>0~\forall x\in D_\delta(x_0):\abs{f(x)-f(x_0)}<\varepsilon\\
+			f~\text{gleichmäßig stetig auf $D$}
+			\defiff&~\forall\varepsilon>0~\exists\delta>0~\forall x,z\in D~\text{mit}~\abs{x-z}>\delta:\abs{f(x)-f(z)}<\varepsilon\\
+			f~\text{Lipschitz stetig auf $D$}
+			\defiff&~\exists L>0~\forall x,y\in D:\abs{f(x)-f(z)}\leq L\abs{x-z}
+		\end{align*}
+		Aus der Lipschitz Stetigkeit folgt die gleichmäßige Stetigkeit.
+		Aus der gleichmäßigen Stetigkeit folgt die Stetigkeit.
+	\end{defsatz}
 	\begin{satz}
 		Ist $x_0$ ein Häufungspunkt von $D$, dann gilt $f~\text{stetig in}~x_0\iff\lim_{x\to x_0}f(x)=f(x_0)$.
 	\end{satz}
@@ -392,6 +408,10 @@
 		ist $f\in C(D)$ und für $\tilde{x}\in D$ gilt
 		\[ \lim_{x\to\tilde{x}}\ps = \lim_{x\to\tilde{x}}f(x)=f(\tilde{x})=
 		\sum_{n=0}^\infty a_n(\tilde{x}-x_0)^n=\sum_{n=0}^\infty\lim_{x\to\tilde{x}}a_n(x-x_0)^n \]
+	\end{satz}
+	\begin{satz}[von Heine]
+		Ist $D$ beschränkt und abgeschlossen und $f\in C(D)$, so ist $f$ auf
+		$D$ gleichmäßig stetig.
 	\end{satz}
 	\sep
 	\begin{satz}[Der Zwischenwertsatz]
@@ -426,6 +446,8 @@
 	\end{definition}
 	\sep
 	\begin{defsatz}[Punktweise und gleichmäßige Konvergenz]
+	Es sei $\varnothing\neq D\subseteq\mathbb{R}$ und $(f_n)$ eine Folge mit
+	$\forall n\in\mathbb{N}:f_n\colon D\to\mathbb{R}$. Ferner sei $f\colon D\to\mathbb{R}$.
 		\begin{align*}
 			f_n\to f~\text{pktw}
 			\defiff&~\forall x\in D:\lim f_n(x)=f(x)\\
@@ -433,5 +455,31 @@
 			f_n\to f~\text{glm}
 			\defiff&~\forall\varepsilon>0~\exists n_0\in\mathbb{N}~\forall n\geq n_0~\forall x\in D:\abs{f_n(x)-f(x)}<\varepsilon
 		\end{align*}
+		Aus der gleichmäßigen Konvergenz folgt stets die punktweise Konvergenz.
+	\end{defsatz}
+	\begin{satz}
+		Konvergiert $f_n$ punktweise gegen $f\colon D\to\mathbb{R}$, dann gilt
+		\[ f_n\to f~\text{glm}\iff\exists(\alpha_n)~\text{in $\mathbb{R}$ mit $\alpha_n\to0\en$}~\exists
+		m\in\mathbb{N}~\forall n\geq m~\forall x\in\mathbb{R}:\abs{f_n(x)-f(x)}\leq\alpha_n\]
+	\end{satz}
+	\begin{satz}
+		Es sei $\varnothing\neq D\subseteq\mathbb{R}$ und $(f_n)$ eine Folge mit
+		$\forall n\in\mathbb{N}:f_n\colon D\to\mathbb{R}$. Ferner sei $f\colon D\to\mathbb{R}$
+		mit $f_n\to f~\text{glm}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $x_0\in D$ und alle $f_n$ stetig in $x_0$, so ist $f$ stetig in $x_0$.
+			\item $(\forall n\in\mathbb{N}: f_n\in C(D)) \implies f\in C(D)$.
+			\item Ist $x_0$ Häufungspunkt von $D$, dann gilt
+			\[ \lim_{x\to x_0}\lim_{n\to\infty}f_n(x)=\lim_{x\to x_0}f(x)=f(x_0)=\lim_{n\to\infty}f_n(x_0)=\lim_{n\to\infty}\lim_{x\to x_0}f_n(x) \]
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Differenzierbarkeit]
+		Es sei $I\subseteq\mathbb{R}$ ein Intervall und $f\colon I\to\mathbb{R}$.
+		$f$ heißt in $x_0\in I$ differenzierbar, wenn
+		$f'(x_0)\coloneqq\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}$ existiert.
+		$f$ heißt auf $I$ differenzierbar, wenn $\forall x_0\in I:f~\text{db in}~x_0$.
+		In diesem Fall heißt die so definierte Funktion $f'\colon I\to\mathbb{R}$ die
+		Ableitung von $f$. Aus der Differenzierbarkeit folgt die Stetigkeit.
 	\end{defsatz}
 \end{document}
