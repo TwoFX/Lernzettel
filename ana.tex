@@ -482,4 +482,73 @@
 		In diesem Fall heißt die so definierte Funktion $f'\colon I\to\mathbb{R}$ die
 		Ableitung von $f$. Aus der Differenzierbarkeit folgt die Stetigkeit.
 	\end{defsatz}
+	\begin{satz}
+		Es sei $I\subseteq\mathbb{R}$ ein Intervall und $f,g\colon I\to\mathbb{R}$
+		differenzierbar in $x_0\in I$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $\alpha,\beta\in\mathbb{R}$ ist $(\alpha f+\beta g)'(x_0)=\alpha f'(x_0)+\beta g'(x_0)$.
+			\item $fg$ ist differenzierbar in $x_0$ mit $(fg)'(x_0)=f'(x_0)g(x_0)+f(x_0)g'(x_0)$.
+			\item Falls $\forall x\in I:g(x)\neq0$, ist $\frac{f}{g}$ differenzierbar in $x_0$ mit
+				\[ (\frac{f}{g})'(x_0) = \frac{f'(x_0)g(x_0)-f(x_0)g'(x_0)}{g(x_0)^2} \]
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Es seien $I, J\subseteq\mathbb{R}$ Intervalle, $f\colon I\to\mathbb{R}$
+		$g\colon J\to I$, $g$ differenzierbar in $x_0\in J$, $f$ differenzierbar
+		in $g(x_0)$. Dann ist $f\circ g\colon J\to\mathbb{R}$ differenzierbar in $x_0$
+		mit $(f \circ g)'(x_0)=f'(g(x_0))g'(x_0)$.
+	\end{satz}
+	\begin{satz}
+		Es sei $I\subseteq\mathbb{R}$ ein Intervall, $f\in C(I)$ streng monoton und
+		differenzierbar in $x_0\in I$ und $f'(x_0)\neq0$. Dann ist $f^{-1}\colon f(I)\to I$
+		differenzierbar in $f(x_0)$ und $(f^{-1})'(f(x_0))=\frac{1}{f'(x_0)}$.
+	\end{satz}
+	\begin{definition}
+		Mit $\varnothing\neq D\subseteq\mathbb{R}$, $g\colon D\to\mathbb{R}$
+		ist $x_0\in D~\text{relatives Maximum von $g$}\defiff\exists\delta>0~\forall
+		x\in D\cup U_\delta(x_0):g(x)\leq g(x_0)$.
+	\end{definition}
+	\begin{definition}
+		Mit $\varnothing\neq M\subseteq\mathbb{R}$ ist
+		$x_0\in M~\text{innerer Punkt von $M$}\defiff\exists\delta>0:U_\delta(x_0)\subseteq M$.
+	\end{definition}
+	\begin{satz}
+		Ist $I\subseteq\mathbb{R}$ ein Intervall, $f\colon I\to\mathbb{R}$ differenzierbar
+		in $x_0\in I$, $x_0$ ein relatives Extremum von $f$ und $x_0$ ein innerer
+		Punkt von $I$, so ist $f'(x_0)=0$.
+	\end{satz}
+	\begin{satz}
+		Es sei $I=[a,b]$, $f, g\in C(I)$, $f$, $g$, differenzierbar auf $(a,b)$,
+		$\forall x\in(a,b): g'(x)\neq0$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $f(a)=f(b)\implies\exists\xi\in(a,b):f'(\xi)=0$.
+			\item $\exists\xi\in(a,b):f(b)-f(a)=f'(\xi)(b-a)$.
+			\item $g(a)\neq g(b)\wedge\exists\xi\in(a,b):\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(\xi)}{g'(\xi)}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Die Regel von l'Hospital]
+		Für $a\in\mathbb{R}\cup\set{-\infty}$, $b\in\mathbb{R}\cup\set{\infty}$
+		seien $f,g\colon (a,b)\to\mathbb{R}$ auf $(a,b)$ differenzierbar mit
+		$\forall x\in(a,b):g'(x)\neq0$. Es sei $c\in\set{a, b}$, es existiere
+		$L\coloneqq\lim_{x\to c}\frac{f'(x)}{g'(x)}\in\mathbb{R}\cup\set{-\infty, \infty}$
+		und es sei $\lim_{x\to c}f(x)=\lim_{x\to c}g(x)\in\set{0,-\infty,\infty}$.
+		Dann $\lim_{x\to c}\frac{f(x)}{g(x)}=L$.
+	\end{satz}
+	\begin{satz}
+		Sei $\ps$ eine Potenzreihe mit Konvergenzradius $r>0$, $I\coloneqq(x_0-r,x_0+r)$.
+		Auf $I$ gilt dann $(\ps)'=\sum_{n=0}^\infty(a_n(x-x_0)^n)'$. Diese Potenzreihe
+		hat den Konvergenzradius $r$.
+	\end{satz}
+	\sep
+	\begin{definition}
+		Für Intervall $I\subseteq\mathbb{R}$, $f\colon I\to\mathbb{R}$, ist für $x_0\in I$,
+		falls existent, $f^{(n)}(x_0) \coloneqq ((\cdots(f\underbrace{')'\cdots)')'}_{n~\text{mal}}(x_0)$
+		Falls $\forall x\in I~\exists f^{(n)}(x)$, ist $f$ $n$-mal differenzierbar auf $I$.
+		Ist zusätzlich $f^{(n)}\in C(I)$, ist $f$ $n$-mal stetig differenzierbar, also
+		$f\in C^n(I)$. $C^0(I)\coloneqq C(I)$, $C^\infty(I)\coloneqq\bigcap_{n\in\mathbb{N}}C^n(I)$.
+	\end{definition}
+	\begin{satz}
+		Ist $\ps$ eine Potenzreihe mit Konvergenzradius $r>0$, $I\coloneqq(x_0-r,x_0+r)$ und
+		$f(x)\coloneqq\ps$, dann ist $f\in C^\infty(I)$, $f^{(k)}(x)=\sum_{n=k}^{\infty}\frac{n!}{(n-k)!}a_n(x-x_0)^{n-k}$.
+	\end{satz}
 \end{document}
