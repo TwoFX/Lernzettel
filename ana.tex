@@ -297,7 +297,7 @@
 		Cauchyprodukt von $\series[0] a_n$ und $\series[0] b_n$.
 	\end{definition}
 	\begin{satz}
-		Sind $\series[0] a_n$ und $\series[0] b_n$ absolut konvergent, so alle
+		Sind $\series[0] a_n$ und $\series[0] b_n$ absolut konvergent, so sind alle
 		Produktreihen $\series[0] p_n$ und das Cauchyprodukt $\series[0] c_n$
 		absolut konvergent mit
 		$\series[0] p_n = \series[0] c_n = (\series[0] a_n)(\series[0] b_n)$.
@@ -363,8 +363,75 @@
 		Existiert $\lim_{x\to x_0}f(x)$, dann ist er eindeutig.
 	\end{defsatz}
 	\sep
-	\begin{definition}[Stetigkeit]
+	\begin{defsatz}[Stetigkeit]
 		Für $\varnothing\neq D\subseteq\mathbb{R}$, $x_0\in D$, $f\colon D\to\mathbb{R}$
-		ist \[f~\text{stetig in}~x_0\defiff\forall(x_n)\in D~\text{mit}~x_n\to x_0\en:f(x_n)\to f(x_0)\en\]
+		ist
+		\begin{align*}
+			f~\text{stetig in}~x_0
+			\defiff&~\forall(x_n)~\text{in}~D~\text{mit}~x_n\to x_0\en:f(x_n)\to f(x_0)\en\\
+			\Longleftrightarrow&~\forall\varepsilon>0~\exists\delta>0~\forall x\in D_\delta(x_0):\abs{f(x)-f(x_0)}<\varepsilon
+		\end{align*}
+	\end{defsatz}
+	\begin{satz}
+		Ist $x_0$ ein Häufungspunkt von $D$, dann gilt $f~\text{stetig in}~x_0\iff\lim_{x\to x_0}f(x)=f(x_0)$.
+	\end{satz}
+	\begin{satz}
+		Sind $f\colon D\to\mathbb{R}$, $g\colon D\to\mathbb{R}$ stetig in $x_0$, so
+		sind $f + g$, $fg$, $\abs{f}$ stetig in $x_0$. Ist $\tilde{D}\coloneqq\set{x\in D\given f(x)\neq0}$
+		und $x_0\in\tilde{D}$, so ist $\frac{1}{f}\colon\tilde{D}\to\mathbb{R}$ stetig in
+		$x_0$.
+	\end{satz}
+	\begin{satz}
+		Es sei $\varnothing\neq D, E\subseteq\mathbb{R}$, $f\colon D\to E$ stetig in $x_0$,
+		$g\colon E\to\mathbb{R}$ stetig in $f(x_0)$. Dann ist $g\circ f\colon D\to\mathbb{R}$
+		stetig in $x_0$.
+	\end{satz}
+	\begin{satz}
+		Hat $\ps$ den Konvergenzradius $r>0$, setze $D\coloneqq(x_0-r,x_0+r)$,
+		$f\colon D\to\mathbb{R}$ mit $\forall x\in D:f(x)\coloneqq\ps$. Dann
+		ist $f\in C(D)$ und für $\tilde{x}\in D$ gilt
+		\[ \lim_{x\to\tilde{x}}\ps = \lim_{x\to\tilde{x}}f(x)=f(\tilde{x})=
+		\sum_{n=0}^\infty a_n(\tilde{x}-x_0)^n=\sum_{n=0}^\infty\lim_{x\to\tilde{x}}a_n(x-x_0)^n \]
+	\end{satz}
+	\sep
+	\begin{satz}[Der Zwischenwertsatz]
+		Ist $a<b$, $f\in C[a,b]$, $y_0\in\mathbb{R}$, $\min\set{f(a),f(b)}\leq
+		y_0\leq\max\set{f(a),f(b)}$, dann existiert $x_0\in[a,b]$ mit $f(x_0)=y_0$.
+	\end{satz}
+	\begin{satz}[Nullstellensatz von Bolzano]
+		Ist $f\in C[a,b]$ und $f(a)f(b)<0$, dann existiert $x_0\in[a,b]$ mit $f(x_0)=0$.
+	\end{satz}
+	\begin{definition}
+		$A\subseteq\mathbb{R}$ heißt
+		\begin{description}
+			\item[abgeschlossen] $\defiff\forall(x_n)~\text{in}~A~\text{konvergent}:\lim x_n\in A$
+			\item[offen] $\defiff\forall x\in A~\exists\delta>0:U_\delta(x)\subseteq A$
+		\end{description}
 	\end{definition}
+	\begin{satz}
+		Ist $D$ beschränkt und abgeschlossen und $f\in C(D)$, so nimmt $f$ auf $D$
+		ein Minimum und ein Maximum an.
+	\end{satz}
+	\begin{satz}
+		Ist $I\subseteq\mathbb{R}$ ein Intervall und $f\in C(I)$, dann ist
+		$f(I)$ ein Intervall. Ist $f$ zusätzlich streng monoton, dann ist $f$
+		umkehrbar und $f^{-1}\in C(f(I))$.
+	\end{satz}
+	\begin{defsatz}[Der Logarithmus]
+		Ist $f\colon\mathbb{R}\to\mathbb{R}$ mit $f(x)\coloneqq e^x$, so existiert
+		$\log \coloneqq f^{-1}\colon (0,\infty)\to\mathbb{R}$.
+	\end{defsatz}
+	\begin{definition}[Die allgemeine Potenz]
+		Für alle $a>0, x\in\mathbb{R}$ ist $a^x\coloneqq e^{x\log a}$.
+	\end{definition}
+	\sep
+	\begin{defsatz}[Punktweise und gleichmäßige Konvergenz]
+		\begin{align*}
+			f_n\to f~\text{pktw}
+			\defiff&~\forall x\in D:\lim f_n(x)=f(x)\\
+			\Longleftrightarrow&~\forall\varepsilon>0~\forall x\in D~\exists n_0\in\mathbb{N}~\forall n\geq n_0:\abs{f_n(x)-f(x)}<\varepsilon\\
+			f_n\to f~\text{glm}
+			\defiff&~\forall\varepsilon>0~\exists n_0\in\mathbb{N}~\forall n\geq n_0~\forall x\in D:\abs{f_n(x)-f(x)}<\varepsilon
+		\end{align*}
+	\end{defsatz}
 \end{document}
