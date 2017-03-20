@@ -46,6 +46,11 @@
 	\stepcounter{Sec}%
 	}
 \newcommand{\defiff}{:\Longleftrightarrow}
+
+\newcommand{\en}{~(n\to\infty)}
+\newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
+\newcommand{\ps}[1][a]{\series[0]#1_n(x-x_0)^n}
+
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
 \begin{document}
@@ -109,27 +114,27 @@
 	\end{definition}
 	\begin{defsatz}[Konvergenz]
 		Eine Folge $(a_n)$ in $\mathbb{R}$ heißt konvergent, wenn ein $a\in\mathbb{R}$ existiert, sodass
-		\[\lim_{n\to\infty}(a_n) = a \defiff a_n\to a~(n\to\infty) \defiff
+		\[\lim_{n\to\infty}(a_n) = a \defiff a_n\to a\en \defiff
 			\forall\varepsilon>0~\exists n_0\in\mathbb{N}~\forall n>n_0:\abs{a_n-a}<\varepsilon\]
 		Falls der Grenzwert $a$ existiert, ist er eindeutig und $(a_n)$ ist beschränkt.
 	\end{defsatz}
 	\begin{satz}
 		Es seien $(a_n), (b_n)$ Folgen in $\mathbb{R}$ und $a\in\mathbb{R}$.
 		\begin{enumerate}[label=(\alph*)]
-			\item Aus $(a_n) = (b_n) \ffa n\in\mathbb{N}$ folgt für $a_n\to a~(n\to\infty) \iff b_n\to a~(n\to\infty)$.
-			\item $a_n\to a~(n\to\infty) \iff \abs{a_n-a}\to0~(n\to\infty)$.
+			\item Aus $(a_n) = (b_n) \ffa n\in\mathbb{N}$ folgt für $a_n\to a\en \iff b_n\to a\en$.
+			\item $a_n\to a\en \iff \abs{a_n-a}\to0\en$.
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Konvergenzsätze]
-		Es seien $(a_n), (b_n), (c_n)$ Folgen in $\mathbb{R}$ und mit $(a_n)\to a,b_n\to b~(n\to\infty)$.
+		Es seien $(a_n), (b_n), (c_n)$ Folgen in $\mathbb{R}$ und mit $(a_n)\to a,b_n\to b\en$.
 		\begin{enumerate}[label=(\alph*)]
 			\item $a_n\leq b_n\ffa n\in\mathbb{N}\implies a\leq b$.
-			\item $a=b\wedge a_n\leq c_n\leq b_n\ffa n\in\mathbb{N}\implies c_n\to a~(n\to\infty)$.
-			\item $\abs{a_n}\to\abs{a}~(n\to\infty)$.
-			\item $a_n+b_n\to a+b~(n\to\infty)$.
-			\item $\alpha a_n\to\alpha a~(n\to\infty)$ für $\alpha\in\mathbb{R}$.
-			\item $a_n b_n\to ab~(n\to\infty)$.
-			\item $b\neq0\implies \exists m\in\mathbb{N}: (\forall n\geq m: b_n\neq0) \wedge ((\frac{1}{b_n})_{n\geq m}\to\frac{1}{b}~(n\to\infty))$.
+			\item $a=b\wedge a_n\leq c_n\leq b_n\ffa n\in\mathbb{N}\implies c_n\to a\en$.
+			\item $\abs{a_n}\to\abs{a}\en$.
+			\item $a_n+b_n\to a+b\en$.
+			\item $\alpha a_n\to\alpha a\en$ für $\alpha\in\mathbb{R}$.
+			\item $a_n b_n\to ab\en$.
+			\item $b\neq0\implies \exists m\in\mathbb{N}: (\forall n\geq m: b_n\neq0) \wedge ((\frac{1}{b_n})_{n\geq m}\to\frac{1}{b}\en)$.
 		\end{enumerate}
 	\end{satz}
 	\begin{definition}
@@ -143,8 +148,8 @@
 		Ist $(a_n)$ streng monoton wachsend und nach oben beschränkt, dann ist $\lim_{n\to\infty} a_n=\sup_{n\in\mathbb{N}}a_n$.
 	\end{satz}
 	\begin{satz}
-		Für $(a_n)$ Folge in $\mathbb{R}$ mit $a_n>0~\forall n\in\mathbb{N}$ und $a_n\to a~(n\to\infty)$,
-		$p\in\mathbb{N}$ mit $p\geq2$. Dann $\sqrt[p]{a_n}\to\sqrt[p]{a}~(n\to\infty)$.
+		Für $(a_n)$ Folge in $\mathbb{R}$ mit $a_n>0~\forall n\in\mathbb{N}$ und $a_n\to a\en$,
+		$p\in\mathbb{N}$ mit $p\geq2$. Dann $\sqrt[p]{a_n}\to\sqrt[p]{a}\en$.
 	\end{satz}
 	\begin{satz}
 		Es sei $x\in\mathbb{R}$ und $\forall n\in\mathbb{N}:a_n\coloneqq x^n$.
@@ -162,7 +167,7 @@
 		$(s_n)~\text{konvergiert}\iff\abs{x}<1$. In diesem Fall $\lim_{n\to\infty}s_n=\frac{1}{1-x}$.
 	\end{satz}
 	\begin{satz}
-		$\sqrt[n]{n}\to1~(n\to\infty)$. $\forall c>0:\sqrt[n]{c}\to1~(n\to\infty)$.
+		$\sqrt[n]{n}\to1\en$. $\forall c>0:\sqrt[n]{c}\to1\en$.
 	\end{satz}
 	\begin{defsatz}[Die eulersche Zahl]
 		\[ e\coloneqq \lim_{n\to\infty}(1+\frac{1}{n})^n = \lim_{n\to\infty}\sum_{k=0}^n\frac{1}{k!}\]
@@ -213,50 +218,50 @@
 	\end{defsatz}
 	\sep
 	\begin{definition}[Unendliche Reihe]
-		Ist $(a_n)$ eine Folge in $\mathbb{R}$, so heißt die Folge $\sum_{n=1}^\infty a_n\coloneqq(s_n)$
+		Ist $(a_n)$ eine Folge in $\mathbb{R}$, so heißt die Folge $\series a_n\coloneqq(s_n)$
 		mit $\forall n\in\mathbb{N}:s_n\coloneqq\sum_{k=1}^na_k$ eine (unendliche)
-		Reihe. Falls $\sum_{n=1}^\infty a_n$ konvergent, so ist der Reihenwert
-		$\sum_{n=1}^\infty a_n\coloneqq\lim_{n\to\infty}s_n$.
+		Reihe. Falls $\series a_n$ konvergent, so ist der Reihenwert
+		$\series a_n\coloneqq\lim_{n\to\infty}s_n$.
 	\end{definition}
 	\begin{satz}
-		Ist $(a_n)$ eine Folge in $\mathbb{R}$ und $\sum_{n=1}^\infty a_n$ konvergent,
+		Ist $(a_n)$ eine Folge in $\mathbb{R}$ und $\series a_n$ konvergent,
 		so ist $\lim a_n=0$.
 	\end{satz}
 	\begin{defsatz}[Absolute Konvergenz]
-		Eine Reihe $\sum_{n=1}^\infty a_n$ ist genau dann absolut konvergent, wenn
-		$\sum_{n=1}^\infty\abs{a_n}$ konvergent ist. Eine absolut konvergente
+		Eine Reihe $\series a_n$ ist genau dann absolut konvergent, wenn
+		$\series\abs{a_n}$ konvergent ist. Eine absolut konvergente
 		Reihe ist konvergent und es gilt
-		$\abs{\sum_{n=1}^\infty a_n}\leq\sum_{n=1}^\infty\abs{a_n}$.
+		$\abs{\series a_n}\leq\series\abs{a_n}$.
 	\end{defsatz}
 	\begin{satz}[Leibnizkriterium]
-		Für monoton fallende Nullfolge $(a_n)$ ist $\sum_{n=1}^\infty (-1)^na_n$
+		Für monoton fallende Nullfolge $(a_n)$ ist $\series (-1)^na_n$
 		konvergent.
 	\end{satz}
 	\begin{satz}[Majorantenkriterium]
-		$\abs{a_n}\leq b_n\ffa n\in\mathbb{N}\wedge\sum_{n=1}^\infty b_n~\text{konvergiert}
-		\implies\sum_{n=1}^\infty a_n~\text{konvergiert absolut}$.
+		$\abs{a_n}\leq b_n\ffa n\in\mathbb{N}\wedge\series b_n~\text{konvergiert}
+		\implies\series a_n~\text{konvergiert absolut}$.
 	\end{satz}
 	\begin{satz}[Minorantenkriterium]
-		$a_n\geq b_n\geq0\ffa n\in\mathbb{N}\wedge\sum_{n=1}^\infty b_n~\text{divergiert}
-		\implies\sum_{n=1}^\infty a_n~\text{divergiert}$.
+		$a_n\geq b_n\geq0\ffa n\in\mathbb{N}\wedge\series b_n~\text{divergiert}
+		\implies\series a_n~\text{divergiert}$.
 	\end{satz}
 	\begin{satz}[Wurzelkriterium]
 		Für Folge $(a_n)$ in $\mathbb{R}$ setze $\alpha\coloneqq\lim\sup\sqrt[n]{\abs{a_n}}$.
 		\begin{enumerate}[label=(\alph*)]
-			\item $\alpha<1\implies\sum_{n=1}^\infty a_n~\text{konvergiert absolut}$
-			\item $\alpha>1\implies\sum_{n=1}^\infty a_n~\text{divergiert}$
+			\item $\alpha<1\implies\series a_n~\text{konvergiert absolut}$
+			\item $\alpha>1\implies\series a_n~\text{divergiert}$
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Quotientenkriterium]
 		Für Folge $(a_n)$ in $\mathbb{R}$ mit $a_n\neq0\ffa n\in\mathbb{N}$ definiere
 		$(\alpha_n)$ mit $\alpha_n\coloneqq\frac{a_{n+1}}{a_n}\ffa n\in\mathbb{N}$.
 		\begin{enumerate}[label=(\alph*)]
-			\item $\abs{\alpha_n}\geq1\ffa n\in\mathbb{N}\implies\sum_{n=1}^\infty a_n~\text{ist divergent}$
+			\item $\abs{\alpha_n}\geq1\ffa n\in\mathbb{N}\implies\series a_n~\text{ist divergent}$
 			\item Falls $(\alpha_n)$ beschränkt, $\beta\coloneqq\lim\inf\abs{\alpha_n}$,
 			$\alpha\coloneqq\lim\sup\abs{\alpha_n}$.
 			\begin{enumerate}[label=(\roman*)]
-				\item $\beta>1\implies\sum_{n=1}^\infty a_n~\text{ist divergent}$
-				\item $\alpha<1\implies\sum_{n=1}^\infty a_n~\text{ist absolut konvergent}$
+				\item $\beta>1\implies\series a_n~\text{ist divergent}$
+				\item $\alpha<1\implies\series a_n~\text{ist absolut konvergent}$
 			\end{enumerate}
 		\end{enumerate}
 	\end{satz}
@@ -270,14 +275,96 @@
 		$(b_n)$ sei eine Umordnung von $(a_n)$.
 		\begin{enumerate}[label=(\alph*)]
 			\item $(a_n)~\text{konvergent}\implies\lim a_n=\lim b_n$
-			\item $\sum_{n=1}^\infty a_n~\text{absolut konvergent}\implies\sum_{n=1}^\infty b_n~\text{absolut konvergent}
-				\wedge\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty b_n$
+			\item $\series a_n~\text{absolut konvergent}\implies\series b_n~\text{absolut konvergent}
+				\wedge\series a_n=\series b_n$
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Riemannscher Umordnungssatz]
-		Ist $\sum_{n=1}^\infty a_n$ konvergent,
+		Ist $\series a_n$ konvergent,
 		aber nicht absolut konvergent, so existiert für jedes $s\in\mathbb{R}\cup
 		\set{\infty,-\infty}$ eine Umordnung $(b_n)$ von $(a_n)$ mit
-		$\sum_{n=1}^\infty b_n = s$.
+		$\series b_n = s$.
 	\end{satz}
+	\sep
+	\begin{defsatz}[Produktreihe]
+		$\series[0] p_n$ heißt Produktreihe von $\series[0] a_n$ und
+		$\series[0] b_n$, wenn $\set{p_n\given n\in\mathbb{N}_0} = \set{a_jb_k\given j,k\in\mathbb{N}_0}$,
+		weobei jedes $a_jb_k$ genau einmal vorkommt. Alle Produktreihen sind
+		Umordnungen voneinander.
+	\end{defsatz}
+	\begin{definition}[Cauchyprodukt]
+		Die unendliche Reihe $\series[0] c_n\coloneqq\series[0] \sum_{k=0}^n a_kb_{n-k}$ heißt
+		Cauchyprodukt von $\series[0] a_n$ und $\series[0] b_n$.
+	\end{definition}
+	\begin{satz}
+		Sind $\series[0] a_n$ und $\series[0] b_n$ absolut konvergent, so alle
+		Produktreihen $\series[0] p_n$ und das Cauchyprodukt $\series[0] c_n$
+		absolut konvergent mit
+		$\series[0] p_n = \series[0] c_n = (\series[0] a_n)(\series[0] b_n)$.
+	\end{satz}
+	\begin{defsatz}[Die e-Funktion]
+		Die Definition $\forall x\in\mathbb{R}:e^x\coloneqq E(x)\coloneqq\series[0]\frac{x^n}{n!}$
+		deckt sich mit der Potenz für rationale Exponenten.
+	\end{defsatz}
+	\begin{definition}[Kosinus und Sinus]
+		$\forall x\in\mathbb{R}$:
+		\begin{align*}
+			\cos x &\coloneqq\series[0](-1)^n\frac{x^{2n}}{(2n)!}\\
+			\sin x &\coloneqq\series[0](-1)^n\frac{x^{2n+1}}{(2n+1)!}
+		\end{align*}
+	\end{definition}
+	\sep
+	\begin{definition}[Potenzreihe]
+		Für Folge $(a_n)_{n=0}^\infty$ in $\mathbb{R}$ und $x_0\in\mathbb{R}$
+		heißt $\ps$ Potenzreihe.
+	\end{definition}
+	\begin{satz}[Konvergenz von Potenzreihen]
+		Für Potenzreihe $\ps$ setze
+		$\rho\coloneqq\lim\sup\sqrt[n]{\abs{a_n}}$ und $r\coloneqq\frac{1}{\rho}$,
+		wobei $r\coloneqq0$, falls $\rho=\infty$ und $r\coloneqq\infty$, falls
+		$\rho=0$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Falls $r=0$ konvergiert die Potenzreihe genau für $x=x_0$.
+			\item Falls $r=\infty$ konvergiert die Potenzreihe absolut für alle $x\in\mathbb{R}$.
+			\item Falls $r\in\mathbb{R}$ konvergiert die Potenzreihe für $x \in (x_0 - r, x_0 + r)$
+				absolut und divergiert für $x \in (-\infty, x_0-r) \cup (x_0+r, \infty)$. Für
+				$x\in\set{x_0+r,x_0-r}$ ist keine allgemeine Aussage möglich.
+		\end{enumerate}
+		$r$ wird auch als der Konvergenzradius der Potenzreihe bezeichnet.
+	\end{satz}
+	\begin{satz}[Konvergenzradien von Cauchyprodukten]
+		Für Potenzeihen $\ps$ und $\ps[b]$ mit Konvergenzradien $r_1$ und $r_2$
+		setze $R\coloneqq\min\set{r_1,r_2}$, $c_n\coloneqq\sum_{k=0}^na_kb_{n-k}$.
+		$r$ sei der Konvergenzradius von $\ps[c]$. Dann ist $R\leq r$ und für
+		$x\in(x_0-R,x_0+R)$ gilt $\ps[c]=(\ps)(\ps[b])$.
+	\end{satz}
+	\sep
+	\begin{definition}[Häufungspunkt]
+		$x_0~\text{ist Häufungspunkt von}~D\subseteq\mathbb{R}
+		\defiff\exists(x_n)~\text{in $D$}:x_n\to x_0\en$
+	\end{definition}
+	\begin{definition}
+		Für $\varnothing\neq D\subseteq\mathbb{R}$, $\delta>0$ sind
+		$D_\delta(x_0)\coloneqq D\cap U_\delta(x_0)$, $\dot{D}_\delta(x_0)\coloneqq
+		D_\delta(x_0)\setminus\set{x_0}$.
+	\end{definition}
+	\begin{definition}
+		Ist $(a_n)$ Folge in $\mathbb{R}$, so ist
+		$\lim a_n = \infty\defiff \forall c>0~\exists n_0\in\mathbb{N}~\forall n\geq n_0:a_n>c$.
+	\end{definition}
+	\begin{defsatz}[Funktionsgrenzwert]
+		Für $\varnothing\neq D\subseteq\mathbb{R}$, $x_0$ Häufungspunkt von $D$,
+		$f\colon D\to\mathbb{R}$ ist
+		\begin{align*}
+			\lim_{x\to x_0}f(x) = a
+			\defiff&~\forall(x_n)~\text{in}~D\setminus\set{x_0}~\text{mit}~x_n\to x_0\en:f(x_n)\to a\en\\
+			\Longleftrightarrow&~\forall\varepsilon>0~\exists\delta>0~\forall x\in\dot{D}_\delta(x_0):\abs{f(x)-a}<\varepsilon
+		\end{align*}
+		Existiert $\lim_{x\to x_0}f(x)$, dann ist er eindeutig.
+	\end{defsatz}
+	\sep
+	\begin{definition}[Stetigkeit]
+		Für $\varnothing\neq D\subseteq\mathbb{R}$, $x_0\in D$, $f\colon D\to\mathbb{R}$
+		ist \[f~\text{stetig in}~x_0\defiff\forall(x_n)\in D~\text{mit}~x_n\to x_0\en:f(x_n)\to f(x_0)\en\]
+	\end{definition}
 \end{document}
