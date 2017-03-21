@@ -24,6 +24,9 @@
 \usepackage{parskip}
 \usepackage{multicol}
 
+\usepackage{array}
+\usepackage{blindtext}
+
 \usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
 
 \newcounter{Sec}
@@ -50,6 +53,12 @@
 \newcommand{\en}{~(n\to\infty)}
 \newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
 \newcommand{\ps}[1][a]{\series[0]#1_n(x-x_0)^n}
+\renewcommand{\d}[1]{\mathrm{d}#1}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\setlength\columnsep{1.5cm}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
@@ -380,8 +389,9 @@
 			f~\text{stetig auf $D$}
 			\defiff&~\forall x_0\in D:f~\text{stetig in $x_0$}\\
 			\Longleftrightarrow&~\forall x_0\in D~\forall\varepsilon>0~\exists\delta>0~\forall x\in D_\delta(x_0):\abs{f(x)-f(x_0)}<\varepsilon\\
+			\Longleftrightarrow&~\forall\varepsilon>0~\forall x\in D~\exists\delta>0~\forall z\in D~\text{mit}~\abs{x-z}<\delta:\abs{f(x)-f(z)}<\varepsilon\\
 			f~\text{gleichmäßig stetig auf $D$}
-			\defiff&~\forall\varepsilon>0~\exists\delta>0~\forall x,z\in D~\text{mit}~\abs{x-z}>\delta:\abs{f(x)-f(z)}<\varepsilon\\
+			\defiff&~\forall\varepsilon>0~\exists\delta>0~\forall x\in D~\forall z\in D~\text{mit}~\abs{x-z}<\delta:\abs{f(x)-f(z)}<\varepsilon\\
 			f~\text{Lipschitz stetig auf $D$}
 			\defiff&~\exists L>0~\forall x,y\in D:\abs{f(x)-f(z)}\leq L\abs{x-z}
 		\end{align*}
@@ -446,8 +456,8 @@
 	\end{definition}
 	\sep
 	\begin{defsatz}[Punktweise und gleichmäßige Konvergenz]
-	Es sei $\varnothing\neq D\subseteq\mathbb{R}$ und $(f_n)$ eine Folge mit
-	$\forall n\in\mathbb{N}:f_n\colon D\to\mathbb{R}$. Ferner sei $f\colon D\to\mathbb{R}$.
+		Es sei $\varnothing\neq D\subseteq\mathbb{R}$ und $(f_n)$ eine Folge mit
+		$\forall n\in\mathbb{N}:f_n\colon D\to\mathbb{R}$. Ferner sei $f\colon D\to\mathbb{R}$.
 		\begin{align*}
 			f_n\to f~\text{pktw}
 			\defiff&~\forall x\in D:\lim f_n(x)=f(x)\\
@@ -463,6 +473,9 @@
 		m\in\mathbb{N}~\forall n\geq m~\forall x\in\mathbb{R}:\abs{f_n(x)-f(x)}\leq\alpha_n\]
 	\end{satz}
 	\begin{satz}
+		$f_n\to f~\text{glm}\iff\forall(x_n)~\text{in}~D:f_n(x_n)-f(x_n)\to0\en$.
+	\end{satz}
+	\begin{satz}
 		Es sei $\varnothing\neq D\subseteq\mathbb{R}$ und $(f_n)$ eine Folge mit
 		$\forall n\in\mathbb{N}:f_n\colon D\to\mathbb{R}$. Ferner sei $f\colon D\to\mathbb{R}$
 		mit $f_n\to f~\text{glm}$.
@@ -472,6 +485,19 @@
 			\item Ist $x_0$ Häufungspunkt von $D$, dann gilt
 			\[ \lim_{x\to x_0}\lim_{n\to\infty}f_n(x)=\lim_{x\to x_0}f(x)=f(x_0)=\lim_{n\to\infty}f_n(x_0)=\lim_{n\to\infty}\lim_{x\to x_0}f_n(x) \]
 		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Es sei $a,b\in\mathbb{R}$, $a<b$, $(f_n)$ eine Folge in $R[a,b]$,
+		$f\colon[a,b]\to\mathbb{R}$, $f_n\to f~\text{glm}$. Dann $f\in R[a,b]$ mit
+		\[ \lim_{n\to\infty}\int_a^bf_n(x)\d{x}=\int_a^bf(x)\d{x}=\int_a^b(\lim_{n\to\infty}f_n(x))\d{x} \]
+	\end{satz}
+	\begin{satz}
+		Es sei $a,b\in\mathbb{R}$, $a<b$, $(f_n)$ eine Folge in $C^1[a,b]$,
+		$x_0\in[a,b]$, $(f_n(x_0))$ konvergiere, es sei $g\colon[a,b]\to\mathbb{R}$
+		und es sei $f'_n\to g~\text{glm}$
+		auf $[a,b]$. Dann $f_n\to f~\text{glm}$ mit $f\colon[a,b]\to\mathbb{R}$,
+		$\forall x\in[a,b]: f(x)\coloneqq\lim_{n\to\infty}f_n(x)$ und es ist $\forall x\in[a,b]$:
+		\[ (\lim_{n\to\infty}f_n(x))'=f'(x)=\lim_{n\to\infty}f_n'(x) \]
 	\end{satz}
 	\sep
 	\begin{defsatz}[Differenzierbarkeit]
@@ -550,5 +576,160 @@
 	\begin{satz}
 		Ist $\ps$ eine Potenzreihe mit Konvergenzradius $r>0$, $I\coloneqq(x_0-r,x_0+r)$ und
 		$f(x)\coloneqq\ps$, dann ist $f\in C^\infty(I)$, $f^{(k)}(x)=\sum_{n=k}^{\infty}\frac{n!}{(n-k)!}a_n(x-x_0)^{n-k}$.
+		Es folgt $\forall k\in\mathbb{N}_0:a_k=\frac{f^{(k)}(x_0)}{k!}$.
 	\end{satz}
+	\begin{defsatz}
+		Zu Intervall $I\subseteq\mathbb{R}$, $f\in C^\infty(I)$, $x_0\in I$ gehörige
+		Taylerreihe ist $\sum_{k=0}^\infty\frac{f^{(k)}(x_0)}{k!}(x - x_0)^k$.
+		Hin und wieder lässt sich $f$ in bestimmten Umgebungen um $x_0$ durch seine
+		Taylorreihe approximieren.
+	\end{defsatz}
+	\begin{defsatz}[von Taylor]
+		Für Intervall $I\subseteq\mathbb{R}$, $n\in\mathbb{N}_0$, $f\in  C^n(I)$,
+		$x_0\in I$ ist $T_n(x;x_0)\coloneqq\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$.
+		Ist $f$ zusätzlich $n+1$-mal differenzierbar auf $I$ und $x\in I$, dann existiert
+		$\xi$ zwischen $x$ und $x_0$ mit
+		\[ f(x) = T_n(x;x_0)+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1} \]
+	\end{defsatz}
+	\begin{satz}
+		Ist $n\in\mathbb{N}$, $n>2$, $I\subseteq\mathbb{R}$ Intervall,
+		$f\in C^n(I)$, $x_0\in I$ innerer Punkt von $I$, $\forall 1\leq i\leq n-1:f^{(i)}(x_0)=0$,
+		$f^{(n)}(x_0)\neq0$, dann
+		\begin{enumerate}[label=(\alph*)]
+			\item $n~\text{gerade}\wedge f^{(n)}(x_0)<0\implies f~\text{hat ein relatives Maximum in}~x_0$
+			\item $n~\text{gerade}\wedge f^{(n)}(x_0)>0\implies f~\text{hat ein relatives Minimum in}~x_0$
+			\item $n~\text{ungerade}\implies f~\text{hat kein relatives Extremum in}~x_0$
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}[Zerlegung]
+		Ist $a,b\in\mathbb{R}$, $I\coloneqq[a,b]$, so heißt $Z=\set{x_0,\ldots,x_n}$ eine
+		Zerlegung von $I$, wenn $a=x_0<x_1<\ldots<x_n=b$. Die Menge aller Zerlegungen
+		wird mit $\mathfrak{Z}$ bezeichnet. Ist $f\colon I\to\mathbb{R}$ beschränkt, so gilt:
+		$s_f(Z)\coloneqq\sum_{j=1}^n(\inf f(I_j))\abs{I_j}$ ist die Obersumme
+		von $f$ bezüglich $Z$, $S_f(Z)\coloneqq\sum_{j=1}^n(\sup f(I_j))\abs{I_j}$
+		ist die Obersumme von $f$ bezüglich $Z$.
+	\end{definition}
+	\begin{definition}[Das Riemann-Integral]
+		\begin{align*}
+			\underline{\int_{a}^{b}}f\d{x}\coloneqq\underline{\int_{a}^{b}}f(x)\d{x}\coloneqq&\sup\set{s_f(Z)\given Z\in\mathfrak{Z}}\\
+			\overline{\int_{a}^{b}}f\d{x}\coloneqq\overline{\int_{a}^{b}}f(x)\d{x}\coloneqq&\inf\set{S_f(Z)\given Z\in\mathfrak{Z}}
+		\end{align*}
+		Falls $\underline{\int_{a}^{b}}f\d{x}=\overline{\int_{a}^{b}}f\d{x}$, ist $f\in R[a,b]$ und:
+		\begin{align*}
+			\int_{a}^{b}f\d{x}\coloneqq\int_{a}^{b}f(x)\d{x}\coloneqq\underline{\int_{a}^{b}}f\d{x}
+		\end{align*}
+	\end{definition}
+	\begin{satz}
+		Für $f,g\in R[a,b]$:
+		\begin{enumerate}[label=(\alph*)]
+			\item $f\leq g~\text{auf}~[a,b]\implies\int_a^bf\d{x}\leq\int_a^bg\d{x}$
+			\item $\alpha,\beta\in\mathbb{R}\implies\alpha f+\beta g\in R[a,b]\wedge
+				\int_a^b(\alpha f+\beta g)\d{x}=\alpha\int_a^bf\d{x}+\beta\int_a^bg\d{x}$
+			\item $\abs{f}\in R[a,b]$, $\abs{\int_a^bf\d{x}}\leq\int_a^b\abs{f}\d{x}$.
+			\item $fg\in R[a,b]$.
+			\item $(\exists c\in\mathbb{R}~\forall x\in[a,b]:g(x)\neq0\wedge\abs{g(x)}<c)\implies\frac{1}{g}\in R[a,b]$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Jede monotone Funktion ist riemann-integrierbar.
+			\item $C[a,b]\subseteq R[a,b]$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		 Ist $f\colon [a,b]\to\mathbb{R}$ beschränkt und $c\in(a,b)$, dann
+		 $f\in R[a,b]\iff f\in R[a,c]\wedge f\in R[c,b]$. In diesem Fall
+		 $\int_a^bf\d{x}=\int_a^cf\d{x}+\int_c^bf\d{x}$.
+	\end{satz}
+	\begin{satz}
+		Es sei $f\in R[a,b]$, $D\coloneqq f([a,b])$, $h\colon D\to\mathbb{R}$ sei
+		Lipschitzstetig auf $D$. Dann $h\circ f\in R[a,b]$.
+	\end{satz}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $f\colon[a,b]\to\mathbb{R}$ beschränkt auf $[a,b]$ und
+				$\set{x\in[a,b]\given f~\text{ist nicht stetig in}~x}$ endlich,
+				dann ist $f\in R[a,b]$.
+			\item Ist $f\in R[a,b]$ und $\set{x\in[a,b]\given f(x)\neq g(x)}$ endlich,
+			dann ist $g\in R[a,b]$ und $\int_a^bg\d{x}=\int_a^bf\d{x}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Erster Hauptsatz der Differential- und Integralrechnung]
+		Es sei $f\in R[a,b]$ und $\forall x\in [a,b]:F'(x)=f(x)$. Dann
+		\[ \int_a^bf(x)\d{x}=F(b)-F(a)\eqqcolon [F(x)]_a^b \]
+	\end{satz}
+	\begin{satz}[Zweiter Hauptsatz der Differential- und Integralrechnung]
+		Mit $f\in R[a,b]$ und $F\colon[a,b]\to\mathbb{R}$, $F(x)\coloneqq\int_a^xf(t)\d{t}$:
+		\begin{enumerate}[label=(\alph*)]
+			\item $F$ ist auf $[a,b]$ Lipschitzstetig.
+			\item $f~\text{in}~x_0\in[a,b]~\text{stetig}\implies F~\text{differenzierbar in $x_0$ mit}~F'(x_0)=f(x_0)$
+			\item $f\in C[a,b]\implies F\in C^1[a,b]\wedge\forall x\in[a,b]:F'(x)=f(x)$
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Ist $J\subseteq\mathbb{R}$ ein Intervall, $f\in C(J)$ und $\xi\in J$,
+		$F\colon J\to\mathbb{R}$ mit $F(x)\coloneqq\int_\xi^xf(t)\d{t}$, dann ist
+		$F\in C^1(J)$ und $F'=f$ auf $J$.
+	\end{satz}
+	\begin{satz}[Mittelwertsatz der Integralrechnung]
+		Mit $f,g\in R[a,b]$, $g\geq0$ auf $[a,b]$, $m\coloneqq\inf f([a,b])$,
+		$M\coloneqq\sup f([a,b])$:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\exists\mu\in[m,M]:\int_a^bfg\d{x}=\mu\int_a^bg\d{x}$
+			\item $f\in C[a,b]\implies\exists\xi\in[a,b]:\int_a^bf\d{x}=f(\xi)(b-a)$
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}
+		Ist $I\subseteq\mathbb{R}$ ein Intervall und $G,g\colon I\to\mathbb{R}$, wobei
+		$G$ differenzierbar auf $J$ und $G'=g$ auf $J$, dann ist $G$ auf $J$ eine
+		Stammfunktion von $g$. Man schreibt auch $\int g\d{x}=G$.
+	\end{definition}
+	\begin{satz}[Partielle Integration]
+		\begin{enumerate}[label=(\alph*)]
+			\item Sind $f,g\in R[a,b]$ und $F$, $G$ Stammfunktionen von $f$, $g$
+				auf $[a,b]$, dann
+				\[ \int_a^bFg\d{x}=[F(x)G(x)]_a^b-\int_a^bfG\d{x} \]
+			\item Sind $f,g\in C^1[a,b]$, dann
+				\[ \int_a^b\d{x}=[f(x)g(x)]_a^b-\int_a^bfg'\d{x} \]
+			\item Sind $f,g\in C^1(I)$, dann gilt auf $I$
+				\[ \int f'g\d{x}=f(x)g(x)-\int fg'\d{x} \]
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Integration durch Substitution]
+		Es sei $f\in C(I)$, $g\in C^1(J)$, $g(J)\subseteq I$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $J = [\alpha,\beta]\implies$
+				\[ \int_\alpha^\beta f(g(t))g'(t)\d{t}=\int_{g(\alpha)}^{g(\beta)}f(t)\d{t} \]
+			\item Auf $J$ gilt
+				\[ \int f(g(t))g'(t)\d{t}=\int f(x)\d{x}|_{x=g(t)} \]
+			\item $g~\text{strong monoton auf $J$}\implies\text{Auf $I$}$
+				\[ \int f(x)\d{x}=\int f(g(t))g'(t)\d{t}|_{t=g^{-1}(x)} \]
+		\end{enumerate}
+	\end{satz}
+	\newpage
+	\sep
+	\begin{multicols}{2}
+	\begin{verfahren}[Liste von Stammfunktionen]
+		Stünde dieser Satz nicht hier, wäre die Tabelle am falschen Platz.
+
+		%\renewcommand{\arraystretch}{1.9}
+		%\setlength\extrarowheight{5pt}
+		\begin{tabular}{ | M{2.5cm} | M{2.5cm} | N}
+			\hline
+			Funktion & Stammfunktion & \\[0.6cm] \hline \hline
+			$nx^{n-1}$ & $x^n$ & \\[0.6cm] \hline
+			$\frac{1}{x}$ & $\log\abs{x}$ & \\[0.6cm] \hline \hline
+			$\sin x$ & $-\cos x$ & \\[0.6cm] \hline
+			$\cos x$ & $\sin x$ & \\[0.6cm] \hline
+			$\tan x$ & $-\log\abs{\cos x}$ & \\[0.6cm] \hline \hline
+			$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x$ & \\[0.6cm] \hline
+			$-\frac{1}{\sqrt{1-x^2}}$ & $\arccos x$ & \\[0.6cm] \hline
+			$\frac{1}{1+x^2}$ & $\arctan x$ & \\[0.6cm] \hline
+		\end{tabular}
+	\end{verfahren}
+	\begin{verfahren}[Liste von Reihenwerten]
+		\blindtext
+	\end{verfahren}
+	\end{multicols}
 \end{document}
