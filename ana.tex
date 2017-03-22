@@ -696,7 +696,7 @@
 				auf $[a,b]$, dann
 				\[ \int_a^bFg\d{x}=[F(x)G(x)]_a^b-\int_a^bfG\d{x} \]
 			\item Sind $f,g\in C^1[a,b]$, dann
-				\[ \int_a^b\d{x}=[f(x)g(x)]_a^b-\int_a^bfg'\d{x} \]
+				\[ \int_a^bf'g\d{x}=[f(x)g(x)]_a^b-\int_a^bfg'\d{x} \]
 			\item Sind $f,g\in C^1(I)$, dann gilt auf $I$
 				\[ \int f'g\d{x}=f(x)g(x)-\int fg'\d{x} \]
 		\end{enumerate}
@@ -722,6 +722,8 @@
 				Funktion & Stammfunktion & \\[0.6cm] \hline \hline
 				$nx^{n-1}$ & $x^n$ & \\[0.6cm] \hline
 				$\frac{1}{x}$ & $\log\abs{x}$ & \\[0.6cm] \hline
+				$\log x$ & $x\log x - x$ & \\[0.6cm] \hline
+				$e^x$ & $e^x$ & \\[0.6cm] \hline
 				$a^x\log a$ & $a^x$ & \\[0.6cm] \hline \hline
 				$\sin x$ & $-\cos x$ & \\[0.6cm] \hline
 				$\cos x$ & $\sin x$ & \\[0.6cm] \hline
