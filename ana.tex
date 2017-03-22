@@ -26,6 +26,7 @@
 
 \usepackage{array}
 \usepackage{blindtext}
+\usepackage{float}
 
 \usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
 
@@ -59,6 +60,10 @@
 \newcolumntype{N}{@{}m{0pt}@{}}
 
 \setlength\columnsep{1.5cm}
+
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
@@ -311,7 +316,7 @@
 		absolut konvergent mit
 		$\series[0] p_n = \series[0] c_n = (\series[0] a_n)(\series[0] b_n)$.
 	\end{satz}
-	\begin{defsatz}[Die e-Funktion]
+	\begin{defsatz}[Die Exponentialfunktion]
 		Die Definition $\forall x\in\mathbb{R}:e^x\coloneqq E(x)\coloneqq\series[0]\frac{x^n}{n!}$
 		deckt sich mit der Potenz für rationale Exponenten.
 	\end{defsatz}
@@ -710,26 +715,44 @@
 	\newpage
 	\sep
 	\begin{multicols}{2}
-	\begin{verfahren}[Liste von Stammfunktionen]
-		Stünde dieser Satz nicht hier, wäre die Tabelle am falschen Platz.
-
-		%\renewcommand{\arraystretch}{1.9}
-		%\setlength\extrarowheight{5pt}
-		\begin{tabular}{ | M{2.5cm} | M{2.5cm} | N}
-			\hline
-			Funktion & Stammfunktion & \\[0.6cm] \hline \hline
-			$nx^{n-1}$ & $x^n$ & \\[0.6cm] \hline
-			$\frac{1}{x}$ & $\log\abs{x}$ & \\[0.6cm] \hline \hline
-			$\sin x$ & $-\cos x$ & \\[0.6cm] \hline
-			$\cos x$ & $\sin x$ & \\[0.6cm] \hline
-			$\tan x$ & $-\log\abs{\cos x}$ & \\[0.6cm] \hline \hline
-			$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x$ & \\[0.6cm] \hline
-			$-\frac{1}{\sqrt{1-x^2}}$ & $\arccos x$ & \\[0.6cm] \hline
-			$\frac{1}{1+x^2}$ & $\arctan x$ & \\[0.6cm] \hline
-		\end{tabular}
-	\end{verfahren}
-	\begin{verfahren}[Liste von Reihenwerten]
-		\blindtext
-	\end{verfahren}
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{ | M{2.5cm} | M{2.5cm} | N}
+				\hline
+				Funktion & Stammfunktion & \\[0.6cm] \hline \hline
+				$nx^{n-1}$ & $x^n$ & \\[0.6cm] \hline
+				$\frac{1}{x}$ & $\log\abs{x}$ & \\[0.6cm] \hline
+				$a^x\log a$ & $a^x$ & \\[0.6cm] \hline \hline
+				$\sin x$ & $-\cos x$ & \\[0.6cm] \hline
+				$\cos x$ & $\sin x$ & \\[0.6cm] \hline
+				$\tan x$ & $-\log\abs{\cos x}$ & \\[0.6cm] \hline \hline
+				$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x$ & \\[0.6cm] \hline
+				$-\frac{1}{\sqrt{1-x^2}}$ & $\arccos x$ & \\[0.6cm] \hline
+				$\frac{1}{1+x^2}$ & $\arctan x$ & \\[0.6cm] \hline \hline
+				$\sinh x$ & $\cosh x$ & \\[0.6cm] \hline
+				$\cosh x$ & $\sinh x$ & \\[0.6cm] \hline
+				$\tanh x$ & $\log\cosh x$ & \\[0.6cm] \hline \hline
+				$\frac{1}{\sqrt{x^2+1}}$ & $\arsinh x$ & \\[0.6cm] \hline
+				$\frac{1}{\sqrt{x^2-1}}$ & $\arcosh x$ & \\[0.6cm] \hline
+				$\frac{1}{1-x^2}$, $\abs{x}<1$ & $\artanh x$ & \\[0.6cm] \hline \hline
+				$\frac{f'(x)}{1+f(x)^2}$ & $\arctan f(x)$ & \\[0.6cm] \hline
+				$\frac{f'(x)}{f(x)}$ & $\log\abs{f(x)}$ & \\[0.6cm] \hline
+				$f'(x)f(x)$ & $\frac{1}{2}f(x)^2$ & \\[0.6cm] \hline
+				$f'(x)e^{f(x)}$ & $e^{f(x)}$ & \\[0.6cm] \hline
+			\end{tabular}
+			\caption{Liste von Stammfunktionen}
+		\end{table}
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{ | M{2.5cm} | M{2.5cm} | N}
+				\hline
+				Reihe & Wert & \\[0.6cm] \hline \hline
+				$\sum\limits_{n=0}^\infty x^n$, $\abs{x}<1$ & $\frac{1}{1-x}$ & \\[0.6cm] \hline
+				$\sum\limits_{n=0}^\infty x^n$, $\abs{x}\geq1$ & $\infty$ & \\[0.6cm] \hline \hline
+				$\sum\limits_{n=1}^\infty\frac{1}{n^\alpha}$, $\alpha > 1$ & konvergent & \\[0.6cm] \hline
+				$\sum\limits_{n=1}^\infty\frac{1}{n^\alpha}$, $\alpha \leq 1$ & $\infty$ & \\[0.6cm] \hline
+			\end{tabular}
+			\caption{Liste von Reihenwerten}
+		\end{table}
 	\end{multicols}
 \end{document}
