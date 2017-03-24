@@ -573,7 +573,7 @@
 	\sep
 	\begin{definition}
 		Für Intervall $I\subseteq\mathbb{R}$, $f\colon I\to\mathbb{R}$, ist für $x_0\in I$,
-		falls existent, $f^{(n)}(x_0) \coloneqq ((\cdots(f\underbrace{')'\cdots)')'}_{n~\text{mal}}(x_0)$
+		falls existent, $f^{(n)}(x_0) \coloneqq ((\cdots(f\underbrace{')'\cdots)')'}_{n~\text{mal}}(x_0)$.
 		Falls $\forall x\in I~\exists f^{(n)}(x)$, ist $f$ $n$-mal differenzierbar auf $I$.
 		Ist zusätzlich $f^{(n)}\in C(I)$, ist $f$ $n$-mal stetig differenzierbar, also
 		$f\in C^n(I)$. $C^0(I)\coloneqq C(I)$, $C^\infty(I)\coloneqq\bigcap_{n\in\mathbb{N}}C^n(I)$.
@@ -746,11 +746,13 @@
 		\end{table}
 		\begin{table}[H]
 			\centering
-			\begin{tabular}{ | M{2.5cm} | M{2.5cm} | N}
+			\begin{tabular}{ | M{3.5cm} | M{3.5cm} | N}
 				\hline
 				Reihe & Wert & \\[0.6cm] \hline \hline
 				$\sum\limits_{n=0}^\infty x^n$, $\abs{x}<1$ & $\frac{1}{1-x}$ & \\[0.6cm] \hline
 				$\sum\limits_{n=0}^\infty x^n$, $\abs{x}\geq1$ & $\infty$ & \\[0.6cm] \hline \hline
+				$\sum\limits_{n=0}^\infty (n+1)x^n$, $\abs{x}<1$ & $\frac{1}{(1-x)^2}$ & \\[0.6cm] \hline
+				$\sum\limits_{n=0}^\infty (n+1)x^n$, $\abs{x}\geq1$ & $\infty$ & \\[0.6cm] \hline \hline
 				$\sum\limits_{n=1}^\infty\frac{1}{n^\alpha}$, $\alpha > 1$ & konvergent & \\[0.6cm] \hline
 				$\sum\limits_{n=1}^\infty\frac{1}{n^\alpha}$, $\alpha \leq 1$ & $\infty$ & \\[0.6cm] \hline
 			\end{tabular}
