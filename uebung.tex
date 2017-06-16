@@ -1,0 +1,168 @@
+\documentclass[a4paper]{article}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{centernot}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
+
+\usepackage{parskip}
+
+\newtheorem*{lemma}{Lemma}
+\newtheorem{aufgabe}{Aufgabe}
+
+\theoremstyle{definition}
+\newtheorem*{mdef}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{anmerkung}{Anmerkung}
+\newtheorem*{folgerung}{Folgerung}
+\newtheorem{beispiel}{Beispiel}
+
+\MakeOuterQuote{"}
+
+\newcommand{\defiff}{:\Longleftrightarrow}
+
+\renewcommand{\d}[1]{\mathrm{d}#1}
+
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\begin{document}
+
+	\section*{Äquivalente Wege}
+		Seien $\gamma_1\in C([a, b], \mathbb{R}^n), \gamma_2\in C([\alpha, \beta], \mathbb{R}^n)$.
+		$\gamma_1\sim\gamma_2 \defiff\exists h\in C([a, b], \mathbb{R})$ strikt wachsend mit
+		$h([a, b])=[\alpha, \beta]~\text{und}~\forall t\in[a,b]:\gamma_1(t)=\gamma_2(h(t))$.
+		$\gamma_1$ und $\gamma_2$ heißen dann äquivalent, in der Literatur auch oft:
+		"$\gamma_2$ ist eine Umparametrisierung von $\gamma_1$". Beachte:
+		$h\colon[a, b]\to[\alpha, \beta]$ ist bijektiv und $h^{-1}\colon[\alpha, \beta]
+		\to[a,b]$ ist stetig und strikt wachsend und $\forall\tau\in[\alpha, \beta]:
+		\gamma_2(\tau)=\gamma_1(h^{-1}(\tau))$.
+
+		Satz 12.7: Wenn $\gamma_1\sim\gamma_2$, dann $\gamma_1~\text{rektifizierbar}\defiff
+		\gamma_2~\text{rektifizierbar}$. In diesem Fall $L(\gamma_1)=L(\gamma_2)$. Achtung:
+		\begin{align*}
+			\gamma_1\sim\gamma_2, \gamma_1\in C^1 &\centernot\implies \gamma_2~\text{differenzierbar},\\
+			\gamma_1\sim\gamma_2, \gamma_1~\text{glatt} &\centernot\implies \gamma_2~\text{glatt}.
+		\end{align*}
+
+		Sei $\gamma\in C^1([a, b], \mathbb{R}^n)$ ein Weg. Setze $\ell\coloneqq L(\gamma)$.
+		\begin{align*}
+			\gamma~\text{glatt}&\defiff\forall t\in[a, b]:\gamma'(t)\neq0,\\
+			\gamma~\text{parametrisiert nach der Weglänge}&\defiff\forall t\in[a,b]:\norm{\gamma'(t)}=1.
+		\end{align*}
+		Gesehen: $\gamma~\text{glatt}\implies s\in C^1([a, b], \mathbb{R})\wedge\forall t\in[a, b]:
+		s'(t)=\norm{\gamma'(t)}>0\implies s^{-1}~\text{ist strikt wachsend}
+		\implies\hat{\gamma}\in C^1([0, \ell], \mathbb{R}^n), \forall\tau\in[0, \ell]:
+		\hat{\gamma}\coloneqq\gamma(s^{-1}(\tau))$ ist die Umparametrisierung von
+		$\gamma$ nach der Weglänge. Tatsächlich gilt $\forall\tau\in[0, \ell]$:
+		\begin{align*}
+			\norm{\hat{\gamma}'(\tau)}&=\norm{\gamma'(s^{-1}(\tau))(s^{-1})'(\tau)}=\norm{\gamma'(s^{-1}(\tau))\frac{1}{s'(s^{-1}(\tau))}}\\
+			&= \norm{\frac{\gamma'(s^{-1}(\tau)}{\norm{\gamma'(s^{-1}(\tau))}}}=1.
+		\end{align*}
+		\begin{aufgabe}
+			Sei $\gamma\colon[-1, 1]\to\mathbb{R}^2$; $\forall t\in[-1, 1]:\gamma(t)\coloneqq(t, \cosh t)$.
+		Zeige, dass $\gamma$ glatt ist und bestimme die Parametrisierung nach der Weglänge.
+		\end{aufgabe}
+		\begin{proof}[Lösung]
+			Es ist $\gamma\in C^1([-1, 1], \mathbb{R}^2)$ und es gilt
+			$\gamma'(t)=(1, \sinh t)$ für $t\in[-1, 1]$. Offenbar ist
+			$\gamma (t)\neq(0, 0)~\forall t\in[-1, 1]\implies\gamma~\text{glatt}$.
+			Die Weglängenfunktion $s\colon[-1, 1]\to[0,\infty)$ ist für alle $t\in[-1, 1]$ gegeben durch
+			\begin{align*}
+				s(t) &= \int_{-1}^t\norm{\gamma'(\sigma)}\d{\sigma}\\
+				&= \int_{-1}^t\sqrt{\cosh^2\sigma-\sinh^2\sigma+\sinh^2\sigma}\d{\sigma} \\
+				&= \int_{-1}^t\abs{\cosh\sigma}\d{\sigma} \stackrel{\text{AI}}{=} \int_{-1}^t\cosh\sigma\d{\sigma} \\
+				&= \sinh t - \sinh(-1).
+			\end{align*}
+			Bestimme Umkehrfunktion von $s$: Für $t\in[-1, 1], \tau\in[0, \infty)$:
+			\begin{align*}
+				\tau=s(t)=\sinh t- \sinh(-1)&\iff\sinh(t)=\tau+\sinh(-1)\\
+				&\iff t=\arsinh(\tau+\sinh(-1))=s^{-1}(\tau).
+			\end{align*}
+			Somit gilt:
+			\begin{equation*}
+				\hat{\gamma}(\tau)=\gamma(s^{-1}(\tau))=(\arsinh(\tau + \sinh(-1)), \cosh(\arsinh(\tau + \sinh(-1)))).\qedhere
+			\end{equation*}
+		\end{proof}
+		\begin{beispiel}
+			$\gamma\colon[0, \pi]\to\mathbb{R}^2$, $\forall t\in[0, \pi]:\gamma(t)\coloneqq(\cos t + t \sin t, \sin t - t \cos t)
+			\stackrel{(\ldots)}{\implies} \gamma'(t)=(t\cos t, t\sin t) \implies \norm{\gamma'(t)}=t$.
+			Beachte $\gamma'(0)=0$. $s\colon [0, \pi]\to[0, \frac{1}{2}\pi^2]$; $s(t)=\frac{1}{2}t^2$.
+			$s^{-1}\colon[0, \frac{1}{2}\pi^2]$; $s^{-1}(\tau)=\sqrt{2\tau}$.
+			$\tilde{\gamma}\colon[0, \frac{1}{2}\pi^2]\to\mathbb{R}^2$ mit
+			\[
+				\tilde{\gamma}(\tau)=(\cos(\sqrt{2\tau})+\sqrt{2\tau}\sin(\sqrt{2\tau}),
+				\sin(\sqrt{2\tau})-\sqrt{2\tau}\cos(\sqrt{2\tau}))
+			\]
+			ist eine Umparametrisierung von $\gamma$; die Weglängenfunktion ist die
+			Identität.
+		\end{beispiel}
+	\section*{Wegintegral längs eines Weges}
+		Sei $\gamma\in C^1([a, b], \mathbb{R}^n)$ ein Weg und $f\in C(D, \mathbb{R}^n)$,
+		wobei $D\subseteq\mathbb{R}^n$ und $\Gamma_\gamma = \gamma([a, b])\subseteq D$. Definiere
+		\[
+			\int_\gamma f(x)\cdot \d{x}\coloneqq\int_a^bf(\gamma(t))\cdot\gamma'(t)\d{t}.
+		\]
+		In der Literatur heißt dieses Integral oft "Wegintegral 2. Art".
+
+		\begin{aufgabe}
+			Seien $f\colon\mathbb{R}^3\to\mathbb{R}^3$; $f(x, y, z)\coloneqq(y - x, -y, 1)$
+			und $\gamma\colon[0, 2\pi]\to\mathbb{R}^3$; $\gamma(t)\coloneqq(-\sin t, \cos t, 0)$.
+			Berechne
+			\[
+				\int_\gamma f(x, y, z)\cdot\d{(x, y, z)}.
+			\]
+		\end{aufgabe}
+		\begin{proof}[Lösung]
+			Es ist "klar", dass $\gamma\in C^1([0, 2\pi], \mathbb{R}^3)$ mit
+			$\gamma'(t)=(-\cos t, -\sin t, 0)$, $t\in[0, 2\pi]$. Weiter gilt
+			$f(\gamma(t)) = (\cos t + \sin t, -\cos t, 1)$. Es folgt
+			\begin{align*}
+				\int_\gamma f(x, y, z)\cdot\d{(x, y, z)} &= \int_0^{2\pi}
+					\begin{pmatrix}\cos t + \sin t\\-\cos t\\1\end{pmatrix}\cdot
+						\begin{pmatrix}-\cos t\\-\sin t\\0\end{pmatrix}\d{t}\\
+						&= \int_0^{2\pi}-\cos^2(t)-\sin(t)\cos(t)+\sin(t)\cos(t)\d{t}\\
+						&= -\int_0^{2\pi}\cos^2t\d{t}\\
+						&= -\int_0^{2\pi}1\d{t} + \int_0^{2\pi}\underset{\downarrow}{\sin(t)}\underset{\uparrow}{\sin(t)}\d{t}\\
+						&= -2\pi - [\sin(t)\cos(t)]^{2\pi}_0-\int_0^{-2\pi} \cos(t)(-\cos(t))\d{t}\\
+						\implies\int_\gamma f(x, y, z)\cdot\d{(x, y, z)} &= \frac{1}{2}(-2\pi)=-\pi.\qedhere
+			\end{align*}
+		\end{proof}
+	\section*{Wegintegral bezüglich der Weglänge}
+		Sei $\gamma\in C^1([a, b], \mathbb{R}^n)$ ein Weg, $g\in C(D, \mathbb{R})$,
+		$\Gamma_\gamma\subseteq D\subseteq\mathbb{R}^n$. Definiere
+		\[
+			\int_\gamma g(x)\d{s}\coloneqq\int_a^b g(\gamma(\sigma))\norm{\gamma'(\sigma)}\d{\sigma}.
+		\]
+		$s$ symbolisiert hier die Weglängenfunktion.
+		\begin{beispiel}
+			$g(x)\coloneqq\frac{xy}{x^2+y^2}$, $\gamma\colon[0, 2\pi]\to\mathbb{R}^2$;
+			$\gamma(t)\coloneqq\frac{e^t}{\sqrt{2}}(\cos t, \sin t)$.
+			\begin{align*}
+				\stackrel{(\ldots)}{\implies}\norm{\gamma'(t)}&=\frac{e^t}{\sqrt{2}}
+					\sqrt{2\cos^2(t)-\sin(t)\cos(t)+2\sin^2(t)+\sin(t)\cos(t)} = e^t\\
+				\implies g(\gamma(t))&=\left(\frac{e^t}{\sqrt{2}}\right)^2
+					\frac{\sin(t)\cos(t)}{\left(\frac{e^2}{\sqrt{t}}\right)^2(\cos^2(t)+\sin^2(t))}=\sin(t)\cos(t)\\
+				\implies \int_\gamma g(x, y)\d{s}&=\int_0^{2\pi}\underset{\downarrow}{\sin(t)\cos(t)}\underset{\uparrow}{\vphantom{)}e^t}\d{t}
+				= \ldots
+			\end{align*}
+		\end{beispiel}
+\end{document}
