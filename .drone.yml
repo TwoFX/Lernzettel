@@ -6,7 +6,7 @@ pipeline:
 
   push:
     image: appleboy/drone-scp
-    host: artanis.twofx.me
+    host: artanis.ohne.memes.jetzt
     username: drone-deploy
     key: ${SSH_KEY}
     target: /home/drone-deploy/out
