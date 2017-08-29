@@ -1,0 +1,146 @@
+\documentclass[a4paper]{article}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\usepackage[framed]{ntheorem}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
+
+\usepackage{parskip}
+\usepackage{multicol}
+
+\usepackage{array}
+\usepackage{blindtext}
+\usepackage{float}
+
+\usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
+
+\newcounter{Sec}
+
+\theoremstyle{marginbreak}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{Definition}[Sec]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{defsatz}[definition]{Definition und Satz}
+\newtheorem{verfahren}[definition]{Verfahren}
+\newtheorem{defver}[definition]{Definition und Verfahren}
+\newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
+\newtheorem{satzver}[definition]{Satz und Verfahren}
+
+\MakeOuterQuote{"}
+\DeclareMathOperator{\ffa}{ffa}
+
+\newcommand{\sep}{%
+	\rule{\textwidth}{0.3pt}%
+	\stepcounter{Sec}%
+	}
+\newcommand{\defiff}{:\Longleftrightarrow}
+
+\newcommand{\en}{~(n\to\infty)}
+\newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
+\newcommand{\ps}[1][a]{\series[0]#1_n(x-x_0)^n}
+\renewcommand{\d}[1]{\mathrm{d}#1}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\setlength\columnsep{1.5cm}
+
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+\begin{document}
+	\textsc{Algorithmen}
+
+	\sep
+
+	\begin{definition}[Landau-Notation]
+		\begin{align*}
+			\mathcal{O}(f(n)) &\coloneqq \set{g(n)\given\exists c>0~\exists n_0\in\mathbb{N}_{+}~\forall n\geq n_0:g(n)\leq c\cdot f(n)}\\
+			\Omega(f(n)) &\coloneqq \set{g(n)\given\exists c>0~\exists n_0\in\mathbb{N}_{+}~\forall n\geq n_0:g(n)\geq c\cdot f(n)}\\
+			\Theta(f(n)) &\coloneqq \mathcal{O}(f(n)) \cap \Omega(f(n))\\
+			o(f(n)) &\coloneqq \set{g(n)\given\forall c>0~\exists n_0\in\mathbb{N}_{+}~\forall n\geq n_0:g(n)\leq c\cdot f(n)}\\
+			\omega(f(n)) &\coloneqq \set{g(n)\given\forall c>0~\exists n_0\in\mathbb{N}_{+}~\forall n\geq n_0:g(n)\geq c\cdot f(n)}\\
+		\end{align*}
+	\end{definition}
+
+	\begin{satz}[Äquivalenzen]
+		\begin{align*}
+			g(n)\in\mathcal{O}(f(n)) &\iff 0\leq\limsup_{n\to\infty}\frac{g(n)}{f(n)}=c<\infty\\
+			g(n)\in\Omega(f(n)) &\iff 0<\liminf_{n\to\infty}\frac{g(n)}{f(n)}\leq\infty\\
+			g(n)\in\Theta(f(n)) &\impliedby 0<\lim_{n\to\infty}\frac{g(n)}{f(n)}=c<\infty\\
+			g(n)\in o(f(n)) &\iff \lim_{n\to\infty}\frac{g(n)}{f(n)}=0\\
+			g(n)\in\omega(f(n)) &\iff \limsup_{n\to\infty}\frac{g(n)}{f(n)}=\infty
+		\end{align*}
+	\end{satz}
+
+	\begin{satz}[Rechenregeln]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall c>0:c\cdot f(n)\in\Theta(f(n))$
+			\item $\sum_{i=0}^k a_in^i\in\mathcal{O}(n^k)$
+			\item $f(n)+g(n)\in\Omega(f(n))$
+			\item $g(n)\in\mathcal{O}(f(n))\implies f(n)+g(n)\in\mathcal{O}(f(n))$
+			\item $\mathcal{O}(f(n))\cdot\mathcal{O}(g(n)) = \mathcal{O}(f(n)\cdot g(n))$
+		\end{enumerate}
+	\end{satz}
+
+	\begin{satz}[Basiswechsel]
+		\[
+			\log_a b = \frac{\log_x b}{\log_x a}
+		\]
+	\end{satz}
+
+	\sep
+
+	\begin{satz}[Mastertheorem]
+		Es seien $a, b, c, d \in\mathbb{R}$. Ferner sei
+		\[
+			r(n)\coloneqq
+			\begin{cases}
+				a, &n=1\\
+				cn+dr(\ceil*{\frac{n}{b}}), &n>1.
+			\end{cases}
+		\]
+		Dann
+		\[
+			r(n)\in
+			\begin{cases}
+				\Theta(n), &d<b\\
+				\Theta(n\log n), &d=b\\
+				\Theta(n^{\log_b d}), &d>b.
+			\end{cases}
+		\]
+	\end{satz}
+
+	\sep
+
+	\begin{verfahren}[$(a,b)$-Bäume]
+		Einfügen: Links vom nächstgrößeren.
+
+		Split: Links klein, rechts groß.
+
+		Löschen: Fuse wenn möglich, ansonsten balance.
+
+		Balance: Rechter Nachbar außer wenn nicht existent.
+	\end{verfahren}
+
+\end{document}
