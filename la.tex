@@ -45,6 +45,7 @@
 \DeclareMathOperator{\Rang}{Rang}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Spek}{Spek}
 \DeclareMathOperator{\sign}{sign}
 \newcommand{\sep}{%
 	\rule{\textwidth}{0.3pt}%
@@ -613,4 +614,20 @@
 	\begin{satz}[von Cayley-Hamilton]
 		Für einen Endomorphismus $\Phi$ ist $p_\Phi(\Phi) = 0$, also $\forall v\in V: p_\Phi(\Phi)(v) = 0$.
 	\end{satz}
+	\newpage
+	\textsc{Lineare Algebra II}
+
+	\sep
+	\begin{verfahren}[Jordansche Normalform]
+		Es sei $A\in\mathbb{C}^{n\times n}$. Für jedes $\lambda\in\Spek A$:
+		\begin{enumerate}
+			\item Bestimme das minimale $q$ mit $\Kern(A-\lambda E_n)^q = \Kern(A-\lambda E_n)^{q+1}$
+			durch wiederholte Matrixmultiplikation und Gauß.
+			\item Die Zahl der $k$-Kästchen: $m_k = \dim\Kern(A-\lambda E_n)^k - \dim\Kern(A-\lambda E_n)^{k - 1} - \sum_{i=k+1}^q m_i$
+			(rückwärts ausrechnen).
+			\item Wieder rückwärts: $m_k$ Basisvektoren $b_1, \ldots, b_{m_k}$ wählen, die in $\Kern(A-\lambda E_n)^k \setminus \Kern(A-\lambda E_n)^{k - 1}$
+			liegen und zu den anderen Vektoren auf dieser Ebene linear unabhängig sind. Für $i\in\set{1,\ldots,m_k}$ sind dann
+			$b_i, (A-\lambda E_n)(b_i), \ldots, (A-\lambda E_n)^{k - 1}(b_i)$ gesuchte Basisvektoren.
+		\end{enumerate}
+	\end{verfahren}
 \end{document}
