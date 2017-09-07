@@ -53,6 +53,10 @@
 	}
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
+\newcommand\conj{\overline}
+\newcommand\scp[1]{\left\langle#1\right\rangle}
+\newcommand\transpose[1]{#1^{\mathsf{T}}}
+
 \begin{document}
 
 	\textsc{Lineare Algebra I}
@@ -458,7 +462,7 @@
 	\begin{defsatz}[Duale Abbildung]
 		Für endlichdimensionale $\mathbb{K}$-Vektorräume $V$, $W$ und $\Phi\colon V\to W$
 		linear ist $\Phi^*\colon W^*\to V^*$ mit $\Phi^*(\alpha)\coloneqq\alpha\circ\Phi$
-		ebenfalls linear und es gilt $M_{B^*}^{C^*}(\Phi^*) = M_C^B(\Phi)^{\mathsf{T}}$.
+		ebenfalls linear und es gilt $M_{B^*}^{C^*}(\Phi^*) = \transpose{M_C^B(\Phi)}$.
 	\end{defsatz}
 	\begin{defsatz}
 		$\hat{\Phi}\colon\mathbb{K}^n\to\mathbb{K}^m$ ist gegeben durch
@@ -528,7 +532,7 @@
 	\end{definition}
 	\begin{satz}
 		\begin{enumerate}[label=(\alph*)]
-			\item $\det A = \det A^{\mathsf{T}}$
+			\item $\det A = \det \transpose{A}$
 			\item $\det(A\cdot B) = \det A\cdot \det B$
 			\item Eine quadratische Matrix $A$ ist genau dann regulär, wenn $\det A\neq 0$. Dann $\det A^{-1} = (\det A)^{-1} = \frac{1}{\det A}$.
 		\end{enumerate}
@@ -630,4 +634,92 @@
 			$b_i, (A-\lambda E_n)(b_i), \ldots, (A-\lambda E_n)^{k - 1}(b_i)$ gesuchte Basisvektoren.
 		\end{enumerate}
 	\end{verfahren}
+	\sep
+	\begin{definition}[Bilinearform, Skalarprodukt, euklidischer Vektorraum]
+		Es sei $V$ ein reeller Vektorraum.
+		\begin{enumerate}[label=(\alph*)]
+			\item Eine Abbildung $F\colon V\times V\to\mathbb{R}$ mit
+				$\forall a, a_1, a_2, b, b_1, b_2\in V, \lambda_1, \lambda_2, \mu_1, \mu_2\in\mathbb{R}\colon$
+				\begin{align*}
+					F(\lambda_1 a_1+\lambda_2 a_2, b) &= \lambda_1 F(a_1, b) + \lambda_2 F(a_2, b)\\
+					F(a, \mu_1 b_1 + \mu_2 b_2) &= \mu_1 F(a, b_1) + \mu_2 F(a, b_2)
+				\end{align*}
+				heißt Bilinearform auf $V$.
+			\item Eine Bilinearform $F$ mit $\forall a, b\in V\colon F(a, b) = F(b, a)$ heißt symmetrisch.
+			\item Eine Bilinearform $F$ mit $\forall a\in V\colon F(a, a)\geq0$ und $F(a, a)=0\iff a = 0$ heißt
+				positiv definit.
+			\item Eine positiv definitie, symmetrische Bilinearform heißt Skalarprodukt auf $V$.
+			\item Ein reeller Vektorraum $V$ zusammen mit einem Skalarprodukt $F$ heißt euklidischer Vektorraum.
+		\end{enumerate}
+	\end{definition}
+	\begin{definition}[Hermitesche Form, Skalarprodukt, unitärer Vektorraum]
+		Es sei $V$ ein komplexer Vektorraum.
+		\begin{enumerate}[label=(\alph*)]
+			\item Eine Abbildung $F\colon V\times V\to\mathbb{C}$ mit
+				$\forall a, a_1, a_2, b\in V, \lambda_1, \lambda_2\in\mathbb{C}\colon$
+				\begin{align*}
+					F(\lambda_1 a_1+\lambda_2 	a_2, b) &= \lambda_1 F(a_1, b) + \lambda_2 F(a_2, b)\\
+					F(b, a) = \conj{F(a, b)}
+				\end{align*}
+				heißt hermitesche Form auf $V$.
+			\item Eine hermitesche Form $F$ mit $\forall a\in V\colon F(a, a)\geq 0$ und $F(a, a) = 0\iff a = 0$
+				heißt positiv definit.
+			\item Eine positiv definite hermitesche Form heißt Skalarprodukt auf $V$.
+			\item Ein komplexer Vektorraum $V$ zusammen mit einem Skalarprodukt $F$ heißt unitärer Vektorraum.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Eigenschaften hermitescher Formen]
+		Es sei $F$ eine hermitesche Form auf einem komplexen Vektorraum $V$. Für
+		$a, b_1, b_2\in V, \mu_1, \mu_2\in\mathbb{C}$ gilt:
+		\begin{enumerate}[label=(\alph*)]
+			\item $F(a, \mu_1 b_1+ \mu_2 b_2) = \conj{\mu_1} F(a, b_1) + \conj{\mu_2} F(a, b_2)$
+			\item $F(a, a)\in\mathbb{R}$
+			\item $F(0, 0) = 0$
+		\end{enumerate}
+	\end{satz}
+	\begin{defsatz}[Matrix von Skalarprodukten]
+		Ist $(V, \scp{})$ ein $n$-dimensionaler euklidischer oder unitärer
+		Vektorraum mit geordneter Basis $B = \set{b_1,\ldots,b_n}$, so wird durch
+		$g_{kl}\coloneqq \scp{b_k, b_j}$ die Matrix $G$ des Skalarprodukts definiert.
+		Es ist $G = \transpose{\conj{G}}$ und $\scp{a, b} = \transpose{\Theta_B(a)}G\conj{\Theta_B(b)}$
+		für alle $a, b\in V$.
+	\end{defsatz}
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item $A\in\mathbb{R}^{n\times n}$ mit $\transpose{A} = A$ heißt symmetrisch.
+			\item $A\in\mathbb{C}^{n\times n}$ mit $\transpose{\conj{A}} = A$ heißt hermitesch.
+			\item Symmetrisches oder hermitesches $A$ mit $\forall z\in\mathbb{C}^n\setminus\set{0}:
+				\transpose{z}G\conj{z}$ heißt positiv definit.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		Die Matrix eines Skalarproduktes ist positiv definit. Jede positiv definitierte
+		Matrix induziert Skalarprodukte auf alle $n$-dimensionalen reellen bzw. komplexen
+		Vektorräume.
+	\end{satz}
+	\begin{satz}[Basiswechsel für Skalarprodukte]
+		Ist $V$ ein $n$-dimensionaler euklidischer oder unitärer Vektorraum mit
+		geordneten Basen $B$ und $\tilde{B}$, sind $G$ und $\tilde{G}$ die Matrizen
+		eines Skalarprodukts $\scp{}$ bezüglich $B$ bzw. $\tilde{B}$, und ist $S$ die Basiswechselmatrix
+		von $\tilde{B}$ nach $B$, so gilt $\tilde{G} = \transpose{S}G\conj{S}$.
+	\end{satz}
+	\sep
+	\begin{satz}[Cauchy-Schwarz]
+		Für $(V, \sp{})$ euklidisch oder unitär, $a, b\in V$ gilt $\abs{\scp{a, b}}^2\leq\scp{a, a}\scp{b, b}$.
+		Gleichheit genau dann, wenn $a$ und $b$ linear abhängig.
+	\end{satz}
+	\begin{definition}[Norm]
+		Es sei $V$ reell oder komplex. $\norm{}\colon V\to\mathbb{R}$ mit
+		$\forall\lambda\in\mathbb{R}\ \text{bzw.}\ \mathbb{C}, a, b\in V\colon$
+		\begin{enumerate}[label=(\alph*)]
+			\item $\norm{\lambda a} = \abs{\lambda}\norm{a}$
+			\item $\norm{a + b} \leq \norm{a} + \norm{b}$
+			\item $\norm{a} \geq 0$ und $\norm{a} = 0\iff a = 0$
+		\end{enumerate}
+		heißt Norm. Ein Vektorraum mit einer Norm heißt normierter Vektorraum.
+	\end{definition}
+	\begin{satz}
+		Ist $(V, \scp)$ euklidisch oder unitär, so ist $\norm{}\colon V\to\mathbb{R}$ mit
+		$\forall a\in V\colon\norm{a}\coloneqq\sqrt{\scp{a, a}}$ eine Norm.
+	\end{satz}
 \end{document}
