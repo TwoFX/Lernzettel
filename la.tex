@@ -689,7 +689,7 @@
 			\item $A\in\mathbb{R}^{n\times n}$ mit $\transpose{A} = A$ heißt symmetrisch.
 			\item $A\in\mathbb{C}^{n\times n}$ mit $\transpose{\conj{A}} = A$ heißt hermitesch.
 			\item Symmetrisches oder hermitesches $A$ mit $\forall z\in\mathbb{C}^n\setminus\set{0}:
-				\transpose{z}G\conj{z}$ heißt positiv definit.
+				\transpose{z}A\conj{z}>0$ heißt positiv definit.
 		\end{enumerate}
 	\end{definition}
 	\begin{satz}
@@ -719,7 +719,132 @@
 		heißt Norm. Ein Vektorraum mit einer Norm heißt normierter Vektorraum.
 	\end{definition}
 	\begin{satz}
-		Ist $(V, \scp)$ euklidisch oder unitär, so ist $\norm{}\colon V\to\mathbb{R}$ mit
-		$\forall a\in V\colon\norm{a}\coloneqq\sqrt{\scp{a, a}}$ eine Norm.
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $(V, \scp{})$ euklidisch oder unitär, so ist $\norm{}\colon V\to\mathbb{R}$ mit
+				$\forall a\in V\colon\norm{a}\coloneqq\sqrt{\scp{a, a}}$ eine Norm. Dann gilt
+				$\forall a, b\in V\colon \norm{a + b}^2 + \norm{a - b}^2 = 2\norm{a}^2 + 2\norm{b}^2$.
+			\item Ist $(V, \norm{})$ normiert mit
+				$\forall a, b\in V\colon \norm{a + b}^2 + \norm{a - b}^2 = 2\norm{a}^2 + 2\norm{b}^2$,
+				so ist durch $\forall a, b\in V\colon \scp{a, b}\coloneqq \frac{1}{2}(\norm{a + b}^2 - \norm{a}^2 - \norm{b}^2)$
+				ein Skalarprodukt auf $V$ definiert.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Metrik]
+		Es sei $M$ eine Menge. $d\colon M\cross M\to\mathbb{R}$ mit $\forall p, q, r\in M\colon$
+		\begin{enumerate}[label=(\alph*)]
+			\item $d(p, q) = d(q, p)$
+			\item $d(p, r) \leq d(p, q) + d(q, r)$
+			\item $d(p, q) \geq 0$ und $d(q, p) = 0 \iff p = q$
+		\end{enumerate}
+		heißt Metrik. $(M, d)$ ist dann ein metrischer Raum.
+	\end{definition}
+	\begin{satz}
+		Ist $(V, \norm{})$ normiert, so ist $(V, d)$ mit $\forall x, y\in V\colon d(x, y)\coloneqq \norm{x - y}$
+		ein metrischer Raum.
+	\end{satz}
+	\begin{definition}[Winkel]
+		Es sei $(V, \scp{})$ euklidisch, $a, b\in V\setminus\set{0}$. Der Winkel
+		zwischen $a$ und $b$ ist $\omega(a, b)\in[0,\pi]$ mit $\cos\omega(a, b) = \frac{\scp{a, b}}{\norm{a}\norm{b}}$
+		und ist eindeutig bestimmt.
+	\end{definition}
+	\begin{satz}[Rechenregeln zu Winkeln]
+		Es sei $(V, \scp{})$ euklidisch, $a, b\in V\setminus\set{0}$, $\alpha, \beta\in\mathbb{R}\setminus\set{0}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\omega(a, b) = \omega(b, a)$
+			\item $\omega(\alpha a, \beta b) =
+				\begin{cases}
+					\omega(a, b), &\alpha\beta > 0\\
+					\pi-\omega(a, b), &\alpha\beta < 0
+				\end{cases}$
+			\item $\omega(a, b) = 0 \iff \exists\lambda > 0\colon b=\lambda a$
+			\item $\omega(a, b) = 0 \iff \exists\lambda < 0\colon b=\lambda a$
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}[Orthogonalität, Orthonormiertheit, Orthonormalbasis]
+		Ist $(V,\scp{})$ euklidisch oder unitär, $a, b\in V$ und $\scp{a, b}=0$,
+		so heißen $a$ und $b$ orthogonal. Man schreibt $a\perp b$. Mengen paarweise
+		orthogonaler Vektoren heißen orthogonal. Orthogonale Mengen $S$ mit $\forall v\in S\colon \norm{v}=1$
+		heißen orthonormiert. Orthonormierte Basen von $V$ heißen Orthonormalbasen (ONBs).
+	\end{definition}
+	\begin{satz}[des Pythagoras]
+		Ist $(V, \scp{})$ euklidisch oder unitär, so gilt für $a, b\in V$: $a\perp b\implies \norm{a}^2 + \norm{b}^2 = \norm{a+b}^2$.
+		Im euklidischen Fall gilt auch die umgekehrte Implikation.
+	\end{satz}
+	\begin{satzver}[Gram-Schmidt]
+		Es sei $(V, \scp{})$ euklidisch oder unitär.
+		\begin{enumerate}[label=(\alph*)]
+			\item Orthogonale $S\subset V\setminus\set{0}$ sind linear unabhängig.
+			\item Ist $S\subset V\setminus\set{0}$ orthogonal, so ist
+				$S*\coloneqq\set{\norm{a}^{-1}a\given a\in S}$ orthonormiert.
+			\item Ist $\set{a_1,\ldots,a_n}$ eine ONB von $(V,\scp{})$, so gilt
+				$\forall v\in V\colon v = \sum_{i=1}^n\scp{v,a_i}a_i$.
+			\item Ist $B\coloneqq \set{b_1,\ldots,b_l}$ linear unabhängig in $V$, so wird durch
+				\begin{align*}
+					a_1 &\coloneqq b_1,\\
+					\forall k\in\set{1,\ldots,l - 1}\colon a_{k+1} &\coloneqq b_{k+1} - \sum_{j=1}^k\frac{\scp{b_{k+1}, a_j}}{\scp{a_j, a_j}}a_j
+				\end{align*}
+				eine orthognale Menge $A\coloneqq\set{a_1,\ldots,a_l}$ mit $[A] = [B]$ definiert.
+			\item Ist $V$ endlichdimensional, so hat $V$ eine ONB.
+		\end{enumerate}
+	\end{satzver}
+	\begin{defsatz}[Orthogonalkomplement]
+		Ist $(V, \scp{})$ euklidisch oder unitär und $U\subset V$ ein Untervektorraum, so heißt
+		$U^\perp \coloneqq\set{x\in V\given\forall u\in U\colon\scp{x, u}=0}$ das Orthogonalkomplement
+		von $U$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $U^\perp$ ist ein Untervektorraum von $V$
+			\item $U\cap U^\perp=\set{0}$
+			\item Ist V endlichdimensional, so ist $U\oplus U^\perp = V$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{defsatzver}[Orthogonalprojektion]
+		Es sei $(V, \scp{})$ euklidisch oder unitär und $U\subset V$ ein Untervektorraum.
+		$\pi_U\colon V\to U$ mit $\pi_U(u+u^\perp)\coloneqq u$, wobei $u\in U, u^\perp\in U^\perp$, heißt Orthogonalprojektion auf $U$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\pi_U$ ist linear
+			\item $\pi_U^2 = \pi_U$
+			\item $\Bild\pi_U = U$, $\Kern\pi_U = U^\perp$
+			\item $\forall v, w\in V\colon d(\pi_U(v), \pi_U(w)) \leq d(v, w)$
+			\item Ist $\set{e_1,\ldots,e_k}$ eine ONB von $U$, so gilt $\forall v\in V\colon \pi_U(v)=\sum_{j=1}^k\scp{v, e_j}e_j$
+		\end{enumerate}
+	\end{defsatzver}
+	\begin{defsatzver}[Abstand von einem Untervektorraum]
+		Ist $(V, \scp{})$ euklidisch oder unitär, $v\in V$ und $U$ Untervektorraum von $V$, so ist
+		$d(\set{v}, U)\coloneqq \inf\set{\norm{v-u}\given u\in U}$. Ist $V$ zusätzlich endlichdimensional
+		so gilt $d(\set{v}, U) = \norm{\pi_{U^\perp}(v)}$.
+	\end{defsatzver}
+	\sep
+	\begin{defsatz}
+		$A\in\mathbb{R}^{n\times n}$ mit $\transpose{A}A=E_n$ heißt orthogonal.
+		$A\in\mathbb{C}^{n\times n}$ mit $\transpose{A}\conj{A}=E_n$ heißt unitär.
+
+		Die orthogonalen bzw. unitären Matrizen sind genau die Matrizen, die ONBs in
+		ONBs überführen.
+
+		Für $A$ orthognal oder unitär gilt $\abs{\det A} = 1$.
+	\end{defsatz}
+	\begin{satz}
+		Es sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $A$ ist orthogonal/unitär
+			\item $A$ ist regulär und $A^{-1}=\transpose{\conj{A}}$
+			\item Die Spalten- und Zeilenvektoren von A bilden eine ONB von
+				$\mathbb{R}^n$ bzw. $\mathbb{C}^n$ bezüglich des Standardskalarprodukts.
+		\end{enumerate}
+	\end{satz}
+	\begin{defsatz}
+		Es sei $n\in\mathbb{N}$.
+		\begin{align*}
+			\mathbf{O}(n) &\coloneqq \set{A\in\mathbf{GL}(n,\mathbb{R})\given \transpose{A}A=E_n}\\
+			\mathbf{U}(n) &\coloneqq \set{A\in\mathbf{GL}(n,\mathbb{C})\given \transpose{\conj{A}}A=E_n}\\
+			\mathbf{SL}(n, \mathbb{C}) &\coloneqq \set{A\in\mathbb{C}^{n\times n}\given\det A=1}\\
+			\mathbf{SL}(n, \mathbb{R}) &\coloneqq \mathbf{SL}(n, \mathbb{C})\cap\mathbf{GL}(n, \mathbb{R})\\
+			\mathbf{SO}(n) &\coloneqq \mathbf{O}(n)\cap\mathbf{SL}(n,\mathbb{R})\\
+			\mathbf{SU}(n) &\coloneqq \mathbf{U}(n)\cap\mathbf{SL}(n,\mathbb{C})
+		\end{align*}
+	\end{defsatz}
+	\begin{satz}[Iwasawa-Zerlegung]
+		Nope.
 	\end{satz}
 \end{document}
