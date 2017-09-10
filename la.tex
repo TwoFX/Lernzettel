@@ -47,6 +47,7 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Spek}{Spek}
 \DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\diag}{diag}
 \newcommand{\sep}{%
 	\rule{\textwidth}{0.3pt}%
 	\stepcounter{Sec}%
@@ -846,5 +847,69 @@
 	\end{defsatz}
 	\begin{satz}[Iwasawa-Zerlegung]
 		Nope.
+	\end{satz}
+	\sep
+	\begin{definition}[Adjungierte Abbildung]
+		Es seien $(V, \scp{}_V)$ und $(W, \scp{}_W)$ euklidisch oder unitär und
+		$\Phi\colon V\to\ W$ linear. $\Phi^*\colon W\to V$ heißt zu $\Phi$ adjungiert,
+		wenn $\forall v\in V, w\in W\colon \scp{\Phi(v), w}_W = \scp{v, \Phi^*(w)}_V$.
+	\end{definition}
+	\begin{definition}
+		$\forall A\in\mathbb{C}^{m\times n}\colon A^*\coloneqq \transpose{\conj{A}}$.
+	\end{definition}
+	\begin{satz}
+		Es seien $(V, \scp{})$, $(W, \scp)$ euklidisch oder unitär.
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $\dim V<\infty$, so existiert für jedes $\Phi\colon V\to W$ genau
+				Adjungierte $\Phi^*\colon W\to V$.
+			\item Ist $\dim V<\infty$ und $\dim W<\infty$, $\Phi\colon V\to W$ linear,
+				$B$ eine ONB von $V$, $C$ eine ONB von $W$, so gilt $M^C_B(\Phi^*) = M^B_C(\Phi)^*$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Rechenregeln für Adjungierte]
+		Es seien $(U, \scp{})$, $(V, \scp{})$, $(W, \scp{})$ euklidisch oder unitär,
+		$\Phi\colon U\to V$ mit Adjungierter $\Phi^*\colon V\to U$, $\Psi\colon V\to W$
+		mit Adjungierter $\Psi^*\colon W\to V$. Dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall \lambda\in\mathbb{C}\colon (\lambda\Phi)^* = \conj{\lambda}\Phi^*$
+			\item $(\Psi\circ\Phi)^* = \Phi^*\circ\Psi^*$
+			\item $\Phi^{**} = (\Phi^*)^* = \Phi$
+			\item $\Kern\Phi^* = (\Bild\Phi)^\perp$
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Selbstadjungierte Abbildung]
+		Ist $(V,\scp{})$ euklidisch oder unitär und endlichdimensional, so heißt $\Phi\colon V\to V$ selbstadjungiert,
+		wenn $Phi^*=\Phi$. Dies ist genau dann der Fall, wenn die Abbildungsmatrix von $\Phi$ bezüglich einer
+		ONB von $V$ symmetrisch bzw. hermitesch ist.
+	\end{defsatz}
+	\begin{satz}
+		Ist $(V, \scp{})$ euklidisch oder unitär mit $\dim V=n\in\mathbb{N}$ und $\Phi\colon V\to V$ selbstadjungiert,
+		so gilt \[p_\Phi=\pm(X-\lambda_1)\cdots(X-\lambda_n)\] mit $\forall i\in\set{1,\ldots,n}\colon\lambda_i\in\mathbb{R}$.
+	\end{satz}
+	\begin{satz}[Spektralsatz]
+		\begin{enumerate}[label=(\alph*)]
+			\item Es sei $(V, \scp{})$ euklidisch oder unitär mit $\dim V=n\in\mathbb{N}$ und $\Phi\colon V\to V$ selbstadjungiert.
+				Dann existiert eine ONB $B$ von $V$, bezüglich der $M_B^B(\Phi)$ Diagonalgestalt annimmt. Insbesondere ist $\Phi$
+				also diagonalisierbar.
+			\item Ist $A\in\mathbb{R}^{n\times n}$ symmetrisch, so existiert
+				$S\in\mathbf{O}(n)$ mit $S^*AS=S^{-1}AS = \diag(\lambda_1,\ldots,\lambda_n)$.
+			\item Ist $A\in\mathbb{C}^{n\times n}$ hermitesch, so existiert
+				$S\in\mathbf{U}(n)$ mit $S^*AS=S^{-1}AS = \diag(\lambda_1,\ldots,\lambda_n)$,
+				und es ist $\forall i\in\set{1,\ldots,n}\colon \lambda_i\in\mathbb{R}$.
+			\item Die Eigenvektoren eines selbstadjungierten Endomorphismus zu unterschiedlichen
+				Eigenwerten sind orthogonal.
+			\item Es sei $(V,\scp{})$ euklidisch oder unitär. $\Phi\colon V\to V$ sei selbstadjungiert
+				mit den unterschiedlichen Eigenwerten $\lambda_1,\ldots,\lambda_r$. Dann ist
+				$V=\bigoplus_{j=1}^rE_{\lambda_j}$ und $\Phi = \lambda_1\pi_{E_{\lambda_1}}+\ldots+\lambda_r\pi_{E_{\lambda_r}}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Kriterium für positiv definit]
+		Eine reelle, symmetrische Matrix $A$ ist genau dann positiv definit, wenn alle
+		Eigenwerte von $A$ positiv sind.
+	\end{satz}
+	\begin{satz}
+		Ist $A\in\mathbb{R}^{n\times n}$ reell, symmetrisch und positiv definit,
+		so existiert $\sqrt{A}\in\mathbb{R}^{n\times n}$ mit $\sqrt{A}\sqrt{A}=A$.
 	\end{satz}
 \end{document}
