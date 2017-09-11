@@ -785,7 +785,7 @@
 					a_1 &\coloneqq b_1,\\
 					\forall k\in\set{1,\ldots,l - 1}\colon a_{k+1} &\coloneqq b_{k+1} - \sum_{j=1}^k\frac{\scp{b_{k+1}, a_j}}{\scp{a_j, a_j}}a_j
 				\end{align*}
-				eine orthognale Menge $A\coloneqq\set{a_1,\ldots,a_l}$ mit $[A] = [B]$ definiert.
+				eine orthogonale Menge $A\coloneqq\set{a_1,\ldots,a_l}$ mit $[A] = [B]$ definiert.
 			\item Ist $V$ endlichdimensional, so hat $V$ eine ONB.
 		\end{enumerate}
 	\end{satzver}
@@ -860,7 +860,7 @@
 	\begin{satz}
 		Es seien $(V, \scp{})$, $(W, \scp)$ euklidisch oder unitär.
 		\begin{enumerate}[label=(\alph*)]
-			\item Ist $\dim V<\infty$, so existiert für jedes $\Phi\colon V\to W$ genau
+			\item Ist $\dim V<\infty$, so existiert für jedes $\Phi\colon V\to W$ genau eine
 				Adjungierte $\Phi^*\colon W\to V$.
 			\item Ist $\dim V<\infty$ und $\dim W<\infty$, $\Phi\colon V\to W$ linear,
 				$B$ eine ONB von $V$, $C$ eine ONB von $W$, so gilt $M^C_B(\Phi^*) = M^B_C(\Phi)^*$.
@@ -918,7 +918,8 @@
 			\item Sind $(X, d_X)$ und $(Y, d_Y)$ metrische Räume, so heißt $f\colon X\to Y$ mit
 				$\forall p, q\in X\colon d_Y(f(p), f(q)) = d_X(p, q)$ eine Isometrie.
 			\item Sind $(V, \scp{})$ und $(W, \scp{})$ beide euklidisch oder beide unitär,
-				so heißt $\Phi\colon V\to W$ mit $\forall x\in V\colon\norm{\Phi(x)}_W=\norm{x}_W$
+				so heißt $\Phi\colon V\to W$ linear mit $\norm{\Phi(x)}_W=\norm{x}_W$
+				für alle $x\in V$
 				eine lineare Isometrie.
 		\end{enumerate}
 	\end{definition}
@@ -986,5 +987,50 @@
 			\item Ist $A\in\mathbb{C}^{n\times n}$ unitär, so existiert $T\in\mathbb{C}^{n\times n}$ unitär mit
 				$T^*AT=\diag(\lambda_1,\ldots,\lambda_n)$, wobei die $\lambda_k$ die Eigenwerte von $A$ sind.
 		\end{enumerate}
+	\end{satz}
+	\begin{verfahren}[Euklidische Normalform]
+		Es sei $A\in\mathbb{R}^{n\times n}$ orthogonal (also die Abbildungsmatrix einer
+		linearen Isometrie über einer Orthonormalbasis).
+		\begin{enumerate}
+			\item Eigenwerte und Eigenräume von $A+\transpose{A}$ bestimmen. $\dim E_2$ ist
+				die Zahl der $1$en, $\dim E_{-2}$ ist die Zahl der $-1$en, für
+				$\lambda\in\mathbb{R}\setminus\set{-2, 2}$ ist $\frac{\dim E_\lambda}{2}$ die
+				Zahl der Drehkästchen zum Winkel $\omega$ mit $\cos\omega = \frac{\lambda}{2}$.
+			\item In den $E_2$ und $E_{-2}$ können beliebige ONBs gefunden werden.
+			\item In den $E_\lambda$ für $\lambda\in\mathbb{R}\setminus\set{-2, 2}$ müssen Drehkästchen
+				gefunden werden. Wähle für $i\in\set{1,\ldots,\frac{1}{2}\dim E_\lambda}$
+				$x_i\in(\bigoplus_{j=1}^{i-1}U_j)^\perp\cap E_\lambda$, setze $U_i\coloneqq[x_i, \Phi(x_i)]$ und finde
+				ONB von $U_i$.
+		\end{enumerate}
+	\end{verfahren}
+	\sep
+
+	Hier wird bei Gelegenheit etwas zu normalen Endomorphismen ergänzt.
+
+	\sep
+	\begin{definition}[Quadratische Form]
+		Es sei $\beta\colon V\cross V\to\mathbb{R}$ eine Bilinearform. $Q\colon V\to\mathbb{R}$ mit $\forall v\in V\colon
+		Q(v)\coloneqq\beta(v, v)$ ist die quadratische Form zu $\beta$.
+	\end{definition}
+	\begin{satz}
+		Es sei $Q\colon V\to\mathbb{R}$ die quadratische Form zu einer Bilinearform $\beta$.
+		$\alpha\colon V\cross V\to\mathbb{R}$ mit \[\forall v, w\in V\colon \alpha(v, w)\coloneqq \frac{1}{2}\left[
+		Q(v+w)-Q(v)-Q(w)\right]\] ist eine Bilinearform mit der quadratischen Form $Q$. Ferner gilt
+		$\forall v, w\in V\colon\alpha(v, w)=\frac{1}{2}\left[\beta(v, w)+\beta(w, v)\right]$.
+	\end{satz}
+	\begin{satz}
+		Es sei $(V,\scp{})$ euklidisch, $\beta\colon V\cross V\to\mathbb{R}$ eine Bilinearform mit Matrix $A$,
+		$\Phi, \Psi\colon V\to V$ definiert durch $\forall v\in V\colon \Phi(v)\coloneqq Av; \Psi(v)\coloneqq A^*v$, so gilt:
+		$\forall v, w\in V\colon\beta(v, w)=\scp{v, \Phi(w)}=\scp{\Psi(v), w}$.
+	\end{satz}
+	\begin{definition}[Nullraum]
+		Es sei $\beta\colon V\cross V\to \mathbb{R}$ eine symmetrische Bilinearform.
+		$N\coloneqq\set{v\in V\given\forall w\in V\colon\beta(v,w)=0}$ heißt Nullraum
+		von $\beta$.
+	\end{definition}
+	\begin{satz}
+		Es sei $(V, \scp{})$ euklidisch, $\Phi\colon V\to V$ und $\beta\colon V\cross V\to\mathbb{R}$ eine
+		Bilinearform mit $\forall v, w\in V\colon\beta(v,w)=\scp{v,\Phi(w)}$. Dann ist der Nullrum von $\beta$
+		der Kern von $\Phi$.
 	\end{satz}
 \end{document}
