@@ -880,7 +880,7 @@
 	\sep
 	\begin{defsatz}[Selbstadjungierte Abbildung]
 		Ist $(V,\scp{})$ euklidisch oder unitär und endlichdimensional, so heißt $\Phi\colon V\to V$ selbstadjungiert,
-		wenn $Phi^*=\Phi$. Dies ist genau dann der Fall, wenn die Abbildungsmatrix von $\Phi$ bezüglich einer
+		wenn $\Phi^*=\Phi$. Dies ist genau dann der Fall, wenn die Abbildungsmatrix von $\Phi$ bezüglich einer
 		ONB von $V$ symmetrisch bzw. hermitesch ist.
 	\end{defsatz}
 	\begin{satz}
@@ -911,5 +911,80 @@
 	\begin{satz}
 		Ist $A\in\mathbb{R}^{n\times n}$ reell, symmetrisch und positiv definit,
 		so existiert $\sqrt{A}\in\mathbb{R}^{n\times n}$ mit $\sqrt{A}\sqrt{A}=A$.
+	\end{satz}
+	\sep
+	\begin{definition}[Isometrie, lineare Isometie]
+		\begin{enumerate}[label=(\alph*)]
+			\item Sind $(X, d_X)$ und $(Y, d_Y)$ metrische Räume, so heißt $f\colon X\to Y$ mit
+				$\forall p, q\in X\colon d_Y(f(p), f(q)) = d_X(p, q)$ eine Isometrie.
+			\item Sind $(V, \scp{})$ und $(W, \scp{})$ beide euklidisch oder beide unitär,
+				so heißt $\Phi\colon V\to W$ mit $\forall x\in V\colon\norm{\Phi(x)}_W=\norm{x}_W$
+				eine lineare Isometrie.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Alle Isometrien sind injektiv.
+			\item Lineare Isometrien sind Isometrien.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Es seien $(V, \scp{})$ und $(W, \scp{})$ beide euklidisch oder beide unitär,
+		$\Phi\colon V\to W$ linear. Es sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Phi$ ist eine lineare Isometrie
+			\item $\forall x, y\in V\colon \scp{\Phi(x), \Phi(y)}_W = \scp{x, y}_V$
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Es seien $(V, \scp{})$, $(W, \scp{})$ euklidisch, $\Phi\colon V\to W$ eine lineare
+		Isometrie. Dann gilt $\forall x, y\in V\setminus\set{0}\colon \omega(\Phi(x), \Phi(y)) = \omega(x, y)$.
+	\end{satz}
+	\begin{satz}
+		Es sei $(V, \scp{})$ euklidisch oder unitär, $\Phi\colon V\to V$ linear. Dann sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Phi$ ist eine lineare Isometrie
+			\item $\Phi^* \circ \Phi = \id_V$
+			\item Die Abbildungsmatrix von $\Phi$ bezüglich einer ONB von $V$ ist orthogonal/unitär.
+		\end{enumerate}
+		Insbesondere ist $\Phi$ im endlichdimensionalen Fall invertierbar und $\Phi^{-1}=\Phi^*$ ist eine
+		lineare Isometrie.
+	\end{satz}
+	\begin{satz}
+		Die linearen Isometrien über einem endlichdimensionalen Vektorraum mit Skalarprodukt bilden
+		mit der Komposition eine Gruppe.
+	\end{satz}
+	\begin{defsatz}[Spiegelung]
+		Ist $(V, \scp{})$ euklidisch oder unitär und $a\in V$ mit $\norm{a} = 1$ so beschreibt
+		$\sigma_a\colon V\to V$, $\forall v\in V\colon\sigma_a(v)\coloneqq v - 2\scp{v, a}a$ die
+		Spiegelung an $[a]^\perp$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\sigma_a$ ist eine lineare Isometrie
+			\item $\sigma_a^2 = \id_V$
+			\item $\forall v\perp a\colon \sigma_a(v)=v$
+			\item Es existiert eine ONB $B = \set{a, b_2,\ldots,b_n}$ von $V$ mit $M_B^B(\sigma_a) = \diag(-1, 1, \ldots, 1)$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{satz}
+		Jede lineare Isometrie $\Phi$ eines $n$-dimensionalen euklidischen Vektorraums $V$ ist
+		ein Produkt von höchstens $n$ Spiegelungen.
+	\end{satz}
+	\begin{satz}
+		Es sei $(V, \scp{})$ euklidisch oder unitär, $\Phi\colon V\to V$ eine lineare Isometrie.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\abs{\det\Phi} = 1$
+			\item $\forall \lambda\in\Spek\Phi\colon\abs{\lambda}=1$
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Unitäre Normalform]
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $(V, \scp{})$ unitär, $\Phi\colon V\to V$ eine lineare Isometrie, dann existiert
+				eine ONB von $V$, die aus Eigenvektoren von $\Phi$ besteht.
+			\item Ist $(V, \scp{})$ euklidisch, $\Phi\colon V\to V$ eine lineare Isometrie, deren charakteristisches
+				Polynom in Linearfaktoren zerfällt, dann existiert eine ONB von $V$, die aus Eigenvektoren von $\Phi$
+				besteht.
+			\item Ist $A\in\mathbb{C}^{n\times n}$ unitär, so existiert $T\in\mathbb{C}^{n\times n}$ unitär mit
+				$T^*AT=\diag(\lambda_1,\ldots,\lambda_n)$, wobei die $\lambda_k$ die Eigenwerte von $A$ sind.
+		\end{enumerate}
 	\end{satz}
 \end{document}
