@@ -887,7 +887,7 @@
 		Ist $(V, \scp{})$ euklidisch oder unitär mit $\dim V=n\in\mathbb{N}$ und $\Phi\colon V\to V$ selbstadjungiert,
 		so gilt \[p_\Phi=\pm(X-\lambda_1)\cdots(X-\lambda_n)\] mit $\forall i\in\set{1,\ldots,n}\colon\lambda_i\in\mathbb{R}$.
 	\end{satz}
-	\begin{satz}[Spektralsatz]
+	\begin{satzver}[Spektralsatz]
 		\begin{enumerate}[label=(\alph*)]
 			\item Es sei $(V, \scp{})$ euklidisch oder unitär mit $\dim V=n\in\mathbb{N}$ und $\Phi\colon V\to V$ selbstadjungiert.
 				Dann existiert eine ONB $B$ von $V$, bezüglich der $M_B^B(\Phi)$ Diagonalgestalt annimmt. Insbesondere ist $\Phi$
@@ -903,7 +903,8 @@
 				mit den unterschiedlichen Eigenwerten $\lambda_1,\ldots,\lambda_r$. Dann ist
 				$V=\bigoplus_{j=1}^rE_{\lambda_j}$ und $\Phi = \lambda_1\pi_{E_{\lambda_1}}+\ldots+\lambda_r\pi_{E_{\lambda_r}}$.
 		\end{enumerate}
-	\end{satz}
+		Um die Basiswechselmatrix zu finden, Eigenräume einzeln orthonormieren.
+	\end{satzver}
 	\begin{satz}[Kriterium für positiv definit]
 		Eine reelle, symmetrische Matrix $A$ ist genau dann positiv definit, wenn alle
 		Eigenwerte von $A$ positiv sind.
@@ -1033,4 +1034,32 @@
 		Bilinearform mit $\forall v, w\in V\colon\beta(v,w)=\scp{v,\Phi(w)}$. Dann ist der Nullrum von $\beta$
 		der Kern von $\Phi$.
 	\end{satz}
+	\begin{satzver}[Hauptachsen-Transformation]
+		Es sei $(V, \scp)$ $n$-dimensional euklidisch, $\beta\colon V\cross V\to\mathbb{R}$ eine symmetrische
+		Bilinearform. Dann existiert eine ONB $A$ von $V$, sodass für die Matrix $D$ von $\beta$
+		bezüglich $A$ gilt $D=\diag(\lambda_1,\ldots,\lambda_n)$, wobei die $\lambda_1,\ldots,\lambda_n$ die Eigenwerte
+		der Matrix von $\beta$ bezüglich jeder ONB sind.
+	\end{satzver}
+	\begin{satz}[Trägsheitssatz]
+		Es sei $V$ $n$-dimensional reell, $\beta\colon V\cross V\to\mathbb{R}$ eine symmetrische Bilinearform. Dann existiert
+		eine Basis $B = \set{b_1,\ldots, b_n}$ von $V$, sodass für die Matrix $D$ von $\beta$ bezüglich $B$ gilt
+		$D=\diag(\underbrace{1,\ldots, 1}_{p\ \text{stück}}, \underbrace{-1, \ldots, -1}_{q\ \text{stück}}, 0, \ldots, 0)$.
+		$p$ und $q$ sind durch $\beta$ eindeutig bestimmt. Mit $x=\sum_{i=1}^nx_ib_i$ gilt dann
+		$Q(x)=x_1^2+\cdots+x_p^2-x_{p+1}^2-\cdots-x_{p+q}^2$.
+	\end{satz}
+	\begin{definition}[Signatur]
+		Ist $Q$ eine quadratische Form auf einem $n$-dimensionalen rellen Vektorraum mit
+		zugehïriger symmetrischer Bilinearform $\beta$, so heißt das Tripel $(p, q, n - p - q)$
+		von $\beta$ die Signatur von $Q$.
+		\begin{equation*}
+			Q\text{ heißt}
+			\begin{cases}
+				\text{positiv definit}, &p = n \wedge q = 0\\
+				\text{negativ definit}, &p = 0 \wedge q = n\\
+				\text{positiv semi-definit}, &p < n\wedge q = 0\\
+				\text{negativ semi-definit}, &p = 0\wedge q > n\\
+				\text{indefinit}, &p>0\wedge q>0
+			\end{cases}
+		\end{equation*}
+	\end{definition}
 \end{document}
