@@ -48,11 +48,14 @@
 \DeclareMathOperator{\Spek}{Spek}
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Aff}{Aff}
 \newcommand{\sep}{%
 	\rule{\textwidth}{0.3pt}%
 	\stepcounter{Sec}%
 	}
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\newcommand\defiff{\mathrel{\vcentcolon\Longleftrightarrow}}
 
 \newcommand\conj{\overline}
 \newcommand\scp[1]{\left\langle#1\right\rangle}
@@ -1061,5 +1064,65 @@
 				\text{indefinit}, &p>0\wedge q>0
 			\end{cases}
 		\end{equation*}
+	\end{definition}
+	\begin{satz}
+		Für $\Phi\colon\mathbb{R}^n\to\mathbb{R}^n$ selbstadjungiert definiere
+		$q\colon\mathbb{R}^n\setminus\set{0}\to\mathbb{R}$ durch $\forall x\in\mathbb{R}^n\setminus\set{0}\colon
+		q(x)\coloneqq\frac{\scp{x,\Phi(x)}}{\scp{x, x}}$. Sei $S\coloneqq\set{x\in\mathbb{R}^n\given\norm{x}=1}$.
+		Dann gilt $\Spek\Phi\subseteq q(S)$,
+		$\max\Spek\Phi=\max q(S)$, wobei $\forall v\in V\ \text{mit}\ q(v)=\max\Spek\Phi\colon\Phi(v)=(\max\Spek\Phi)v$.
+		Analoges gilt für die Minima.
+	\end{satz}
+	\sep
+	\begin{defsatz}[Gruppenoperation]
+		Eine Gruppe $(G,\cdot)$ operiert auf einer Menge $X$ durch eine Abbildung
+		$\varphi\colon G\cross X\to X$, wenn $\forall x\in X\colon\varphi(e, x)=x$ und
+		$\forall g, h\in G, x\in X\colon\varphi(gh, x) = \varphi(g,\varphi(h, x))$.
+
+		Die Bahn von $x\in X$ ist $G\bullet x\coloneqq\set{\varphi(g, x)\given g\in G}$. Für $x\in X$
+		ist $G_x\coloneqq\set{g\in G\given\varphi(g, x)=x}$ der Stabilisator von $x$ und
+		eine Untergruppe von $G$.
+
+		$X$ zerfällt via $x\sim y\defiff x\in G\bullet y$ in disjunkte Bahnen. Eine
+		Operation heißt transitiv, wenn es genau eine Bahn gibt, und einfach transitiv, wenn
+		für $x, y\in X$ genau ein $g\in G$ existiert, sodass $y=\varphi(g, x)$.
+	\end{defsatz}
+	\begin{definition}[Affiner Raum]
+		Es sei $V$ ein $\mathbb{K}$-Vektorraum, $A\neq\varnothing$ eine Menge und
+		$\tau\colon (V,+)\cross A\to A$ eine transitive Gruppenoperation. Das Tripel
+		$(A, V, \tau)$ heißt dann affiner Raum mit Translationsvektorraum $V$.
+
+		Für einen $\mathbb{K}$-Vektorraum $V$ schreibe $\mathbb{A}(V)\coloneqq(V, V, +)$.
+		$\mathbb{A}(\mathbb{K}^n)$ ist der affine Standardraum
+	\end{definition}
+	\begin{definition}[Affiner Unterraum]
+		$A\subseteq V$ heißt affiner Unterraum, falls $a\in V$ und Untervektorraum $U\subseteq V$
+		existieren mit $A = a + U$. $a$ heißt Ursprung falls $U=V$, sonst Fußpunkt. $U$ heißt
+		Translationsraum.
+
+		$\dim A\coloneqq \dim U$.
+
+		\begin{equation*}
+			A\text{ heißt}
+			\begin{cases}
+				\text{Punkt}, &\dim A=0\\
+				\text{Gerade}, &\dim A=1\\
+				\text{Ebene}, &\dim A=2\\
+				\text{Hyperebene}, &\dim A=\dim V - 1
+			\end{cases}
+		\end{equation*}
+	\end{definition}
+	\begin{satz}
+		Es sei $\mathcal{A}$ ein nichtleeres System affiner Unterräume von $\mathbb{A}(V)$. Dann
+		ist $M\coloneqq\bigcap_{A\in\mathcal{A}}A$ entweder leer oder ein affiner Unterraum von
+		$\mathbb{A}(V)$ mit $U_M=\bigcap_{A\in\mathcal{A}}U_A$.
+	\end{satz}
+	\begin{satz}
+		$\varnothing\neq A\subseteq V$ ist genau dann ein affiner Unterraum von $V$, wenn
+		$\forall k\geq 2, a_1,\ldots, a_k\in A,\forall\lambda_1,\ldots,\lambda_k\in\mathbb{K}\colon$
+		\[\sum_{i=1}^k \lambda_i =1\implies\sum_{i=1}^k\lambda_i a_i\in A.\]
+	\end{satz}
+	\begin{definition}[Affine Hülle]
+		Für $X\subseteq V$ ist $\Aff(X)\coloneqq\set{\sum_{i=1}^k\lambda_i p_i\given k\in\mathbb{N}, p_i\in X, \lambda_i\in\mathbb{K}, \sum_{i=1}^k\lambda_i=1}$.
 	\end{definition}
 \end{document}
