@@ -2,7 +2,7 @@ pipeline:
   set:
     image: tianon/latex
     commands:
-      - "ls *.tex | xargs -n 1 pdflatex"
+      - "ls *.tex | xargs -n 1 latexmk -pdf"
 
   push:
     image: appleboy/drone-scp
