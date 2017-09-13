@@ -49,7 +49,7 @@
 	\rule{\textwidth}{0.3pt}%
 	\stepcounter{Sec}%
 	}
-\newcommand{\defiff}{:\Longleftrightarrow}
+\newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
 
 \newcommand{\en}{~(n\to\infty)}
 \newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
@@ -759,4 +759,30 @@
 			\caption{Liste von Reihenwerten}
 		\end{table}
 	\end{multicols}
+	\newpage
+	\textsc{Analysis II}
+
+	\sep
+	\begin{satz}[Rechenregeln zur Norm]
+		Es seien $x, y, z\in\mathbb{R}^n$, $\alpha, \beta\in\mathbb{R}$, $x=(x_1,\ldots,x_n), y=(y_1,\ldots,y_n)$, $A\in\mathbb{R}^{n\times n}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\abs{x\cdot y} \leq \norm{x}\norm{y}$
+			\item $\norm{x + y} \leq \norm{x} + \norm{y}$
+			\item $\abs{\norm{x} - \norm{y}} \leq \norm{x - y}$
+			\item $\forall 1\leq j\leq n\colon \abs{x_j}\leq\norm{x}\leq\sum_{i=0}^n\abs{x_i}$
+			\item $\norm{Ax}\leq\norm{A}\norm{x}$
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}
+		Es seien $x_0\in\mathbb{R}^n, \delta>0, A, U\subseteq\mathbb{R}^n$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $U_\delta(x_0)\coloneqq\set{x\in\mathbb{R}^n\given\norm{x-x_0}<\delta}$ ist die offene Kugel
+				um $x_0$ mit Radius $\delta$.
+			\item $U$ ist Umgebung von $x_0$ $\defiff\exists\delta>0\colon U_\delta(x_0)\subseteq U$.
+			\item $A$ ist beschränkt $\defiff\exists c>0\ \forall a\in A\colon \norm{a}\leq c$.
+			\item $x_0\in A$ ist innerer Punkt von $A$ $\defiff\exists\delta>0\colon U_\delta(x_0)\subseteq A$.
+			\item $A^\circ\coloneqq\set{x\in A\given x\ \text{ist innerer Punkt von}\ A}$.
+			\item $A$ heißt offen $\defiff A=A^\circ$.
+		\end{enumerate}
+	\end{definition}
 \end{document}
