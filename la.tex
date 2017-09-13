@@ -1008,9 +1008,25 @@
 		\end{enumerate}
 	\end{verfahren}
 	\sep
-
-	Hier wird bei Gelegenheit etwas zu normalen Endomorphismen ergänzt.
-
+	\begin{definition}[Normaler Endomorphismus]
+		Ein Endomorphismus $\Phi\colon V\to V$ eines $n$-dimensionalen euklidischen oder unitären Vektorraums
+		$V$ heißt normal, wenn $\Phi\circ\Phi^*=\Phi^*\circ\Phi$.
+	\end{definition}
+	\begin{definition}[Normale Matrix]
+		$A\in\mathbb{C}^{n\times n}$ heißt normal, wenn $AA^*=A^*A$.
+	\end{definition}
+	\begin{satz}[Spektralsatz für normale Endomorphismen]
+		Zerfällt das charakteristische Polynom eines normalen Endomorphismus $\Phi$ in Linearfaktoren,
+		so existiert eine ONB von $V$, die aus Eigenvektoren von $\Phi$ besteht.
+	\end{satz}
+	\begin{satz}[Äquivalenzen]
+		Es sei $(V, \scp{})$ unitär mit $\dim V<\infty$, $\Phi\colon V\to V$ linear.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Phi$ ist genau dann selbstadjungiert, wenn $\Phi$ normal und $\Spek\Phi\subseteq\mathbb{R}$.
+			\item $\Phi$ ist genau dann anti-selbstadjungiert, wenn $\Phi$ normal und $\Spek\Phi\subseteq i\cdot\mathbb{R}$.
+			\item $\Phi$ ist genau dann eine Isometrie, wenn $\Phi$ normal und $\Spek\Phi\subseteq\set{z\in\mathbb{C}\given\abs{z}=1}$.
+		\end{enumerate}
+	\end{satz}
 	\sep
 	\begin{definition}[Quadratische Form]
 		Es sei $\beta\colon V\cross V\to\mathbb{R}$ eine Bilinearform. $Q\colon V\to\mathbb{R}$ mit $\forall v\in V\colon
@@ -1118,11 +1134,92 @@
 		$\mathbb{A}(V)$ mit $U_M=\bigcap_{A\in\mathcal{A}}U_A$.
 	\end{satz}
 	\begin{satz}
-		$\varnothing\neq A\subseteq V$ ist genau dann ein affiner Unterraum von $V$, wenn
+		$\varnothing\neq A\subseteq V$ ist genau dann ein affiner Unterraum von $\mathbb{A}(V)$, wenn
 		$\forall k\geq 2, a_1,\ldots, a_k\in A,\forall\lambda_1,\ldots,\lambda_k\in\mathbb{K}\colon$
 		\[\sum_{i=1}^k \lambda_i =1\implies\sum_{i=1}^k\lambda_i a_i\in A.\]
 	\end{satz}
-	\begin{definition}[Affine Hülle]
+	\begin{defsatz}[Affine Hülle]
 		Für $X\subseteq V$ ist $\Aff(X)\coloneqq\set{\sum_{i=1}^k\lambda_i p_i\given k\in\mathbb{N}, p_i\in X, \lambda_i\in\mathbb{K}, \sum_{i=1}^k\lambda_i=1}$.
+		$\Aff(X)$ ist der kleinste affine Unterraum von $\mathbb{A}(V)$, der $X$ enthält.
+	\end{defsatz}
+	\begin{defsatz}[Affin unabhängig]
+		$\set{p_0,\ldots,p_r}$ heißen affin unabhängig, wenn
+		$(\sum_{i=0}^r\lambda_i p_i=0 \wedge \sum_{i=0}^r\lambda_i = 0) \iff \lambda_0 = \cdots = \lambda_r = 0$.
+		Dies ist genau dann der Fall, wenn $\set{p_1 - p_0, \ldots, p_r - p_0}$ linear unabhängig in $V$ ist.
+	\end{defsatz}
+	\begin{definition}[Affine Basis, Affines Korrdinatensystem, Affine Koordinaten]
+		Ist $A$ ein $k$-dimensionaler Unterraum von $\mathbb{A}(V)$ und $X\coloneqq\set{p_0,\ldots,p_k}$
+		affin unabhängig in $A$, so heißt $X$ affine Basis von $A$ und $(p_0; p_1-p_0, \ldots, p_k - p_0)$
+		affines Korrdinatensystem von $A$ mit Ursprung $p_0$. $a\in A$ kann dann dargestellt werden durch
+		$a=p_0+\sum_{i=1}^k\alpha_i(p_i-p_0)$ mit $\alpha_i\in\mathbb{K}$ für $1\leq i\leq k$. Die
+		$(\alpha_1,\ldots,\alpha_k)$ heißen affine Koordinaten von $a$ bezüglich $X$.
 	\end{definition}
+	\begin{definition}[Affine Abbildung]
+		Es seien $V$ und $W$ $\mathbb{K}$-Vektorräume mit zugehörigen affinen Räumen
+		$\mathbb{A}(V)$ und $\mathbb{A}(W)$. $f\colon V\to W$ heißt affin, falls
+		$\forall k\geq 2, a_1,\ldots,a_k\in V, \lambda_1,\ldots, \lambda_k\in\mathbb{K}\colon \sum_{i=1}^k\lambda_i = 1
+		\implies f(\sum_{i=1}^k\lambda_i a_i) = \sum_{i=1}^k\lambda_i f(a_i)$.
+	\end{definition}
+	\begin{satz}[Allgemeine Form von affinen Abbildungen]
+		Es seien $V$ und $W$ $\mathbb{K}$-Vektorräume mit zugehörigen affinen Räumen
+		$\mathbb{A}(V)$ und $\mathbb{A}(W)$.
+
+		\begin{enumerate}[label=(\alph*)]
+			\item $f\colon V\to W$ ist affin genau dann wenn für $p_0\in V$
+				$\Phi\colon V\to W$ linear mit $\forall v\in V\colon f(p_0 + v) = \Phi(v) + f(p_0)$ existiert.
+			\item Ist $f\colon V\to W$ affin, so existiert $\Phi\colon V\to W$ linear mit $f = T_{f(0)} \circ \Phi$.
+		\end{enumerate}
+	\end{satz}
+	\begin{defsatz}[Affinität]
+		Eine bijektive affine Selbstabbildung $f\colon V\to V$ heißt Affinität.
+		Die Affinitäten eines affinen Raums $\mathbb{A}(V)$ bilden mit der Verkettung
+		eine Gruppe $\Aff(\mathbb{A}(V))$.
+	\end{defsatz}
+	\begin{definition}
+		Zwei affine Unterräume $A_1$ und $A_2$ heißen parallel, wenn für die
+		Translationsräume $U_1$ und $U_2$ $U_1\subseteq U_2$ oder $U_2\subseteq U_1$ ist.
+		Man schreibt dann $A_1\parallel A_2$.
+
+		Es seien $p, q, r$ drei kollineare Punkte mit $p\neq q$. Ist $q = p + v, r = p+tv$, so
+		heißt $t\in\mathbb{K}$ das Teilverhältnis von $r$ bezüglich $p$ und $q$.
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Affine Abbildungen bilden parallele Unterräume auf parallele Unterräume ab.
+			\item $f\colon V\to V$ bijektiv ist genau dann eine Affinität, wenn es geradentreu,
+				parallelentreu und teilverhältnistreu ist.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Euklidische Isometrie]
+		Für $(V,\scp{})$ euklidisch ist eine euklidische Isometrie eine Isometrie
+		von $\mathbb{E}(V)\coloneqq (V, d)$. Die euklidischen Isometrien von $\mathbb{E}(V)$
+		bilden mit der Verkettung eine Gruppe $\operatorname{\mathcal{I}so}(\mathbb{E}(V))$.
+	\end{defsatz}
+	\begin{satz}[Alle euklidischen Isometrien]
+		Jede euklidische Isometrie $f\colon\mathbb{E}(V)\to\mathbb{E}(V)$ ist von der Form
+		$f=T_b\circ\Phi$, wobei $\Phi\colon V\to V$ eine lineare Isometrie ist. $b$ und $\Phi$
+		sind durch $f$ eindeutig bestimmt.
+	\end{satz}
+	\sep
+	\begin{definition}[Quadrik]
+		Ist $Q\colon\mathbb{R}^n\to\mathbb{R}$ eine quadratische Form, $b\in\mathbb{R}^n$,
+		$\delta\in\mathbb{R}$, so heißt $\mathcal{F}\coloneqq\set{x\in\mathbb{R}^n\given Q(x)+2\scp{x, b}=\delta}$
+		eine Quadrik.
+	\end{definition}
+	\begin{verfahren}[Affine Äquivalenz untersuchen]
+		\begin{enumerate}
+			\item Um Äquivalenz festzustellen, quadratisch ergänzen, bis Sylvesterform sichtbar ist.
+			\item Um Affinität anzugeben, beide Koordinatentransformationen in die Sylvesterform hinschreiben,
+				eine invertieren, verketten.
+		\end{enumerate}
+	\end{verfahren}
+	\begin{verfahren}[Euklidische Äquivalenz untersuchen]
+		\begin{enumerate}
+			\item Um Äquivalenz festzustellen, auf affine Äquivalenz untersuchen. Falls äquivalent,
+				Matrix der quadratischen Formen aufschreiben und Eigenwerte vergleichen.
+			\item Um euklidische Isometrie anzugeben, Stift in die Luft werfen, laut
+				\enquote{Hab ich nicht gelernt!} rufen und aus dem Hörsaal stürmen.
+		\end{enumerate}
+	\end{verfahren}
 \end{document}
