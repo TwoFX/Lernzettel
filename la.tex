@@ -198,7 +198,7 @@
 	\sep
 	\begin{definition}[Grad eines Polynoms]
 		\[\deg f\coloneqq\begin{cases}
-			n, &\text{falls $a_n \neq 0$ und $a_k = 0$ für alle $k < n$}\\
+			n, &\text{falls $a_n \neq 0$ und $a_k = 0$ für alle $k > n$}\\
 			-\infty,  &\text{falls $a_k = 0$ für alle $k \geq 0$}
 		\end{cases}\]
 	\end{definition}
@@ -556,9 +556,9 @@
 	\begin{satz}
 		Ein homogenes LGS $Ax=0$ hat genau dann nur die triviale Lösung, wenn $\det A\neq0$.
 	\end{satz}
-	\begin{satz}[Kramersche Regel]
+	\begin{satz}[Cramersche Regel]
 		Ein LGS $Ax=b$ mit $\det A\neq 0$ hat genau eine Lösung $x = (x_1,\ldots,x_n)$ und es gilt
-		$x_k = \frac{D_k}{\det A}$, wobei $D_k\coloneqq\det(a_{\cdot1}\cdots a_{\cdot k} \mid b \mid a_{\cdot k+1}\cdots a_{\cdot n})$.
+		$x_k = \frac{D_k}{\det A}$, wobei $D_k\coloneqq\det(a_{\cdot1}\cdots a_{\cdot k-1} \mid b \mid a_{\cdot k+1}\cdots a_{\cdot n})$.
 	\end{satz}
 	\sep
 	\begin{definition}[Eigenwert]
@@ -709,7 +709,7 @@
 	\end{satz}
 	\sep
 	\begin{satz}[Cauchy-Schwarz]
-		Für $(V, \sp{})$ euklidisch oder unitär, $a, b\in V$ gilt $\abs{\scp{a, b}}^2\leq\scp{a, a}\scp{b, b}$.
+		Für $(V, \scp{})$ euklidisch oder unitär, $a, b\in V$ gilt $\abs{\scp{a, b}}^2\leq\scp{a, a}\scp{b, b}$.
 		Gleichheit genau dann, wenn $a$ und $b$ linear abhängig.
 	\end{satz}
 	\begin{definition}[Norm]
