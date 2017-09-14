@@ -783,6 +783,42 @@
 			\item $x_0\in A$ ist innerer Punkt von $A$ $\defiff\exists\delta>0\colon U_\delta(x_0)\subseteq A$.
 			\item $A^\circ\coloneqq\set{x\in A\given x\ \text{ist innerer Punkt von}\ A}$.
 			\item $A$ heißt offen $\defiff A=A^\circ$.
+			\item $x_0$ heißt Häufungspunkt von A $\defiff\forall\delta>0\colon(U_\delta(x_0)\setminus\set{x_0})\cap A\neq\varnothing$.
+			\item $\mathcal{H}(A)\coloneqq\set{x\in A\given x\ \text{ist Häufungspunkt von }\ A}$.
+			\item $\bar{A}\coloneqq A\cup\mathcal{H}(A)$ ist der Abschluss von $A$.
+			\item $A$ heißt abgeschlossen $\defiff A = \bar{A}$.
+			\item $\partial A\coloneqq \bar{A}\setminus A^\circ$ ist der Rand von $A$.
 		\end{enumerate}
 	\end{definition}
+	\begin{satz}
+		Es sei $A\subseteq \mathbb{R}^n$, $\mathfrak{O}$ ein System offener Mengen,
+		$\mathfrak{A}$ ein System abgeschlossener Mengen.
+		\begin{enumerate}[label=(\alph*)]
+			\item $A\ \text{ist abgeschlossen}\iff \mathbb{R}^n\setminus A\ \text{ist offen}$.
+			\item $\bigcup_{O\in\mathfrak{O}}O\ \text{ist offen}$.
+			\item $\mathfrak{O}\ \text{ist endlich}\implies\bigcap_{O\in\mathfrak{O}}O\ \text{ist offen}$.
+			\item $\bigcap_{A\in\mathfrak{A}}A\ \text{ist abgeschlossen}$.
+			\item $\mathfrak{A}\ \text{ist endlich}\implies\bigcup_{A\in\mathfrak{A}}A\ \text{ist abgeschlossen}$.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}
+		Es sei $(a^{(k)})$ eine Folge in $\mathbb{R}^n$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $(a^{(k)})\ \text{heißt beschränkt}\defiff\exists c\geq 0\ \forall k\in\mathbb{N}\colon \norm{a^{(k)}}\leq c$.
+			\item $(a^{(k)})\ \text{heißt konvergent}\defiff\exists a\in\mathbb{R}^n\colon \norm{a^{(k)}-a}\to 0\ (k\to\infty)$.
+				In diesem Fall $\lim_{k\to\infty} a^{(k)}\coloneqq a$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		Es sei $(a^{(k)})$ eine Folge in $\mathbb{R}^n$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $a^{(k)}\to a\ (k\to\infty)\iff a_1^{(k)}\to a_1,\ldots,a_n^{(k)}\to a_n\ (k\to\infty)$.
+			\item $a^{(k)}\to a\ (k\to\infty)\implies (a^{(k)})$ ist beschränkt und jede Teilfolge und jede Umordnung
+				von $(a^{(k)})$ konvergiert gegen $a$.
+			\item Ist $(a^{(k)})$ beschränkt, so enthält $(a^{(k)})$ eine konvergente Teilfolge.
+			\item $(a^{(k)})\ \text{konvergent}\iff\forall\varepsilon>0\ \exists k_0\in\mathbb{N}\ \forall k, l\geq k_0\colon
+				\norm{a^{(k)} - a^{(l)}}<\varepsilon$.
+		\end{enumerate}
+	\end{satz}
 \end{document}
