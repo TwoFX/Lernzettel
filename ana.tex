@@ -61,6 +61,8 @@
 
 \setlength\columnsep{1.5cm}
 
+\DeclareMathOperator{\Spek}{Spek}
+\DeclareMathOperator{\Kern}{Kern}
 \DeclareMathOperator{\arsinh}{arsinh}
 \DeclareMathOperator{\arcosh}{arcosh}
 \DeclareMathOperator{\artanh}{artanh}
@@ -811,7 +813,7 @@
 		\end{enumerate}
 	\end{definition}
 	\begin{satz}
-		Es sei $(a^{(k)})$ eine Folge in $\mathbb{R}^n$.
+		Es sei $(a^{(k)})$ eine Folge in $\mathbb{R}^n$, $A\subseteq\mathbb{R}^n$
 		\begin{enumerate}[label=(\alph*)]
 			\item $a^{(k)}\to a\ (k\to\infty)\iff a_1^{(k)}\to a_1,\ldots,a_n^{(k)}\to a_n\ (k\to\infty)$.
 			\item $a^{(k)}\to a\ (k\to\infty)\implies (a^{(k)})$ ist beschränkt und jede Teilfolge und jede Umordnung
@@ -819,6 +821,137 @@
 			\item Ist $(a^{(k)})$ beschränkt, so enthält $(a^{(k)})$ eine konvergente Teilfolge.
 			\item $(a^{(k)})\ \text{konvergent}\iff\forall\varepsilon>0\ \exists k_0\in\mathbb{N}\ \forall k, l\geq k_0\colon
 				\norm{a^{(k)} - a^{(l)}}<\varepsilon$.
+			\item $x_0\in\mathcal{H}(A) \iff\exists\ \text{Folge}\ (y^{(k)})\ \text{in}\ A\setminus\set{x_0}\colon y^{(k)}\to x_0$.
+			\item $x_0\in\bar{A}\iff\exists\ \text{Folge}\ (y^{(k)})\ \text{in}\ A\colon y^{(k)}\to x_0$.
+			\item $A\ \text{ist abgeschlossen} \iff \text{der Grenzwert jeder konvergenten Folge in $A$ gehört zu $A$}$.
+			\item Es sind äquivalent:
+				\begin{enumerate}[label=(\roman*)]
+					\item $A$ ist beschränkt und abgeschlossen.
+					\item Jede Folge in $A$ enthält eine konvergente Teilfolge, deren Grenzwert zu $A$ gehört.
+					\item $A$ ist kompakt.
+				\end{enumerate}
 		\end{enumerate}
 	\end{satz}
+	\sep
+	\begin{definition}[Funktionsgrenzwert]
+		Es sei $\varnothing\neq D\subseteq\mathbb{R}^n$, $f\colon D\to\mathbb{R}^m$, $x_0\in D$, $y_0\in\mathbb{R}^m$.
+		\[\lim_{x\to x_0}f(x) = y_0\defiff\ \text{für jede Folge $(x^{(k)})$ in $D\setminus\set{x_0}$ mit $x^{(k)}\to x_0$}\colon
+		f(x^{(k)})\to y_0\]
+	\end{definition}
+	\begin{definition}[Stetigkeit]
+		Es sei $\varnothing\neq D\subseteq\mathbb{R}^n$, $f\colon D\to\mathbb{R}^m$, $x_0\in D$.
+		\begin{enumerate}[label=(\alph*)]
+			\item
+				$f\ \text{stetig in $x_0$}\defiff\ \text{für jede Folge $(x^{(k)})$ in $D$ mit $x^{(k)}\to x_0$}\colon f(x^{(k)})\to f(x_0)$
+				Im Fall $x_0\in D\cap\mathcal{H}(D)$ gilt $f\ \text{stetig in $x_0$}\iff \lim_{x\to x_0} f(x) = f(x_0)$.
+			\item $f\in C(D, \mathbb{R}^n)\defiff\forall x\in D\colon f\ \text{stetig in $x$}$.
+		\end{enumerate}
+	\end{definition}
+	\sep
+	\begin{defsatz}[Lineare Differentialgleichung erster Ordnung]
+		Es sei $I\subseteq\mathbb{R}$ ein Intervall, $a, s\colon I\to\mathbb{R}$ stetig.
+		Es sei $A$ eine Stammfunktion von $a$. Betrachte die Gleichung $y' = a(x)y + s(x)$
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $s\equiv 0$, so haben alle Lösungen die Form $y(x) = ce^{A(x)}$ mit $c\in\mathbb{R}$.
+				Das zugehörige Anfangswertproblem hat genau eine Lösung auf I.
+			\item Für beliebiges $s$ sei $c$ eine Stammfunktion von $se^{-A}$.
+				$y_s(x) = c(x)e^{A(x)}$ löst dann die inhomogene Gleichung. Alle
+				Lösungen der inhomogenen Gleichung sind die Summe einer Lösung der homogenen
+				Gleichung und der speziellen Lösung $y_s$. Das zugehörige Anfangswertproblem
+				hat genau eine Lösung auf $I$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{defsatz}[Differentialgleichungen mit getrennten Veränderlichen]
+		Es seien $I, J\subseteq\mathbb{R}$ Intervalle, $f\in C(I)$, $g\in C(J)$ mit $g(y)\neq 0\forall y\in J$.
+		Betrachte die Gleichung $y' = f(x)g(y)$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Trennung der Veränderlichen: Löst man die Gleichung
+				$\int \frac{1}{g(y)}\dd{y} = \int f(x)\dd{x}+c$ symbolisch nach $y$ auf erhält man einen Term für
+				die allgemeine Lösung der Gleichung.
+			\item Alternativ lässt sich das Anfangswertproblem auch durch Auflösen der Gleichung
+				$\int_{y_0}^{y(x)}\frac{1}{g(t)}\dd{t} = \int_{x_0}^x f(t)\dd{t}$ lösen.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{definition}[System von Differentialgleichungen 1. Ordnung]
+		Ist $D\subseteq\mathbb{R}^{n+1}$, $f\colon D\to\mathbb{R}^n$ und
+		$(x, y)\coloneqq (x, y_1, \ldots, y_n)$, so heißt $y' = f(x, y)$ ein System
+		von Differentialgleichungen 1. Ordnung.
+	\end{definition}
+	\begin{definition}[Lipschitzbedingungen]
+		Es sei $D\subseteq\mathbb{R}^{n+1}$, $g\colon D\to\mathbb{R}^n$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $g$ genügt auf $D$ einer Lipschitz-Bedingung bezüglich $y$,
+				genau dann wenn:
+				\[
+					\exists L\geq 0\ \forall (x, y), (x, \bar{y})\in D
+					\colon \norm{g(x, y) - g(x, \bar{y})} \leq L\norm{y - \bar{y}}
+				\]
+			\item $g$ genügt auf $D$ einer lokalen Lipschitz-Bedingung bezüglich $y$, genau
+				dann wenn für $a\in D$ eine Umgebung $U$ von $a$ existiert, sodass $g_{\vert_{D\cap U}}$
+				auf $D\cap U$ einer Lipschitzbedingung bezüglich $y$ genügt.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Kriterium für lokale LB]
+		Ist $D\subseteq\mathbb{R}^{n+1}$ offen, $f\colon D\to\mathbb{R}^n$ und für
+		$j, k\in\set{1,\ldots,n}$ sei $\pdv{f_j}{y_k}$ vorhanden und stetig. Dann genügt
+		$f$ auf $D$ einer lokalen LB bezüglich $y$.
+	\end{satz}
+	\begin{satz}[Existenz- und Eindeutigkeitssatz von Picard-Lindelöf, Version I]
+		Es sei $I = \left[a, b\right]$, $x_0\in I$, $y_0\in\mathbb{R}^n$, $D\coloneqq I\cross\mathbb{R}^n$,
+		$f\in C(D,\mathbb{R}^n)$ und $f$ genüge auf $D$ eine LB bezüglich $y$. Dann ist das Anfangswertproblem
+		$y'=f(x, y)$, $y(x_0)=y_0$ auf $I$ eindeutig lösbar.
+	\end{satz}
+	\begin{satz}[Existenz- und Eindeutigkeitssatz von Picard-Lindelöf, Version III]
+		Es sei $D\subseteq\mathbb{R}^{n+1}$ offen, $(x_0, y_0)\in D$, $f\in C(D, \mathbb{R}^n)$
+		und $f$ genüge auf $D$ einer lokalen LB bezüglich $y$. Dann hat das Anfangswertproblem
+		$y'=f(x, y)$, $y(x_0) = y_0$ eine eindeutige, nicht fortsetzbare Lösung.
+	\end{satz}
+	\begin{defsatz}[Lineare Systeme]
+		Es sei $I\subseteq\mathbb{R}$ ein Intervall, $x_0\in I$, $y_0\in\mathbb{R}^n$,
+		$D\coloneqq I\cross\mathbb{R}^n$, $b\colon I\to\mathbb{R}^n$ stetig, $A\colon I\to\mathbb{R}^{n\times n}$
+		eintragsweise stetig. Betrachte das lineare System $y'= A(x)y + b(x)$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Das Anfangswertproblem hat auf $I$ genau eine Lösung.
+			\item Das lineare System hat Lösungen auf $I$
+			\item Ist $y_s$ eine spezielle Lösung, so setzt sich jede Lösung des linearen
+				Systems aus $y_s$ und eine Lösung des homogenen Systems zusammen.
+			\item Die Lösungen $\mathbb{L}$ des homogenen Systems bilden einen rellen Vektorraum der Dimension $n$.
+			\item Es seien $y^{(1)},\ldots,y^{(k)}\in\mathbb{L}$. Es sind äquivalent:
+				\begin{enumerate}[label=(\roman*)]
+					\item $\set{y^{(1)},\ldots,y^{(k)}}$ ist linear unabhängig in $\mathbb{L}$.
+					\item Für alle $x\in I$ ist $\set{y^{(1)}(x),\ldots,y^{(k)}(x)}$ linear unabhängig in $\mathbb{R}^n$.
+					\item Für ein $\xi\in I$ ist $\set{y^{(1)}(\xi),\ldots,y^{(k)}(\xi)}$ linear unabhängig in $\mathbb{R}^n$.
+				\end{enumerate}
+		\end{enumerate}
+		Sind $y^{(1)},\ldots,y^{(n)}\in\mathbb{L}$, so ist $y^{(1)},\ldots,y^{(n)}$ ein Lösungssystem,
+		$Y(x)\coloneqq(y^{(1)}(x),\dots,y^{(n)}(x))$ eine Lösungsmatrix, $W(x)\coloneqq\det Y(x)$ deren
+		Wronskideterminante. Ist $Y(\xi)$ invertierbar für ein $\xi\in I$, so heißt
+		das Lösungssystem ein Fundamentalsystem.
+
+		Ist $Y'(x)$ die komponentenweise Ableitung eines Lösungssystems, so ist
+		$\forall x\in I\colon Y'(x)=A(x)Y(x)$.
+
+		Ist $Y(x)$ ein Fundamentalsystem, so ist $y_s(x)\coloneqq Y(x)\int Y(x)^{-1}b(x)\dd{x}$
+		eine spezielle Lösung auf $I$.
+	\end{defsatz}
+	\begin{verfahren}[Homogene lineare Systeme mit konstanten Koeffizienten]
+		Es sei $A$ wie oben, aber komponentenweise konstant.
+		Bestimme $M\coloneqq\set{\lambda\in\Spek A\given \Im(\lambda)\geq 0}$.
+		Für $\lambda\in M$ mit algebraischer Vielfachheit $r$:
+		\begin{enumerate}
+			\item Berechne $\Kern(A-\lambda E_n)$, $\Kern (A-\lambda E_n)^2$, \ldots, $H_\lambda$.
+			\item Es sei $v$ Basisvektor von $H_\lambda$.
+				\begin{equation*}
+					y(x)\coloneqq e^{\lambda x}(v + \frac{x}{1!}(A-\lambda E_n)v + \frac{x^2}{2!}(A-\lambda E_n)^2v
+						+\cdots+\frac{x^{r - 1}}{(r - 1)!}(A-\lambda E_n)^{r-1}v)
+				\end{equation*}
+				\begin{enumerate}[label=(\alph*)]
+					\item Falls $\lambda\in\mathbb{R}$, so ist $y$ eine Lösung.
+					\item Falls $\lambda\in\mathbb{C}\setminus\mathbb{R}$,
+						zerlege $y(x)=y^{(1)}(x) + iy^{(2)}(x)$, $y^{(1)}(x), y^{(2)}(x)\in\mathbb{R}^n$.
+						$y^{(1)}, y^{(2)}$ sind dann linear unabhängige Lösungen.
+				\end{enumerate}
+		\end{enumerate}
+		Alle so bestimmten Lösungen ergeben zusammen ein Fundamentalsystem.
+	\end{verfahren}
 \end{document}
