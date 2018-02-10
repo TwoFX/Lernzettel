@@ -1,0 +1,310 @@
+\documentclass[a4paper, parskip=half]{scrartcl}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{centernot}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
+
+\usepackage{dsfont}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing, patterns}
+
+\usepackage{subcaption}
+
+\newtheorem*{lemma}{Lemma}
+\newtheorem{aufgabe}{Aufgabe}
+
+\theoremstyle{definition}
+\newtheorem*{mdef}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{anmerkung}{Anmerkung}
+\newtheorem*{bemerkung}{Bemerkung}
+\newtheorem*{folgerung}{Folgerung}
+\newtheorem{beispiel}{Beispiel}
+
+\tikzset{
+		MyPersp/.style={scale=1,x={(1, 0)},y={(0, 1)},
+		    z={(-0.3, -0.2)}}}
+
+\MakeOuterQuote{"}
+
+\newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\begin{document}
+	\begin{beispiel}
+		Für den $n$-dimensionalen Standardsimplex
+		\[
+			S_n\coloneqq\set{x\in\mathbb{R}^n\given \forall x_j\in\set{1,\ldots,n}: x_j\geq 0, \sum_{j+1}^nx_j\leq 1} \overset{\text{abg.}}{\in} \mathfrak{B}_n
+		\]
+		gilt $\lambda_n(S_n) = \frac{1}{n!}$.
+	\end{beispiel}
+	\begin{proof}
+		\begin{figure}[h]
+			\centering
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\begin{tikzpicture}[scale=2]
+					\draw[->, thick] (-0.125, 0) -- (1.125, 0) node (xaxis) [right] {$x_1$};
+					\draw[thick, color=black!40] (0, 0) -- (1, 0);
+
+					\draw[->] (0.5, 0.7) node () [above] {$S_1$} to (0.5, 0);
+
+					\draw[thick] (0, 0.05) -- (0, -0.05) node () [below] {$0$};
+					\draw[thick] (1, 0.05) -- (1, -0.05) node () [below] {$1$};
+				\end{tikzpicture}
+				\caption{$n=1$}
+			\end{subfigure}
+			~
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\begin{tikzpicture}[scale=2]
+					\fill[draw=black!40, pattern=north east lines, pattern color=black!40] (0, 0) -- (0, 1) -- (1, 0) -- cycle;
+
+					\draw[->] (1, 0.6) node () [above] {$S_2$} to [bend left=20] (0.8, 0.2);
+					\draw[->] (0.25, -0.35) node () [right] {$(S_2)_{x_2} = S_1(1 - x_2)$} to [bend left=30] (0.1, 0);
+
+					\draw[->, thick] (-0.125, 0) -- (1.125, 0) node (xaxis) [right] {$x_1$};
+					\draw[->, thick] (0, -0.125) -- (0, 1.125) node (yaxis) [above] {$x_2$};
+
+					\draw[color=red] (0, 0.6) -- (0.4, 0.6);
+					\draw[thick, color=red] (0, 0) -- (0.4, 0);
+
+					\draw[color=red, densely dashed] (0, 0) -- (0, 0.6);
+					\draw[color=red, densely dashed] (0.4, 0) -- (0.4, 0.6);
+
+					\draw[thick] (0.05, 1) -- (-0.05, 1) node () [left] {$1$};
+					\draw[thick] (1, 0.05) -- (1, -0.05) node () [below] {$1$};
+
+				\end{tikzpicture}
+				\caption{$n=2$}
+			\end{subfigure}
+			~
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\begin{tikzpicture}[scale=2]
+					%\fill[draw=black!10, pattern=north west lines, pattern color=black!10] (0, 1, 0) -- (1, 0, 0) -- (0, 0, 0) -- cycle;
+					%\fill[draw=black!10, pattern=vertical lines, pattern color=black!10] (0, 1, 0) -- (0, 0, 1) -- (0, 0, 0) -- cycle;
+					%\fill[draw=black!10, pattern=vertical lines, pattern color=black!10] (1, 0, 0) -- (0, 0, 1) -- (0, 0, 0) -- cycle;
+
+					\draw[->, thick] (-0.125, 0, 0) -- (1.125, 0, 0) node (xaxis) [right] {$x_1$};
+					\draw[->, thick] (0, -0.125, 0) -- (0, 1.125, 0) node (yaxis) [above] {$x_2$};
+					\draw[->, thick] (0, 0, -0.125) -- (0, 0, 1.25) node (zaxis) [below] {$x_3$};
+
+					\fill[pattern = north east lines, pattern color=red!60] (0, 0, 0) -- (0.5, 0, 0) -- (0, 0.5, 0) -- cycle;
+					\draw[thick, color=red] (0, 0, 0) -- (0.5, 0, 0) -- (0, 0.5, 0) -- cycle;
+					\draw[color=red] (0, 0, 0.5) -- (0.5, 0, 0.5) -- (0, 0.5, 0.5) -- cycle;
+
+					\draw[color=red, densely dotted] (0, 0, 0.5) -- (0, 0, 0);
+					\draw[color=red, densely dotted] (0, 0.5, 0.5) -- (0, 0.5, 0);
+					\draw[color=red, densely dotted] (0.5, 0, 0.5) -- (0.5, 0, 0);
+
+					\fill[black!40, opacity=0.2, pattern=crosshatch dots, pattern color=black!30] (0, 1, 0) -- (1, 0, 0) -- (0, 0, 1) -- cycle;
+					\fill[black!40, opacity=0.3] (0, 1, 0) -- (1, 0, 0) -- (0, 0, 1) -- cycle;
+					\draw[black!40] (0, 1, 0) -- (1, 0, 0) -- (0, 0, 1) -- cycle;
+
+					\draw[->] (0.4, 0.9, 0) node () [above] {$S_3$} to [bend left] (0.3, 0.7, 0);
+					\draw[->] (0.6, 0.7, 0) node () [right] {$(S_3)_{x_3} = S_2(1 - x_3)$} to [bend right=20] (0.1, 0.4, 0);
+
+					\draw[thick] (1, 0.05, 0) -- (1, -0.05, 0) node () [below] {$1$};
+					\draw[thick] (0.05, 1, 0) -- (-0.05, 1, 0) node () [left] {$1$};
+					\draw[thick] (0.05, 0, 1) -- (-0.05, 0, 1) node () [left] {$1$};
+				\end{tikzpicture}
+				\caption{$n=3$}
+			\end{subfigure}
+			\caption{Visualisierung zu Beispiel 1}
+		\end{figure}
+		Für $a\in[0, 1]$ definiere
+		\[
+			S_n(a)\coloneqq\set{x\in\mathbb{R}^n\given\forall j\in\set{1,\ldots,n}: x_j\geq 0,
+			\sum_{j=1}^nx_j\leq a}.
+		\]
+		Wir zeigen induktiv $\lambda_n(S_n(a)) = \frac{a^n}{n!}$, womit die Behauptung mit $a\coloneqq 1$ folgt.
+
+		Induktionsanfang ($n=1$): Es gilt $\lambda_1(S_1(a)) = \int_\mathbb{R}\mathds{1}_{[0, a]}(x)\dd{x} = a$.
+
+		Induktionsschritt ($n\leadsto n+1$): Die Behauptung gelte für ein $n\in\mathbb{N}$ (I.V.).
+		Für $x\in S_{n+1}(a)$ gilt $x_{n+1}\in[0, a]$ und für den $x_{n+1}$-Schnitt von $S_{n+1}(a)$
+		gilt für $x_{n+1}$ fest
+		\begin{align*}
+			(S_{n+1}(a))_{x_{n+1}} &= \set{(x_1,\ldots,x_n)\in\mathbb{R}^n\given (x_1,\ldots,x_{n+1})\in S_{n+1}(a)}\\
+				&= \set{(x_1,\ldots,x_n)\in\mathbb{R}^n\given x_1,\ldots,x_n\geq 0, \sum_{j=1}^n x_j\leq a-x_{n+1}}\\
+				&= S_n(a-x_{n+1}).
+		\end{align*}
+		Nach Cavalieri folgt nun
+		\begin{align*}
+			\lambda_{n+1}(S_{n+1}(a)) &= \int_\mathbb{R} \lambda_n((S_{n+1}(a))_{x_{n+1}})\dd{x_{n+1}}\\
+				&= \int_\mathbb{R}\mathds{1}_{[0, a]}(x_{n+1})\lambda_n(S_n(a-x_{n+1}))\dd{x_{n+1}}\\
+				&\overset{\text{I.V.}}{=} \int_0^a\frac{(a-x_{n+1})^n}{n!}\dd{x_{n+1}}\\
+				&= \left[-\frac{(a-x_{n+1})^{n+1}}{(n+1)n!}\right]_0^a = \frac{a^{n+1}}{(n+1)!}.\qedhere
+		\end{align*}
+	\end{proof}
+	\begin{beispiel}
+		Seien $R>r>0$ und
+		\[
+			A_{r, R}\coloneqq\set{(x, y, z)\in\mathbb{R}^3\given \norm{(x, y, z)}\leq R, \norm{(x, y)}\geq r}\overset{\text{abg.}}{\in} \mathfrak{B}_d.
+		\]
+		Dann gilt $\lambda_3(A_{r,R}) = \frac{4}{3}\pi(R^2-r^2)^\frac{3}{2}$.
+	\end{beispiel}
+	\begin{proof}
+		Mit
+		\begin{align*}
+			K_R &\coloneqq\set{(x, y, z)\in\mathbb{R}^3\given\norm{(x, y, z)}\leq R},\\
+			Z_r &\coloneqq\set{(x, y, z)\in\mathbb{R}^3\given\norm{(x, y)} < r}
+		\end{align*}
+		folgt
+		\begin{equation}
+			\label{eqn:split}
+			\lambda_3(A_{r,R}) = \lambda_3(K_R\setminus (K_R\cap Z_r)) \overset{\text{1.7(2)}}{=} \lambda_3(K_R) - \lambda_3(K_R\cap Z_r)
+			\overset{\text{VL}}{=} \frac{4}{3}\pi R^3 -\lambda_3(K_R\cap Z_r).
+		\end{equation}
+		$K_R\cap \overline{Z_r}$ ist ein Rotationskörper, denn für $z\in[-R, R]$
+		gilt
+		\[
+			(x, y, z)\in K_R\cap\overline{Z_r}\iff x^2+y^2\leq\min\set{r^2, R^2-z^2} = f(z)^2
+		\]
+		mit
+		\[
+			f(z)\coloneqq\begin{dcases}
+				r, &\abs{z}\leq\sqrt{R^2-r^2}\\
+				\sqrt{R^2-z^2}, &\abs{z}>\sqrt{R^2-r^2}
+			\end{dcases}.
+		\]
+		Nach VL gitl demnach
+		\begin{align*}
+			\lambda_3(K_R\cap\overline{Z_r}) &= \pi\int_{-R}^Rf(z)^2\dd{z}\\
+				&= \pi\left(\int_{-R}^{-\sqrt{R^2-r^2}}R^2-z^2\dd{z}
+					+\int_{-\sqrt{R^2-r^2}}^{\sqrt{R^2-r^2}}r^2\dd{z}
+					+\int_{\sqrt{R^2-r^2}}^RR^2-z^2\dd{z}\right)\\
+				&= 2\pi R^2(R-\sqrt{R^2-r^2})+2\pi r^2\sqrt{R^2-r^2}+\frac{2\pi}{3}(R^2-r^2)^\frac{3}{2} -\frac{2\pi}{3}R^3\\
+				&= \frac{4}{3}\pi R^3-\frac{4}{3}\pi(R^2-r^2)^\frac{3}{2}
+		\end{align*}
+		Die Behauptung folgt nun aus (\ref{eqn:split}) wegen
+		\[
+			K_R\cap\overline{Z_r} = (K_R\cap Z_r) \mathrel{\dot{\cup}} (K_R\cap\underbrace{\set{x^2+y^2=r^2}}_{\eqqcolon B}),
+		\]
+		denn $B$ ist abgeschlossen, also $B\in\mathfrak{B}_3$ und $\lambda_3(B)\overset{\text{Cav.}}{=}\int_\mathbb{R}\lambda_2(B_z)\dd{z}=0$
+		wegen $\forall z\in\mathbb{R}: B_z\in\set{\varnothing, \partial U_r(0)}\overset{\text{VL}}{\implies} \lambda_2(B_z) = 0$. Daher
+		$\lambda_3(K_R\cap\overline{Z_r}) = \lambda_3(K_R\cap Z_r)$.
+	\end{proof}
+	\begin{bemerkung}
+		An der Definition von $f$ erkennen wir, dass der Ring $A_{r,R}$ die Höhe
+		$h=\sqrt{R^2-r^2}$ hat, sodass $\lambda_3(A_{r, R}) = \frac{4}{3}\pi h^3$ nur
+		von $h$ und nicht von $r$ und $R$ abhängt.
+	\end{bemerkung}
+
+	\begin{beispiel}
+		Seien $a,r>0$ und $A$ die Teilmenge des Zylinders
+		\[
+			\set{(x, y, z)\in\mathbb{R}^3\given \norm{(x, y, z)}\leq r, 0\leq z\leq a},
+		\]
+		die "unterhalb" (bezüglich $z$) der Ebene liegt, die den Ursprung und die Gerade, die parallel zur $y$-Achse durch
+		$(-r, 0, a)$ geht, enthält. Zeige $\lambda_3(A) = \frac{2}{3}r^2a$ (also $\frac{1}{6}$ des den Zylinder umfassenden Quaders).
+	\end{beispiel}
+	\begin{proof}
+		\begin{figure}[h]
+			\centering
+			\begin{tikzpicture}[MyPersp]
+				\draw[->, thick] (-2, 0, 0) -- (2, 0, 0) node (xaxis) [right] {$x$};
+				\draw[->, thick] (0, -0.25, 0) -- (0, 5.5, 0) node (zaxis) [above] {$z$};
+				\draw[->, thick] (0, 0, 4) -- (0, 0, -5) node (yaxis) [above right] {$y$};
+
+				\def\r{1.2}
+				\def\a{5}
+
+				\draw[thick] (-0.1, \a, 0) -- (0.1, \a, 0) node () [right] {$a$};
+				\draw[thick] (\r, 0.1, 0) -- (\r, -0.1, 0) node () [below] {$r$};
+
+				\draw (\r, 0, 0)
+					\foreach \t in {5,10,...,360}
+						{--({cos(\t)*\r},0,{sin(\t)*\r})} -- cycle;
+
+				\draw (\r, \a, 0)
+					\foreach \t in {5,10,...,360}
+						{--({cos(\t)*\r},\a,{sin(\t)*\r})} -- cycle;
+
+				\foreach \z in {0, 0.8,...,\a}
+				{
+					\fill[pattern=north east lines, pattern color=red!60, draw=red] ({-(\r/\a)*\z},\z,{sqrt(\r*\r - ((\r/\a)*\z) * ((\r/\a)*\z))})
+
+					\foreach \t in {0,3,...,360}
+					{
+						-- ({min(-(\r/\a)*\z, cos(\t)*\r)}, \z,
+							{
+								max(-sqrt(\r*\r - ((\r/\a)*\z) * ((\r/\a)*\z)),
+								min(
+								sqrt(\r*\r - ((\r/\a)*\z) * ((\r/\a)*\z)),
+								sin(\t)*\r))})
+					}
+						-- ({-(\r/\a)*\z},\z,{-sqrt(\r*\r - ((\r/\a)*\z) * ((\r/\a)*\z))}) -- cycle;
+				}
+
+				\draw (0, 0, \r)
+					\foreach \z in {0,0.005,...,\a}
+					{
+						-- ({-(\r/\a)*\z},\z,{sqrt(\r*\r - ((\r/\a)*\z) * ((\r/\a)*\z))})
+					};
+
+				\draw (0, 0, -\r)
+					\foreach \z in {0,0.005,...,\a}
+					{
+						-- ({-(\r/\a)*\z},\z,{-sqrt(\r*\r - ((\r/\a)*\z) * ((\r/\a)*\z))})
+					};
+
+				\foreach \t in {24,48,...,360}
+					\draw[dashed,color=black!50, very thin] ({cos(\t)*\r},0,{sin(\t)*\r}) -- ({cos(\t)*\r},\a,{sin(\t)*\r});
+
+				\fill[black!20, opacity=0.3] (0, 0, 2.5) -- (0, 0, -2.5) -- (-\r, \a, -2.5) -- (-\r, \a, 2.5) -- cycle;
+
+				\draw[->] (\r+0.6,\a+0.6,0) node [right] () {Zylinder} to[bend right] ({\r/sqrt(2)},\a,{-\r/sqrt(2)});
+				\draw[->] (-\r-0.6,\a+0.6,0) node [left] () {Ebene} to[bend left] (-\r, \a, -1);
+
+				%\draw (\r, 0, 0) -- (\r, \a, 0);
+				%\draw (-\r, 0, 0) -- (-\r, \a, 0);
+			\end{tikzpicture}
+			\caption{Visualisierung zu Beispiel 3}
+		\end{figure}
+		Da der Ursprung in der Ebene liegt, hat sie die Form $\set{c_1x+c_2y+c_3z=0}$. Da $y$
+		bei fester Wahl von $(x, z)$ beliebig gewählt werden kann, folgt $c_2=0$. Durch
+		Einsetzen von $(-r, 0, a)$ ergibt sich die Darstellung $\set{ax+rz=0}$. Damit folgt
+		\begin{align*}
+			A &= \set*{(x, y, z)\in\mathbb{R}^3\given x^2+y^2 \leq r^2, 0\leq z\leq\min\set{a, -\frac{ax}{r}}\overset{x\geq -r}{=} -\frac{ax}{r}}\\
+				&= \set*{(x, y, z)\in\mathbb{R}^3\given x^2+y^2\leq r^2, x\leq -\frac{r}{a}z, 0\leq z\leq a}.
+		\end{align*}
+		Da $A$ abgeschlossen, gilt $A\in\mathfrak{B}_3$; für $z\in[0, a]$ ist der $z$-Schnitt von $A$ gegeben durch
+		\begin{align*}
+			A_z &= \set{(x, y)\in\mathbb{R}^2\given x^2+y^2\leq r^2, x\leq -\frac{r}{a}z}\\
+				&= \set{(x, y)\in\mathbb{R}^2\given -\sqrt{r^2-y^2}\leq x\leq\min\set{\underbrace{\sqrt{r^2-y^2}}_{\geq 0}, \underbrace{-\frac{r}{a}z}_{\leq 0}} = -\frac{r}{a}z,
+					-r\sqrt{1-\frac{z^2}{a^2}}\leq y\leq r\sqrt{1-\frac{z^2}{a^2}}}.
+		\end{align*}
+		Für feste $\abs{y}\leq r\sqrt{1-\frac{z^2}{a^2}}$ ist der $y$-Schnitt von $A_z$ also
+		\[
+			(A_z)_y = \set{x\in\mathbb{R}\given -\sqrt{r^2-y^2}\leq x\leq -\frac{r}{a}z}.
+		\]
+		Nach Cavalieri folgt nun
+		\begin{align*}
+			\lambda_3(A) &= \int_0^a\lambda_2(A_z)\dd{z}\\
+				&= \int_0^a\int_{-r\sqrt{1-\frac{z^2}{a^2}}}^{r\sqrt{1-\frac{z^2}{a^2}}}\lambda_1((A_z)_y)\dd{y}\dd{z}\\
+				&= \int_0^a\int_{-r\sqrt{1-\frac{z^2}{a^2}}}^{r\sqrt{1-\frac{z^2}{a^2}}}\sqrt{r^2-y^2}-\frac{r}{a}z\dd{y}\dd{z}\\
+				&\overset{(\ldots)}{=}\frac{2}{3}ar^2.\qedhere
+		\end{align*}
+	\end{proof}
+\end{document}
