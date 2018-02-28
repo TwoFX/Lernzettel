@@ -55,6 +55,12 @@
 \newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
 \newcommand{\ps}[1][a]{\series[0]#1_n(x-x_0)^n}
 \renewcommand{\d}{\dd}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\compl}[1]{#1^\mathsf{c}}
+\newcommand{\sa}{$\sigma$-Algebra}
 
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
@@ -960,4 +966,27 @@
 		\end{enumerate}
 		Alle so bestimmten Lösungen ergeben zusammen ein Fundamentalsystem.
 	\end{verfahren}
+	\newpage
+	\textsc{Analysis III}
+
+	\sep
+	\begin{definition}[\sa{}]
+		Es sei $\varnothing\neq X$, $\A\subseteq\P(X)$. $\A$ heißt \sa{} auf $A$, wenn
+		\begin{enumerate}[label=($\sigma_{\arabic*}$)]
+			\item $X\in\A$
+			\item $A\in\A\implies\compl{A}\in\A$
+			\item Ist $(A_j)$ eine Folge in $\A$, so ist $\bigcup A_j\in\A$.
+		\end{enumerate}
+	\end{definition}
+	\begin{defsatz}[Erzeugte \sa{}]
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $\varnothing\neq\mathcal{E}\subseteq\P(X)$ ist
+				\[
+					\sigma(\mathcal{E})\coloneqq \bigcap_{\text{$\mathcal{F}$ \sa{} über $X$}}\mathcal{F}
+				\]
+				eine \sa{} und heißt die von $\mathcal{E}$ erzeugte \sa{}.
+			\item Ist $\mathcal{E}$ eine \sa, so ist $\mathcal{E}=\sigma(\mathcal{E})$.
+			\item $\mathcal{E}\subseteq\mathcal{E}'\implies \sigma(\mathcal{E})\subseteq\sigma(\mathcal{E}')$.
+		\end{enumerate}
+	\end{defsatz}
 \end{document}
