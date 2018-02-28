@@ -1,0 +1,432 @@
+\documentclass[a4paper]{article}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\usepackage[framed]{ntheorem}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
+
+\usepackage{parskip}
+\usepackage{multicol}
+
+\usepackage{array}
+\usepackage{blindtext}
+\usepackage{float}
+
+\usepackage{dsfont}
+
+\usepackage{pdflscape}
+
+\usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
+
+\newcounter{Sec}
+
+\theoremstyle{marginbreak}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{Definition}[Sec]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{defsatz}[definition]{Definition und Satz}
+\newtheorem{verfahren}[definition]{Verfahren}
+\newtheorem{defver}[definition]{Definition und Verfahren}
+\newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
+\newtheorem{satzver}[definition]{Satz und Verfahren}
+
+\MakeOuterQuote{"}
+\DeclareMathOperator{\ffa}{ffa}
+
+\newcommand{\sep}{%
+	\rule{\textwidth}{0.3pt}%
+	\stepcounter{Sec}%
+	}
+\newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
+
+\newcommand{\en}{~(n\to\infty)}
+\newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
+\newcommand{\ps}[1][a]{\series[0]#1_n(x-x_0)^n}
+\renewcommand{\d}{\dd}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\setlength\columnsep{1.5cm}
+
+\DeclareMathOperator{\Spek}{Spek}
+\DeclareMathOperator{\Kern}{Kern}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\Per}{Per}
+\DeclareMathOperator{\Kom}{Kom}
+\DeclareMathOperator{\mW}{m.W.}
+\DeclareMathOperator{\oW}{o.W.}
+
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Hyp}{Hyp}
+\DeclareMathOperator{\Po}{Po}
+\DeclareMathOperator{\Nb}{Nb}
+\DeclareMathOperator{\Mult}{Mult}
+\DeclareMathOperator{\G}{G}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Nd}{N}
+\DeclareMathOperator{\Gd}{\Gamma}
+\DeclareMathOperator{\Bd}{B}
+\DeclareMathOperator{\LN}{LN}
+\DeclareMathOperator{\Wd}{W}
+\DeclareMathOperator{\Cd}{C}
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+\DeclarePairedDelimiter\floor\lfloor\rfloor
+
+\newcommand{\mean}{\bar}
+\newcommand{\median}{\tilde}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\sc}{\mathrel{\stackrel{\P}{\longrightarrow}}}
+
+\begin{document}
+	\textsc{Einführung in die Stochastik}
+
+	\sep
+	\begin{definition}[Stichproben]
+		\begin{enumerate}[label=(\alph*)]
+			\item $x\coloneqq(x_1,\ldots,x_n)$ mit $x_i\in M$ heißt Stichprobe in der
+				Grundgesamtheit $M$ mit Umfang $n$.
+			\item $H_x(a)\coloneqq\abs{\set{1\leq i\leq n\given x_i=a}}$ heißt absolute Häufigkeit von $a$ in $x$.
+			\item $h_x(a)\coloneqq\frac{H_x(a)}{n}$ heißt relative Häufigkeit von $a$ in $x$.
+			\item Ist $M=\R$, so heißt $F_x\colon\R\to[0, 1]$,
+				$t\mapsto \frac{1}{n}\sum_{i=1}^n\mathds{1}\set{x_i\leq t}$ die empirische Verteilungsfunktion von $x$.
+		\end{enumerate}
+	\end{definition}
+	\begin{definition}[Lage- und Streumaße]
+		Sei $x=(x_1,\ldots, x_n)$ eine Stichprobe in $\R$ vom Umfang $n$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\mean{x}\coloneqq\frac{1}{n}\sum_{i=1}^nx_i$ heißt Stichproben-Mittel von $x$.
+			\item $s_x^2\coloneqq\frac{1}{n-1}\sum_{i=1}^n(x_i-\mean{x})^2$ heißt Stichproben-Varianz von $x$.
+			\item $s_x\coloneqq +\sqrt{s_x^2}$ heißt Stichproben-Standardabweichung von $x$.
+			\item Falls $\forall i:x_i>0$, heißt $v_x\coloneqq\frac{s_x}{\mean{x}}$ Stichproben-Variationskoeffizient von $x$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		Es sei $x=(x_1\ldots,x_n)$ eine Stichprobe vom Umfang $n$ in $\set{a_1,\ldots,a_k}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\mean{x}=\sum_{j=1}^k a_jh_x(a_j)$.
+			\item
+				\begin{equation*}
+					s_x^2 = \frac{n}{n-1}\sum_{j=1}^k (a_j-\mean{x})^2 h_x(a_j)
+					= \frac{1}{n-1}\left[\left(\sum_{i=1}^nx_i^2\right) - n\mean{x}^2\right]
+					= \frac{n}{n-1}\left[\sum_{j=1}^ka_j^2h_x(a_j)-\left(\sum_{j=1}^ka_jh_x(a_j)\right)^2\right].
+				\end{equation*}
+			\item Ist $y=(y_1,\ldots,y_n)$ mit $y_i = ax_i+b$, so gilt $\mean{y}=a\mean{x}+b$, $s_y^2 = a^2s_x^2$,
+				$s_y=\abs{a}s_x$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}
+		Es sei $x=(x_1,\ldots,x_n)$ eine Stichprobe in $\R$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Bei der geordneten Stichprobe $x_{()}\coloneqq (x_{(1)},\ldots,x_{(n)})$
+			gilt $x_{(1)}\leq\ldots\leq x_{(n)}$.
+			\item
+				\begin{equation*}
+					\median{x}\coloneqq\begin{cases*}
+						x_{\left(\frac{n+1}{2}\right)}, &$n$ ungerade\\
+						\frac{1}{2}\left(x_{\left(\frac{n}{2}\right)} + x_{\left(\frac{n}{2}+1\right)}\right), &$n$ gerade
+						\end{cases*}
+				\end{equation*}
+				heißt Stichproben-Median oder Zentralwert von $x$.
+			\item
+				Es sei $\alpha\in(0, 1)$, $k\coloneqq\floor{n\alpha}$.
+				\begin{equation*}
+					\median{x}_\alpha\coloneqq\begin{cases}
+						x_{(k+1)}, &n\alpha\notin\N\\
+						\frac{1}{2}\left(x_{(k)}+x_{(k+1)}\right), &\text{sonst}
+					\end{cases}
+				\end{equation*}
+				heißt Stichproben-$\alpha$-Quantil. $\median{x}_{\frac{1}{4}}$ heißt unteres Quartil,
+				$\median{x}_{\frac{3}{4}}$ heißt oberes Quartil. $\median{x}_{\frac{3}{4}}-\median{x}_{\frac{1}{4}}$
+				heißt Quartilsabstand.
+			\item
+				Es sei $\alpha\in [0,\frac{1}{2})$, $k\coloneqq\floor{n\alpha}$.
+				$\mean{x}_\alpha\coloneqq\frac{1}{n-2k}\left(x_{(k+1)}+\dots+x_{(n-k)}\right)$ heißt
+					das $\alpha$-getrimmte Stichproben-Mittel.
+			\item $x_{(n)}-x_{(1)}$ heißt Spannweite von $x$.
+			\item $\frac{1}{n}\sum_{i=1}^n\abs{x_i-\median{x}}$ heißt mittlere absolute Abweichung von $x$.
+		\end{enumerate}
+	\end{definition}
+	\begin{defsatz}
+		Es sei $(x, y)=((x_1, y_1),\ldots,(x_n, y_n))$ eine Stichprobe in $\R^2$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $r_{xy}\coloneqq\frac{\frac{1}{n-1}\sum_{j=1}^n(x_j-\mean{x})(y_j-\mean{y})}{s_xs_y}$ heißt
+				empirischer Pearson-Korrelationskoeffizient.
+			\item Mit $s_{xy}\coloneqq\frac{1}{n}\sum_{i=1}^n(x_i-\mean{x})(y_i-\mean{y})$,
+				$s_{xx}\coloneqq\frac{1}{n}\sum_{i=1}^n(x_i-\mean{x})^2$ wählt man für die Regressionsgerade
+				$a\coloneqq\frac{s_{xy}}{s_{xx}}$, $b\coloneqq\mean{y}-a\mean{x}$.
+		\end{enumerate}
+	\end{defsatz}
+	\sep
+	\begin{defsatz}[Kombinatorik]
+		$[n]\coloneqq\set{1,\ldots,n}~(n\in\N)$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Per^n_k(\oW)\coloneqq\set{(a_1,\ldots,a_k)\in[n]^k\given \forall i\neq j: a_i\neq a_j}$.
+				$\abs{\Per^n_k(\oW)} = n^{\underline{k}} \coloneqq \frac{n!}{(n-k)!}$.
+			\item $\Per^n_k(\mW)\coloneqq [n]^k$. $\abs{Per^n_k(\mW)} = n^k$.
+			\item $\Kom^n_k(\oW)\coloneqq \set{(a_1,\ldots,a_k)\in[n]^k\given 1\leq a_1 < a_2 <\dots <a_k}$. $\abs{\Kom^n_k(\oW)} = \binom{n}{k}$.
+			\item $\Kom^n_k(\mW)\coloneqq \set{(a_1,\ldots,a_k)\in[n]^k\given 1\leq a_1 \leq \dots\leq a_k}$.
+				$\abs{\Kom^n_k(\mW)} = \binom{n+k-1}{k}$.
+		\end{enumerate}
+	\end{defsatz}
+	\sep
+	\begin{definition}[Grundbegriffe]
+		Es sei $\Omega\neq\varnothing$ eine Menge.
+		\begin{enumerate}[label=(\alph*)]
+			\item $w\in\Omega$ heißt Ergebnis, $w\subseteq\Omega$ heißt Ereignis.
+			\item $X\colon\Omega\to\R$ heißt reelle Zufallsvariable.
+			\item Ist $A$ ein Ereignis, so heißt $\mathds{1}_A$ Indikatorfunktion von $A$.
+			\item Es sei $\P\colon \mathcal{P}(\Omega)\to\R$. $(\Omega, \P)$ heißt
+				diskreter Wahrscheinlichkeitsraum, falls ein abzählbares $\Omega_0\subseteq\Omega$ existiert, sodass:
+				\begin{enumerate}[label=(P\arabic*)]
+					\item $\forall A\subseteq\Omega: \P\geq 0$.
+					\item $\P(\Omega)=1$.
+					\item $\P\left(\sum_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty\P(A_n)$.
+					\item $\P(\Omega_0) = 1$.
+				\end{enumerate}
+				In diesem Fall heißt $p\colon\Omega\to\R$, $\omega\mapsto\P(\set{\omega})$ Zähldichte von $\P$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Formel des Ein- und Ausschließens]
+		Es seien $A_1,\ldots,A_n$ Ereignisse. Dann:
+		\begin{equation*}
+			\P\left(\bigcup_{j=1}^nA_j\right) = \sum_{k=1}^n (-1)^{k-1}\sum_{1\leq i_1<\ldots<i_k\leq n}\P(A_{i_1}\cap\dots\cap A_{i_k}).
+		\end{equation*}
+	\end{satz}
+	\begin{defsatz}[Verteilung]
+		Es sei $(\Omega,\P)$ ein diskreter Wahrscheinlichkeitsraum, $X\colon\Omega\to\R$ eine
+		Zufallsvariable.
+		\begin{enumerate}[label=(\alph*)]
+			\item Das Wahrscheinlichkeitsmaß $\P^X\colon \mathcal{P}(\R)\to\R$, $M\mapsto\P(X\in M)$
+				auf $\mathcal{P}(\R)$ heißt die
+				Verteilung von $X$.
+			\item Ist $Q$ eine Verteilung, so ist $X\sim Q\defiff \P^X=Q$.
+			\item Ist $(\widetilde{\Omega}, \widetilde{\P})$ ein weiterer diskereter Wahrscheinlichkeitsraum und $Y\colon\widetilde{\Omega}\to\R$
+				eine weitere Zufallsvariable, so ist $X\sim Y\defiff \P^X=\widetilde{\P}^Y$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{defsatz}[Erwartungswert]
+		Es sei $(\Omega,\P)$ ein diskreter Wahrscheinlichkeitsraum, $X, Y\colon\Omega\to\R$ Zufallsvariablen, $a\in\R$, $A$ ein Ereignis,
+		$g\colon\R\to\R$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Der Erwartungswert von $X$ existiert, falls $\sum_{\omega\in\Omega_0}\abs{X(\omega)}\P(\set{\omega}) < \infty$.
+			\item Falls der Erwartungswert von $X$ existiert: $\E X\coloneqq \sum_{\omega\in\Omega_0}X(\omega)\P(\set{\omega})$.
+			\item $\E(X + Y) = \E X + \E Y$, $\E(aX) = a\E X$.
+			\item $X\leq Y\implies \E X\leq\E Y$.
+			\item $\abs{\E X}\leq\E\abs{X}$.
+			\item $\E(\mathds{1}_A)=\P(A)$.
+			\item $\E X = \sum_{t\in\mathbb{R}:\P(X=t)>0} t\P(X=t)$.
+			\item $\E g(X) = \sum_{t\in\mathbb{R}:\P(X=t)>0} g(t)\P(X=t)$.
+			\item $\E X^2<\infty\implies \E\abs{X}<\infty$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{defsatz}[Stochastische Unabhängigkeit]
+		Es sei $(\Omega,\P)$ ein diskreter Wahrscheinlichkeitsraum und $X_1,\ldots,X_n$ Zufallsvariablen.
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_1,\ldots,X_n$ heißen stochastisch unabhängig, wenn $\P(X_1\in B_1,\ldots,X_n\in B_n)=\prod_{i=1}^n\P(X_i\in B_i)$.
+			\item $X_1, X_2~\text{unabh.}\implies \E(X_1X_2)=\E X_1 \E X_2$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{defsatz}[Varianz und Kovarianz]
+		Es seien $X, Y$ ZV mit $\E X^2<\infty$, $\E Y^2<\infty$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\V X\coloneqq \E(X-\E X)^2$.
+			\item $\V X=\E X^2 - (\E X)^2$.
+			\item $\V(aX+b) = a^2(\V X)$.
+			\item $\V(\mathds{1}_A) = \P(A)(1-\P(A))$.
+			\item $X_1,\ldots,X_n~\text{unabh.}\implies \V(X_1+\dots+X_n)=\V(X_1)+\dots+\V(X_n)$.
+			\item $\V X = \min_{t\in\R}\E(X-t)^2$.
+			\item $\P(\abs{X-\E X}\geq\varepsilon)\leq\frac{\V X}{\varepsilon^2}$.
+			\item $C(X, Y)\coloneqq \E[(X-\E X)(Y-\E Y)]$.
+			\item $C(X, Y) = \E(XY) - \E X \E Y$.
+			\item $C(X+a, Y+b) = C(X, Y)$.
+			\item $\V(\sum_{j=1}^nX_j)=\sum_{j=1}^n\V X_j + 2\sum_{1\leq i<j\leq n} C(X_i, X_j)$.
+			\item $C(\cdot,\cdot)$ ist bilinear.
+			\item $C(X, Y)^2\leq\V X \V Y$.
+			\item $\P(X\geq \E X+\varepsilon)\leq \frac{\V X}{\V X+\varepsilon^2}$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{defsatz}[Bedingte Wahrscheinlichkeiten]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\P(A\mid B)\coloneqq\frac{\P(A\cap B)}{\P(B)}$.
+			\item $\P_B(A)\coloneqq \P(A\mid B)$ ist eine Verteilung.
+			\item $\P(A_k\mid B)=\frac{\P(A_k)\P(B\mid A_k)}{\sum_{j=1}^\infty\P(A_j)\P(B\mid A_j)}$.
+			\item $\P(A\mid B)=\frac{\P(B\mid A)\P(A)}{\P(B)}$.
+		\end{enumerate}
+	\end{defsatz}
+	\sep
+	\begin{definition}[Multinomialverteilung]
+		\begin{equation*}
+			(X_1,\ldots,X_s)\sim\Mult(n;p_1,\ldots,p_s)\defiff
+			\P(X_1=k_1,\ldots,X_s=k_s)=\frac{n!}{k_1!\cdots k_s!}p_1^{k_1}\cdots p_s^{k_s}.
+		\end{equation*}
+		Es gilt $C(X_i, X_j)=-np_ip_j$.
+	\end{definition}
+	\begin{definition}[Mehrdimensionale hypergeometrische Verteilung]
+		\begin{equation*}
+			\P(X_1=k_1,\ldots,X_s=k_s)=\frac{\binom{r_1}{k_1}\cdots\binom{r_s}{k_s}}{\binom{r_1+\cdots+r_s}{n}}.
+		\end{equation*}
+	\end{definition}
+	\sep
+	\begin{defsatz}[Stochastische Konvergenz]
+		\begin{enumerate}[label=(\alph*)]
+			\item $Y_n \sc Y\defiff \forall\varepsilon>0:\lim_{n\to\infty}\P(\abs{Y_n-Y}\geq\varepsilon) = 0$.
+			\item $X_n \sc X, Y_n\sc Y\implies aX_n+bY_n\sc aX+bY$.
+			\item $Y_n \sc a, g\in C(\set{a},\R)\implies g(Y_n)\sc g(a)$.
+			\item $\E Y_n\to a, \V Y_n\to 0\implies Y_n\sc a$.
+			\item $\abs{Y_n}~\text{beschr.}, Y_n\sc a\implies \E Y_n\to a$.
+			\item $\forall t\in\R:\lim_{n\to\infty} \P(Y_n\leq t)=\Phi(t)$, $t_n\to t\implies \lim_{n\to\infty}\P(Y_n\leq t_n)=\Phi(t)$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{definition}[Glocken]
+		\begin{align*}
+			\varphi(x) &\coloneqq \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})\\
+			\Phi(x) &\coloneqq \int_{-\infty}^x \varphi(t)\dd{t}
+		\end{align*}
+	\end{definition}
+	\begin{satz}[Schwaches Gesetz großer Zahlen]
+		$X_1,\ldots$ unabhängig mit $\mu\coloneqq \E X_1 = \E X_2 = \ldots$, $\sigma^2\coloneqq \V X_1 = \ldots < \infty$.
+		Dann $\frac{1}{n}\sum_{i=1}^n X_i \sc \mu$.
+	\end{satz}
+	\begin{satz}[Zentraler Grenzwertsatz von Lindeberg-Lévy]
+		$Y_1,\ldots$ u.i.v. mit $\V Y_1<\infty$. Dann:
+		\begin{equation*}
+			\lim_{n\to\infty} \P\left(\frac{\sum_{j=1}^nY_j - n\E Y_1}{\sqrt{n\V Y_1}}\leq x\right) = \Phi(x).
+		\end{equation*}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Erzeugende Funktionen]
+		Es seien $X, Y$ $\N_0$-wertige Zufallsvariablen.
+		\begin{enumerate}[label=(\alph*)]
+			\item Die Funktion $g_X\colon[-1,1]\to\mathbb{R}$,
+				\begin{equation*}
+					t\mapsto \sum_{k=0}^\infty\P(X=k)t^k
+				\end{equation*}
+				heißt die erzeugende Funktion der Verteilung von $X$.
+			\item $X\sim Y\iff g_X=g_Y$.
+			\item $X, Y~\text{unabh.}\implies g_{X+Y}(t)=g_X(t)g_Y(t)$.
+			\item $\E[X(X-1)\dots(X-r+1)] = g^{(r)}(1^-)$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{satz}[Faltungen]
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $X, Y$ unabhängig diskret gilt
+				\begin{equation*}
+					\P(X + Y = t) = \sum_{x\in\R:\P(X=x)>0}\P(X=x)\P(Y=t-x).
+				\end{equation*}
+			\item Für $X, Y$ unabhängig stetig mit Dichten $f_X, f_Y$ gilt
+				\begin{equation*}
+					f_{X+Y}(t) = \int_\R f_X(x)f_Y(t-x)\dd{x}.
+				\end{equation*}
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}[Maßintegral]
+		\begin{equation*}
+			\int_\Omega f\dd{\mu} \coloneqq \int_\Omega f(\omega)\mu(\dd{\omega}) \stackrel{\aleph}{\coloneqq} \sum_{j=1}^n\alpha_j\mu(A_j)\\
+		\end{equation*}
+	\end{defsatz}
+	\begin{defsatz}[Stetiger Erwartungswert]
+		\begin{equation*}
+			\E X = \int_\Omega X\dd{\P} = \int_\R x\P^X(\dd{x}).
+		\end{equation*}
+		Diskrete Verteilung
+		\begin{align*}
+			\P^X&=\sum_{j\geq 1}\P(X=x_j)\delta_{x_j},\\
+			\E X&=\sum_{j\geq 1}x_j\P(X=x_j).
+		\end{align*}
+		Stetige Verteilung mit Dichte $f$:
+		\begin{align*}
+			\P^X(B) &= \int_Bf(x)\lambda^1(\dd{x}) = \int_Bf\dd{x},\\
+			\E X&=\int_\R xf(x)\dd{x}
+		\end{align*}
+	\end{defsatz}
+	\begin{satz}[Zusammenhänge stetiger Verteilungen]
+		\begin{enumerate}[label=(\alph*)]
+			\item $X\sim \U(0, 1)\implies a+(b-a)X \sim \U(a, b)$.
+			\item $X\sim \U(0, 1)\implies -\frac{1}{\lambda}\log(X)\sim \Exp(\lambda)$.
+			\item $X\sim \Nd(0, 1)\iff \mu+\sigma X\sim N(\mu,\sigma^2)$.
+			\item $\Exp(\beta)\sim\Gd(1,\beta)$.
+			\item $Z_1,\ldots,Z_k\sim \Nd(0, 1)~\text{u.i.v.}\implies Z_1^2+\ldots+Z_k^2\sim \chi_k^2$.
+			\item $X\sim \Nd(\mu,\sigma^2)\iff e^X\sim\LN(\mu,\sigma^2)$.
+			\item $X\sim\Exp(\alpha)\implies X^\frac{1}{\beta}\sim \Wd(\alpha,\beta)$.
+			\item $X\sim \Nd(\mu,\sigma^2), Y\sim\Nd(\nu,\tau^2)~\text{unabh.}\implies X+Y\sim\Nd(\mu+\nu,\sigma^2+\tau^2)$.
+			\item $X\sim \Gd(\alpha_1,\beta), Y\sim\Gd(\alpha_2,\beta)~\text{unabh.}\implies X+Y\sim\Gd(\alpha_1+\alpha_2,\beta)$.
+			\item $\chi_1^2\sim\Gd(\frac{1}{2},\frac{1}{2})$.
+			\item $X\sim \chi_k^2, Y\sim \chi_l^2~\text{unabh.}\implies X+Y\sim\chi_{k+l}^2$.
+		\end{enumerate}
+	\end{satz}
+	\newpage
+	\sep
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ | M{2.5cm} | M{3.5cm} | M{2.5cm} | M{3.5cm} | M{2.5cm} | N}
+			\hline
+			Name & $\P(X=k)$ & $\E X$ & $\V X$ & $X_1 + X_2$ & \\[0.6cm] \hline \hline
+			$\Bin(n, p)$ & $\binom{n}{k}p^k(1-p)^{n-k}$ & $np$ & $np(1-p)$ & $\Bin(n_1+n_2, p)$ & \\[0.6cm] \hline
+			$\G(p)$ & $(1-p)^kp$ & $\frac{1-p}{p}$ & $\frac{1-p}{p^2}$ & $\Nb(2, p)$ & \\[0.6cm] \hline
+			$\Nb(r, p)$ & $\binom{k+r-1}{k}p^r(1-p)^k$ & $r\frac{1-p}{p}$ & $r\frac{1-p}{p^2}$ & $\Nb(r_1 + r_2, p)$ & \\[0.6cm] \hline
+			$\Hyp(n, r, s)$ & $\frac{\binom{r}{k}\binom{s}{n-k}}{\binom{r+s}{n}}$ & $n\frac{r}{r+s}$ & $np(1-p)\left(1-\frac{n-1}{r+s-1}\right)$ & & \\[0.6cm] \hline
+			$\Po(\lambda)$ & $e^{-\lambda}\frac{\lambda^k}{k!}$ & $\lambda$ & $\lambda$ & $\Po(\lambda_1 + \lambda_2)$ & \\[0.6cm] \hline
+		\end{tabular}
+		\caption{Liste von diskreten Verteilungen}
+	\end{table}
+
+	\begin{landscape}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ | M{2cm} | M{5.54cm} | M{3.5cm} | M{3.5cm} | M{3.5cm} | M{4cm} | N}
+			\hline
+			Name & $f(x)$ & $F(x)$ & $\E X$ & $\E X^2$ & $\V X$ & \\[0.6cm] \hline \hline
+			$\U(a, b)$ & $\begin{cases}\frac{1}{b-a}, &x\in(a, b)\\0, &\text{sonst}\end{cases}$ &
+				$\begin{cases}0,&x\leq a\\\frac{x-a}{b-a}, &x\in(a, b)\\1,&x\geq b\end{cases}$ &
+				$\frac{a+b}{2}$ & $\frac{a^2+ab+b^2}{3}$ & $\frac{(a-b)^2}{12}$ & \\[1.8cm] \hline
+			$\Exp(\lambda)$ & $\begin{cases}\lambda e^{-\lambda x}, &x>0\\0,&x\leq 0\end{cases}$ &
+				$\begin{cases}1-e^{-\lambda x},&x>0\\0,&x\leq 0\end{cases}$ & $\frac{1}{\lambda}$ & $\frac{2}{\lambda^2}$
+				& $\frac{1}{\lambda^2}$ & \\[1.2cm] \hline
+			$\Nd(\mu, \sigma^2)$ & $\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$ & $\Phi(\frac{x-\mu}{\sigma})$
+				& $\mu$ & $\mu^2+\sigma^2$ & $\sigma^2$ & \\[0.6cm] \hline
+			$\Gd(\alpha, \beta)$ & $\begin{cases}\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha - 1}\exp(-\beta x),&x>0\\0,&x\leq 0\end{cases}$
+				& & $\frac{\alpha}{\beta}$ & $\frac{\Gamma(\alpha+2)}{\Gamma(\alpha)\beta^\alpha}$ & $\frac{\alpha}{\beta^2}$ &\\[1.2cm] \hline
+			$\Bd(\alpha, \beta)$ & $\begin{cases}\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1},&x\in(0,1)\\0,&\text{sonst}\end{cases}$
+				& & $\frac{\alpha}{\alpha+\beta}$ & $\frac{B(2+\alpha,\beta)}{B(\alpha, \beta)}$
+				& $\frac{\alpha\beta}{(\alpha+\beta)(\alpha+\beta+1)}$ & \\[1.2cm] \hline
+			$\chi_k^2$ & $\mathds{1}_{(0, \infty)}(x)\frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}e^{-\frac{t}{2}}x^{\frac{k}{2}-1}$
+				& & $k$ & & $2k$ & \\[0.6cm] \hline
+			$\LN(\mu,\sigma^2)$ & $\mathds{1}_{(0,\infty)}(x)\frac{1}{\sigma x\sqrt{2\pi}}\exp(-\frac{(\log(x)-\mu)^2}{2\sigma^2})$
+				& $\Phi(\frac{\log(x)-\mu}{\sigma})$ & $\exp(\mu+\frac{\sigma^2}{2})$ & $\exp(2(\mu+\sigma^2))$
+				& $\exp(2\mu+\sigma^2)(\exp(\sigma^2)-1)$ & \\[0.6cm] \hline
+			$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
+				& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
+				& & & \\[0.6cm] \hline
+			$\Cd$ & $\frac{1}{\pi}\frac{1}{1+x^2}$ & $\frac{1}{\pi}(\arctan(x)-\frac{\pi}{2})$ & $\infty$ & & & \\[0.6cm] \hline
+		\end{tabular}
+		\caption{Liste von stetigen Verteilungen}
+	\end{table}
+	\end{landscape}
+
+\end{document}
