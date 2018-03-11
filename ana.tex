@@ -12,6 +12,7 @@
 %\usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{physics}
+\usepackage{dsfont}
 
 \usepackage[framed]{ntheorem}
 
@@ -61,6 +62,7 @@
 \newcommand{\B}{\mathfrak{B}}
 \newcommand{\compl}[1]{#1^\mathsf{c}}
 \newcommand{\sa}{$\sigma$-Algebra}
+\newcommand{\Ri}{\mathfrak{R}}
 
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
@@ -72,6 +74,8 @@
 \DeclareMathOperator{\arsinh}{arsinh}
 \DeclareMathOperator{\arcosh}{arcosh}
 \DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\ddiv}{div}
+\DeclareMathOperator{\rot}{rot}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
@@ -985,8 +989,240 @@
 					\sigma(\mathcal{E})\coloneqq \bigcap_{\text{$\mathcal{F}$ \sa{} über $X$}}\mathcal{F}
 				\]
 				eine \sa{} und heißt die von $\mathcal{E}$ erzeugte \sa{}.
-			\item Ist $\mathcal{E}$ eine \sa, so ist $\mathcal{E}=\sigma(\mathcal{E})$.
+			\item Ist $\mathcal{E}$ eine \sa{}, so ist $\mathcal{E}=\sigma(\mathcal{E})$.
 			\item $\mathcal{E}\subseteq\mathcal{E}'\implies \sigma(\mathcal{E})\subseteq\sigma(\mathcal{E}')$.
 		\end{enumerate}
 	\end{defsatz}
+	\begin{defsatz}[Borelsche \sa{}]
+		Für $X\subseteq\R^d$ heißt $\B(X)\coloneqq\sigma(\mathcal{O}(X))$ die Borelsche \sa{} auf $X$. Sie wird
+		erzeugt von den Intervallen mit Grenzen in $\mathbb{Q}^d$, den Halbräumen, \dots.
+	\end{defsatz}
+	\begin{defsatz}[Spur]
+		Es sei $\varnothing\neq Y\subseteq X$, $\A$ eine \sa{} auf $X$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\A_Y\coloneqq\set{A\cap Y\given A\in \A}$ heißt die Spur von $\A$ in $Y$ und ist eine \sa{} auf $Y$.
+			\item $\A_Y\subseteq\A\iff Y\in\A$.
+			\item Für $\varnothing\neq\mathcal{E}\subseteq\P(X)$ ist $\sigma(\mathcal{E}_Y)=\sigma(\mathcal{E})_Y$.
+			\item $\B(X) = (\B_d)_X = \set{A\cap X\given A\in \B_d}$.
+			\item $X\in\B_d\implies \B(X)\subseteq \B_d$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{definition}[Maß]
+		Es sei $\A$ eine \sa{} auf $X$, $\mu\colon\A\to[0,\infty]$. $\mu$ heißt Maß auf $\A$, wenn
+		\begin{enumerate}[label=($M_{\arabic*}$)]
+			\item $\mu(\varnothing)=0$.
+			\item $\mu(\sum A_j) = \sum\mu(A_j)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Eigenschaften von Maßen]
+		$(X,\A,\mu)$ Maßraum, $A, B\in\A$, $(A_j)$ Folge in $\A$. Dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $A\subseteq B\implies \mu(A)\leq\mu(B)$.
+			\item $\mu(A)<\infty, A\subseteq B\implies \mu(B\setminus A)=\mu(B)-\mu(A)$.
+			\item $\mu(X)<\infty\implies \mu(A)<\infty, \mu(\compl{A})=\mu(X)-\mu(A)$.
+			\item $\mu(\bigcup A_j)\leq\sum\mu(A_j)$.
+			\item $A_1\subseteq A_2\subseteq\cdots\implies \mu(\bigcup A_j)=\lim_{n\to\infty}\mu(A_n)$.
+			\item $A_1\supseteq A_2\supseteq\cdots\wedge\mu(A)<\infty\implies \mu(\bigcap A_j)=\lim_{n\to\infty}\mu(A_n)$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Ring, Prämaß]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\varnothing\neq\Ri\subseteq\P(X)$ heißt Ring, wenn:
+			\begin{enumerate}[label=($R_{\arabic*}$)]
+				\item $\varnothing\in\Ri$.
+				\item $A, B\in \Ri\implies A\cup B, B\setminus A\in\Ri$.
+			\end{enumerate}
+			\item $\mu\colon\Ri\to[0, \infty]$ heißt Prämaß auf $\Ri$, wenn:
+			\begin{enumerate}[label=($M_{\arabic*}$)]
+				\item $\mu(\varnothing) = 0$.
+				\item $\sum A_j\in\Ri\implies \mu(\sum A_j)=\sum\mu(A_j)$.
+			\end{enumerate}
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Elementarvolumen + Magie = Lebesgue-Maß]
+		\begin{enumerate}[label=(\alph*)]
+			\item Es sei $\Ri$ ein Ring auf $X$, $\mu\colon\Ri\to[0, \infty]$ ein Prämaß. Dann
+				existiert ein Maßraum $(X, \A(\mu), \overline{\mu})$, sodass
+				\begin{enumerate}[label=(\arabic*)]
+					\item $\sigma(\Ri)\subseteq\A(\mu)$.
+					\item $\forall A\in\Ri:\overline{\mu}(A) = \mu(A)$.
+				\end{enumerate}
+			\item Es sei $\mathcal{E}\subseteq\P(X)$ durchschnittsstabil,
+				$\nu, \mu$ Maße auf $\sigma(\mathcal{E})$,
+				$\forall E\in\mathcal{E}: \mu(E)=\nu(E)$ und es existiere $(E_n)$ in $\mathcal{E}$
+				mit $\bigcup E_n=X$ und $\forall n\in\mathbb{N}:\mu(E_n)<\infty$. Dann $\mu=\nu$ auf $\sigma(\mathcal{E})$.
+			\item Es existiert genau ein Maß $\lambda_d$ auf $\B_d$ mit $\lambda_d((a, b]) = \prod (b_i - a_i)$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Ist $\mu\colon\B_d\to[0,\infty]$ ein Maß, $\forall x\in\R^d, A\in\B_d: \mu(A)=\mu(x+A)$, $c\coloneqq\mu((0, 1]^d)<\infty$,
+		so gilt $\mu=c\lambda_d$.
+	\end{satz}
+	\sep
+	\begin{definition}[Messbarkeit]
+		$f\colon X\to Y$ heißt $\A$-$\B$-messbar, wenn $\forall B\in\B:f^{-1}(B)\in\A$.
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Es sei $\sigma(\mathcal{E})=\B$. Dann ist $f$ $\A$-$\B$-messbar $\iff\forall E\in\mathcal{E}:f^{-1}(E)\in\B$.
+			\item \ldots
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Limites]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\sup_{n\in\mathbb{N}} f_n$, $\inf_{n\in\mathbb{N}} f_n$ sind punktweise definiert.
+			\item $\limsup_{n\to\infty} f_n\coloneqq \inf_{j\in\mathbb{N}}\left(\sup_{n\geq j}f_n\right)$.
+			\item $\liminf_{n\to\infty} f_n\coloneqq \sup_{j\in\mathbb{N}}\left(\inf_{n\geq j}f_n\right)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		Es sei jedes $f_n$ messbar.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\sup_{n\in\mathbb{N}} f_n$, $\inf_{n\in\mathbb{N}} f_n$, $\limsup_{n\to\infty} f_n$, $\liminf_{n\to\infty} f_n$ sind messbar.
+			\item Gilt $f_n\to f$ pktw in $\overline{\R}$, so ist $f$ messbar.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}[Lebesgue-Integral]
+		\begin{enumerate}[label=(\alph*)]
+			\item $f\colon X\to\R$ messbar heißt einfach, wenn $f=\sum_{j=1}^my_j\mathds{1}_{A_j}$ mit $y_i\in\R$, $A_i\in\B(X)$.
+			\item Für $f\colon X\to[0,\infty)$ einfach: $\int_Xf\dd{x}\coloneqq\sum_{j=1}^my_j\lambda(A_j)$.
+			\item $f_n$ heißt zulässig für $f\defiff f_n~\text{einfach}, 0\leq f_n\leq f_{n+1}, f_n\to f~\text{pktw}$.
+			\item Sei $f_n$ zulässig für $f\colon X\to [0,\infty]$. $\int_X f\dd{x}\coloneqq \lim_{n\to\infty}\int_Xf_n\dd{x}$.
+			\item $f\colon X\to\overline{\R}$ heißt integrierbar, falls $\int_X f_+\dd{x}<\infty$, $\int_X f_-\dd{x}<\infty$.
+				Dann $\int_X f\dd{x}\coloneqq \int_X f_+\dd{x} - \int_X f_-\dd{x}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Integrierbarkeit]
+		\begin{enumerate}[label=(\alph*)]
+			\item $f$ integrierbar $\iff$ $\abs{f}$ integrierbar.
+			\item $f$ integrierbar $\iff\exists g\colon X\to[0,\infty], \abs{f}\leq g$, $g$ integriarbar.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{satz}[Beppo Levi I]
+		Es sei $\forall n\in\mathbb{N}: f_n\colon X\to[0,\infty]~\text{mb}, f_n\leq f_{n+1}$.
+		Dann $\int_X\lim_{n\to\infty}f_n\dd{x} = \lim_{n\to\infty}\int_Xf_n\dd{x}$.
+	\end{satz}
+	\begin{satz}[Beppo Levi II]
+		Es sei $\forall n\in\mathbb{N}: f_n\colon X\to[0,\infty]~\text{mb}$.
+		Dann $\int_X\sum_{j\in\mathbb{N}}f_j\dd{x} = \sum_{j\in\mathbb{N}}\int_Xf_j\dd{x}$.
+	\end{satz}
+	\begin{satz}[Beppo Levi III]
+		Es sei $\forall n\in\mathbb{N}: f_n\colon X\to[0,\infty]~\text{mb}, f_n\leq f_{n+1}~\text{f.ü}$.
+		Dann existiert $f\colon X\to[0,\infty]$ mit $f_n\to f~\text{f.ü.}$ und $\int_Xf\dd{x}=\lim_{n\to\infty}\int_Xf_n\dd{x}$.
+	\end{satz}
+	\begin{satz}[Lemma von Fatou]
+		$f_n\colon X\to[0,\infty]$ messbar.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\int_X\liminf_{n\to\infty}f_n\dd{x}\leq\liminf_{n\to\infty}\int_Xf_n\dd{x}$.
+			\item $f\colon X\to[0,\infty]$ messbar, $f_n\to f$ fast überall: $\int_Xf\dd{x}\leq\liminf_{n\to\infty}\int_Xf_n\dd{x}$.
+			\item $(\int_Xf_n\dd{x})$ beschränkt: $f$ integrierbar.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Konvergenzsatz von Lebesgue]
+		$f_n\colon X\to\overline{\R}$ messbar, $(f_n)$ fast überall konvergent,
+		$\abs{f_n}\leq g$ für ein $g\colon X\to[0,\infty]$ integrerbar. Dann existiert $f$ integrierbar mit:
+		\begin{enumerate}[label=(\alph*)]
+			\item $f_n\to f$ fast überall.
+			\item $\int_Xf_n\dd{x}\to\int_Xf\dd{x}$.
+			\item $\int_X\abs{f_n-f}\dd{x}\to0\en$.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{satz}[Parameterintegrale]
+		$U\in\B_k$, $t_0\in U$, $f\colon U\cross X\to\R$. Weiter:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall t\in U: x\mapsto f(t, x)~\text{messbar}$.
+			\item Für fast alle $x\in X$ ist $t\mapsto f(t, x)$ stetig in $t_0$.
+			\item $g\colon X\to [0,\infty]$ integrierbar mit $\forall t\in U$:
+				Für fast alle $x\in X: \abs{f(t, x)}\leq g(x)$.
+		\end{enumerate}
+		Dann ist $F\colon U\to\R$, $t\mapsto\int_Xf(t, x)\dd{x}$ stetig in $t_0$,
+		also $\lim_{t\to t_0}\int_Xf(t, x)\dd{x} = \int_X\lim_{t\to t_0}f(t, x)\dd{x}$.
+	\end{satz}
+	\begin{satz}[Lebesgue-Integral und partielle Ableitungen]
+		$U\subseteq\R^k$ offen, $f\colon U\cross X\to\R$, $g\colon X\to[0,\infty]$ integrierbar,
+		$N\subseteq X$ Nullmenge. Weiter:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall t\in U: x\mapsto f(t, x)$ integrierbar.
+			\item $\forall x\in X\setminus N: t\mapsto f(t, x)$ partiell differenzierbar auf $U$.
+			\item $\forall x\in X\setminus N, t\in U, j\in\set{1,\ldots,k}: \abs{\pdv{f}{t_j}}\leq g(x)$.
+		\end{enumerate}
+		Definiere $F\colon U\to\R$, $t\mapsto \int_Xf(t, x)\dd{x}$. Dann ist $F$ auf $U$ partiell
+		differenzierbar und
+		\[
+			\forall t\in U, j\in\set{1,\ldots,k}:{\pdv{F}{t_j}}(t)=\int_X{\pdv{f}{t_j}}(t, x)\dd{x}.
+		\]
+		Also:
+		\[
+			\pdv{t_j}\int_Xf(t, x)\dd{x} = \int_X{\pdv{f}{t_j}}(t, x)\dd{x}.
+		\]
+	\end{satz}
+	\sep
+	\begin{satz}[Prinzip von Cavalieri]
+		Sei $C\in\B_d$. Dann:
+		\[
+			\int_{\R^d}\mathds{1}_C(x, y)\dd{(x, y)}=\int_{\R^k}\left(\int_{\R^l}\mathds{1}_C(x, y)\dd{y}\right)\dd{x}.
+		\]
+	\end{satz}
+	\begin{satz}[Sätze von Tonelli und Fubini]
+		Sei $\varnothing\neq X\in\B_k$, $\varnothing\neq Y\in\B_l$, $D\coloneqq X\cross Y$, $f\colon D\to\overline{\R}$ messbar.
+		Weiter sei entweder $f\geq 0$ oder $f$ integrierbar. Dann:
+		\[
+			\int_Df(x, y)\dd{(x, y)} = \int_X\left(\int_Yf(x, y)\dd{y}\right)\dd{x}.
+		\]
+	\end{satz}
+	\begin{definition}[Diffeomorphismus]
+		$X, Y\subseteq\R^d$. $\Phi\in C^1(X,\R^d)$ heißt Diffeomorphismus, wenn $\Phi$ bijektiv
+		und $\Phi^{-1}\in C^1(Y,\R^d)$.
+	\end{definition}
+	\begin{satz}[Transformationssatz I]
+		Es sei $\Phi\colon X\to Y$ ein Diffeomorphismus, $f\colon Y\to\overline{\R}$.
+		Weiter sei $f\geq 0$ oder $f$ integrierbar. Dann:
+		\[
+			\int_Yf\dd{y} = \int_Xf(\Phi(x))\abs{\det\Phi'(x)}\dd{x}.
+		\]
+	\end{satz}
+	\begin{satz}[Transformationssatz II]
+		Sei $\varnothing\neq U\subseteq\R^d$ offen, $\Phi\in C^1(U, \R^d)$, $A\subseteq U$,
+		$A\in\B_d$, $X\coloneqq A^\circ$, $A\setminus A^\circ$ eine Nullmenge, $\Phi$ injektiv auf $X$,
+		$\forall x\in X:\det\Phi'\neq 0$, $B\coloneqq\Phi(A)\in\B_d$. Dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $Y\coloneqq \Phi(X)$ ist offen und $\Phi\colon X\to Y$ ist ein Diffeomorphismus.
+			\item Ist $f\colon B\to\overline{\R}$ messbar und $f\geq 0$ oder $f$ integrierbar, so gilt
+			\[
+				\int_Bf\dd{y}=\int_Af(\Phi(x))\abs{\det\Phi'(x)}\dd{x}.
+			\]
+		\end{enumerate}
+	\end{satz}
+	\begin{verfahren}[Typische Transformationen]
+		\begin{enumerate}[label=(\alph*)]
+			\item Polar: $(r,\varphi)\in [0,\infty)\cross[0,2\pi]$, $\Phi(r, \varphi)\coloneqq (r\cos\varphi, r\sin\varphi)$, $\det\Phi'(r,\phi)=r$.
+			\item Zylinder: $(r, \varphi, z)\in [0,\infty)\cross [0,2\pi]\cross\R$, $\Phi(r, \varphi, z)\coloneqq(r\cos\varphi, r\sin\varphi, z)$,
+				$\det\Phi'(r, \varphi, z)=r$.
+			\item Kugel: $(r, \varphi,\theta)\in [0,\infty)\cross[0,2\pi]\cross[0,\pi]$,
+				$\Phi(r, \varphi,\theta)\coloneqq(r\cos\varphi\sin\theta, r\sin\varphi\sin\theta, r\cos\theta)$,
+				$\det\Phi'(r, \varphi, \theta)=-r^2\sin\theta$.
+		\end{enumerate}
+	\end{verfahren}
+	\sep
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item $a=(a_1, a_2, a_3)\in\R^3$, $b=(b_1, b_2, b_3)\in\R^3$. $a\cross b\coloneqq (a_2b_3-a_3b_2, a_3b_1 - a_1b_3, a_1b_2 - a_2b_1)$.
+			\item $D\subseteq \R^n$ offen, $f\in C^1(D,\R^n)$. $\ddiv f\coloneqq \pdv{f_1}{x_1} + \ldots + \pdv{f_n}{x_n}$.
+			\item $D\subseteq \R^3$ offen, $F=(P, Q, R)\in C^1(D, \R^3)$. $\rot F\coloneqq (R_y-Q_z, P_z-R_x,Q_x-P_y)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[von Gauß]
+		Es sei $(x_0, y_0)\in\R^2$, $R\colon[0, 2\pi]\to[0,\infty)$ stetig, stückweise stetig differenzierbar, $R(0) = R(2\pi)$. Definiere
+		\begin{align*}
+			\forall t\in[0,2\pi]: \gamma(t)&\coloneqq (x_0 + R(t)\cos t, y_0+R(t)\sin t)\\
+			B&\coloneqq\set{(x_0+r\cos t, y_0+r\sin t)\given t\in[0, 2\pi], r\in[0, R(t)]}.
+		\end{align*}
+		Weiter sei $D\subseteq\R^2$ offen, $B\subseteq D$, $f=(u, v)\in C^1(D,\R^2)$. Dann
+		\[
+			\int_B\ddiv f\dd{(x, y)} = \int_\gamma(u\dd{y} - v\dd{x}).
+		\]
+	\end{satz}
 \end{document}
