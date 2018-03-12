@@ -22,12 +22,16 @@
 \usepackage{enumitem}
 \usepackage{stmaryrd}
 
+\usepackage{faktor}
+
 \usepackage{parskip}
 \usepackage{multicol}
 
 \usepackage{array}
 \usepackage{blindtext}
 \usepackage{float}
+
+\usepackage[hidelinks]{hyperref}
 
 \usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
 
@@ -42,6 +46,7 @@
 \newtheorem{defver}[definition]{Definition und Verfahren}
 \newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
 \newtheorem{satzver}[definition]{Satz und Verfahren}
+\newtheorem{folgerung}[definition]{Folgerung}
 
 \MakeOuterQuote{"}
 \DeclareMathOperator{\ffa}{ffa}
@@ -64,6 +69,9 @@
 \newcommand{\sa}{$\sigma$-Algebra}
 \newcommand{\Ri}{\mathfrak{R}}
 
+\renewcommand{\L}[1]{\mathfrak{L}^{#1}(X)}
+\newcommand{\LL}[1]{L^{#1}(X)}
+
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
 
@@ -76,8 +84,12 @@
 \DeclareMathOperator{\artanh}{artanh}
 \DeclareMathOperator{\ddiv}{div}
 \DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator{\supp}{supp}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\newcommand\restr[2]{{#1_{\mkern 1mu \vrule height 2ex\mkern2mu #2}}}
 
 \begin{document}
 	\textsc{Analysis I}
@@ -1214,7 +1226,7 @@
 			\item $D\subseteq \R^3$ offen, $F=(P, Q, R)\in C^1(D, \R^3)$. $\rot F\coloneqq (R_y-Q_z, P_z-R_x,Q_x-P_y)$.
 		\end{enumerate}
 	\end{definition}
-	\begin{satz}[von Gauß]
+	\begin{satz}[von Gauß]\label{gauss}
 		Es sei $(x_0, y_0)\in\R^2$, $R\colon[0, 2\pi]\to[0,\infty)$ stetig, stückweise stetig differenzierbar, $R(0) = R(2\pi)$. Definiere
 		\begin{align*}
 			\forall t\in[0,2\pi]: \gamma(t)&\coloneqq (x_0 + R(t)\cos t, y_0+R(t)\sin t)\\
@@ -1222,7 +1234,87 @@
 		\end{align*}
 		Weiter sei $D\subseteq\R^2$ offen, $B\subseteq D$, $f=(u, v)\in C^1(D,\R^2)$. Dann
 		\[
-			\int_B\ddiv f\dd{(x, y)} = \int_\gamma(u\dd{y} - v\dd{x}).
+			\int_B\ddiv f\dd{(x, y)} = \int_\gamma(u\dd{y} - v\dd{x})
+				= \int_0^{2\pi} u(\gamma(t))\gamma_2'(t)\dd{t} - \int_0^{2\pi} v(\gamma(t))\gamma_1'(t)\dd{t}.
 		\]
+	\end{satz}
+	\begin{verfahren}[Wegintegrale zweiter Art]
+			Seien $\gamma, B$ wie in \ref{gauss}, $f=(u, v)\colon\Gamma_{\gamma}\to\R^2$. Definiere
+			$\tilde{f}\coloneqq (v, -u)$. Dann gilt:
+			\[
+				\int_\gamma f\cdot\dd{(x, y)} = \int_\gamma v\dd{y} + u\dd{x} = \int_B \ddiv\tilde{f}\dd{(x, y)}.
+			\]
+	\end{verfahren}
+	\begin{definition}[Flächen]
+		$\varnothing\neq B\subseteq \R^2$ kompakt, $D\subseteq\R^2$ offen, $B\subseteq D$,
+		$\varphi\in C^1(D,\R^3)$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\restr{\varphi}{B}$ heißt Fläche, $S\coloneqq\varphi(B)$ heißt Flächenstück.
+			\item $N(u_0, v_0)\coloneqq \varphi_u(u_0, v_0)\cross\varphi_v(u_0, v_0)$ heißt Normalenvektor.
+			\item Ist $f\in C^1(D,\R)$, $\varphi(u, v) = (u, v, f(u, v))$, so ist $\varphi$ in expliziter Darstellung. $N(u, v) = (-f_u, -f_v, 1)$.
+			\item $I(\varphi)\coloneqq\int_B\norm{N(u, v)}\dd{(u, v)}$ heißt Flächeninhalt von $\varphi$.
+			\item Für $f\in C(S,\R)$: $\int_\varphi f\dd{\sigma}\coloneqq\int_B f(\varphi(u, v))\norm{N(u, v)}\dd{(u, v)}$.
+			\item Für $f\in C(S,\R^3)$: $\int_\varphi F\cdot n\dd{\sigma}\coloneqq\int_BF(\varphi(u, v))\cdot N(u, v)\dd{(u, v)}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[von Stokes]
+		Seien $\gamma, B$ wie in \ref{gauss}, $\varphi\in C^2(D,\R^3)$, $G\subseteq\R^3$ offen, $S\subseteq G$, $F\in C^1(G,\R^3)$. Dann:
+		\[
+			\int_\varphi \rot F\cdot n\dd{\sigma} = \int_{\varphi\circ\gamma}F\cdot\dd{(x, y, z)}.
+		\]
+	\end{satz}
+	\sep
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item Sei $p\in[1,\infty)$. $\L{p}\coloneqq\set{f\colon X\to\R\given f~\text{messbar}, \int_X\abs{f}^p\dd{x}<\infty}$.
+			\item Sei $f\in\L{p}$. $\norm{f}_p\coloneqq (\int_X\abs{f}^p\dd{x})^\frac{1}{p}$.
+			\item $\L{\infty}\coloneqq\set{f\colon X\to\R\given f~\text{messbar und fast überall beschränkt}}$.
+			\item Sei $f\in\L{\infty}$. $\norm{f}_\infty\coloneqq \esssup_{x\in X}\norm{f(x)}
+				= \inf\set{c>0\given\exists\text{NM}~N_c\subseteq X~\forall x\in X\setminus N_c:\abs{f(x)}\leq c}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Ungleichungen]
+		Es sei $p\in[1,\infty]$, $\frac{1}{p}+\frac{1}{p'}=1$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $f\in\L{p}$, $g\in\L{p'}$: $fg\in\L{1}$ und $\norm{fg}_1\leq\norm{f}_p\norm{g}_{p'}$.
+			\item Für $f,g\in\L{p}$: $\norm{f+g}_p\leq\norm{f}_p+\norm{g}_p$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Sei $\lambda_d(X)<\infty$, $p, q\geq 1$, $p\leq q\leq\infty$. Dann $\L{q}\subseteq\L{p}$ und
+		$\forall f\in\L{q}:\norm{f}_p\leq\lambda_d(X)^{\frac{1}{p}-\frac{1}{q}}\norm{f}_q$.
+	\end{satz}
+	\begin{satz}[Konvergenzsatz von Lebesgue]
+		Sei $1\leq p<\infty$, $f\colon X\to\R$ messbar, $g\colon X\to[0,\infty]$ integrierbar,
+		$(f_n)$ eine Folge in $\L{p}$, $f_n\to f$ fast überall, $\forall n\in\mathbb{N}: \abs{f_n}^p\leq g~\text{f.ü}$.
+		Dann $f\in\L{p}$ und $\norm{f_n-f}_p\to 0\en$.
+	\end{satz}
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item $\mathcal{N}\coloneqq\set{f\colon X\to\R\given f~\text{messbar}, f=0~\text{f.ü.}}$.
+			\item $\LL{p}\coloneqq\faktor{\L{p}}{\mathcal{N}}$.
+			\item Sei $\hat{f}\in\LL{p}$. $\int_X\hat{f}\dd{x}\coloneqq\int_Xf\dd{x}$, $\norm*{\hat{f}}_p\coloneqq\norm{f}_p$.
+			\item Seien $\hat{f}, \hat{g}\in\LL{2}$. $(\hat{f}\mid\hat{g})\coloneqq\int_Xfg\dd{x}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[von Riesz-Fischer]
+		Es sei $p\in[1,\infty)$. $(\hat{f}_n)$ sei eine Cauchyfolge in $\LL{p}$. Dann existieren $f\in\L{p}$ und
+		eine Teilfolge $(f_{n_j})$ mit $f_{n_j}\to f$ fast überall, $\norm{f_n-f}_p\to0\en$.
+	\end{satz}
+	\begin{satz}
+		Es seien $p, q\in[1,\infty)$, $(f_n)$ eine Folge in $\L{p}\cap\L{q}$, $f\in\L{p}$, $g\in\L{q}$,
+		$\norm{f_n-f}_p\to 0\en$, $\norm{f_n-g}_q\to 0\en$. Dann $f=g$ fast überall.
+	\end{satz}
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $f\colon X\to\R$ heißt $\supp(f)\coloneqq\overline{\set{x\in X\given f(x)\neq0}}$ der Träger von $f$.
+			\item $C_c(X,\R)\coloneqq\set{f\in C(X,\R)\given \supp(f)\subseteq X, \supp(f)~\text{kompakt}}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item $C_c(X,\R)\subseteq\L{p}$.
+			\item $X~\text{offen}\implies\forall f\in\L{p},\varepsilon>0~\exists g\in C_c(X,\R):\norm{f-g}_p<\varepsilon$.
+		\end{enumerate}
 	\end{satz}
 \end{document}
