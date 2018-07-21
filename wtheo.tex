@@ -53,7 +53,7 @@
 \setlength{\columnseprule}{0.15pt}
 \setlength{\columnsep}{10pt}
 \setlength{\multicolsep}{2pt}
-\setlist[enumerate,itemize]{noitemsep,nosep}
+\setlist[enumerate,itemize]{noitemsep, nosep}
 
 \newcommand{\sep}{%
 	\rule{\linewidth}{0.15pt}%
@@ -148,6 +148,44 @@
 		\end{enumerate}
 		\end{multicols}}
 	\end{satz}
+	\begin{lemma}[von Sluzki]
+		$X_n\vk X$, $Y_n\sk a$.
+		{\setlength{\columnseprule}{0pt}\begin{multicols}{2}
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_n+Y_n\vk X+a$,
+			\item $X_nY_n\vk aX$.
+		\end{enumerate}
+		\end{multicols}}
+	\end{lemma}
+	\begin{satz}[Continuous mapping theorem]
+		$h\colon\R\to\R$ mb, $\P^X$-f.ü. stetig, $X_n\vk X$. Dann $h(X_n)\vk h(X)$.
+	\end{satz}
+	\begin{definition}[Straffheit]
+		$\varnothing\neq\mathcal{Q}$ Menge von W-Maßen auf $\mathcal{B}$ heißt straff, falls
+		\[\forall\varepsilon>0~\exists K\subset\R~\text{kompakt}~\forall Q\in\mathcal{Q}:Q(K)\geq 1-\varepsilon.\]
+	\end{definition}
+	\begin{definition}[Relative Kompaktheit]
+		$\varnothing\neq\mathcal{Q}$ Menge von W-Maßen auf $\mathcal{B}$ heißt relativ kompakt, falls
+		\[\forall (Q_n)~\text{in $\mathcal{Q}$}~\exists (Q_{n_k}), Q: Q_{n_k}\vk Q.\]
+		Es wird \textit{nicht} $Q\in\mathcal{Q}$ gefordert.
+	\end{definition}
+	\begin{satz}
+		$\mathcal{Q}~\text{straff}\iff\mathcal{Q}~\text{relativ kompakt}$.
+	\end{satz}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_n\vk D\implies\set{P^{X_n}\given n\in\N}~\text{straff}$.
+			\item $(\set{P^{X_n}\given n\in\N}\wedge \exists Q~\forall (X_{n_k}): X_{n_k}\vk Q)\implies X_n\vk Q$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Lévy-Cramér]
+		$X_i$ ZV mit VF $F_i$ und CF $\cf_i$. Es sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\exists F: F_n\vk F$.
+			\item $\exists \cf: \cf_n\to\cf~\text{pktw.}$ und $\cf$ ist stetig in $0$.
+		\end{enumerate}
+		In diesem Fall: $\cf(t)=\int_\R\e^{\i tx}\dd{F(x)}$.
+	\end{satz}
 	\sep
 	\begin{satz}[Starkes Gesetz großer Zahlen]
 		$(X_n)$ u.i.v.-Folge.
@@ -168,7 +206,7 @@
 	\sep
 	\begin{definition}[Charakteristische Funktion]
 		\[
-			\cf_X(t)\defas \E(\e^{\i tX}) = \int_{-\infty}^\infty \e^{\i tx}\P^X(\dd{x})
+			\cf_X(t)\defas \E(\e^{\i tX}) = \int_\R \e^{\i tx}\P^X(\dd{x})
 		\]
 	\end{definition}
 	\begin{satz}[Eigenschaften]
@@ -185,8 +223,8 @@
 		$X_1,\ldots,X_n$ unabhängig: $\cf_{X_1+\cdots+X_n}(t)=\prod_{j=1}^n\cf_{X_j}(t)$.
 	\end{satz}
 	\begin{satz}[Umkehrformel]
-		Ist $\int_{\infty}^\infty\abs{\cf_X(t)}\dd{t}<\infty$, so hat $X$ die
-		$\lambda^1$-Dichte \[f(x) = \frac{1}{2\pi}\int_{-\infty}^\infty\e^{-\i tx}\cf_X(t)\dd{t}.\]
+		Ist $\int_\R\abs{\cf_X(t)}\dd{t}<\infty$, so hat $X$ die
+		$\lambda^1$-Dichte \[f(x) = \frac{1}{2\pi}\int_\R\e^{-\i tx}\cf_X(t)\dd{t}.\]
 	\end{satz}
 	\begin{satz}[Folgerungen]
 		\begin{enumerate}[label=(\alph*)]
