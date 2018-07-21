@@ -4,13 +4,11 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-%\usepackage{savetrees}
 
 \usepackage[ngerman]{babel}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{physics}
 
@@ -20,28 +18,25 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{enumitem}
-\usepackage{stmaryrd}
 
 \usepackage{parskip}
 \usepackage{multicol}
 
-\usepackage{array}
-\usepackage{blindtext}
-\usepackage{float}
-
 \usepackage{dsfont}
-
-\setlength{\parskip}{0pt}
-
-%\usepackage{pdflscape}
-
 \usepackage[left=0.8cm, right=0.8cm, top=0.8cm, bottom=0.8cm,landscape]{geometry}
 
 \newcounter{Sec}
 \pagestyle{empty}
 
-\theoremstyle{break}
-\theorembodyfont{\normalfont\footnotesize}
+\theoremstyle{nonumberbreak}
+\theorembodyfont{\normalfont\footnotesize
+\theorempreskip{0pt}
+\theorempostskip{0pt}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}}
+\setlength{\jot}{0pt}
 \newtheorem{definition}{Definition}[Sec]
 \newtheorem{satz}[definition]{Satz}
 \newtheorem{defsatz}[definition]{Definition/Satz}
@@ -49,40 +44,25 @@
 \newtheorem{defver}[definition]{Definition/Verfahren}
 \newtheorem{defsatzver}[definition]{Definition/Satz/Verfahren}
 \newtheorem{satzver}[definition]{Satz/Verfahren}
+\newtheorem{lemma}[definition]{Lemma}
 
 \MakeOuterQuote{"}
 \DeclareMathOperator{\ffa}{ffa}
 
+\setlength{\parskip}{0pt}
 \setlength{\columnseprule}{0.15pt}
 \setlength{\columnsep}{10pt}
-%\setlength{\multicolsep}{4.0pt plus 2.0pt minus 1.5pt}
+\setlength{\multicolsep}{2pt}
 \setlist[enumerate,itemize]{noitemsep,nosep}
+
 \newcommand{\sep}{%
 	\rule{\linewidth}{0.15pt}%
 	\stepcounter{Sec}%
 	}
+
 \newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
+\newcommand{\defas}{\coloneqq}
 
-\newcommand{\en}{~(n\to\infty)}
-\newcommand{\series}[1][1]{\sum_{n=#1}^\infty}
-\newcommand{\ps}[1][a]{\series[0]#1_n(x-x_0)^n}
-\renewcommand{\d}{\dd}
-
-\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
-\newcolumntype{N}{@{}m{0pt}@{}}
-
-
-\DeclareMathOperator{\Spek}{Spek}
-\DeclareMathOperator{\Kern}{Kern}
-\DeclareMathOperator{\arsinh}{arsinh}
-\DeclareMathOperator{\arcosh}{arcosh}
-\DeclareMathOperator{\artanh}{artanh}
-\DeclareMathOperator{\Per}{Per}
-\DeclareMathOperator{\Kom}{Kom}
-\DeclareMathOperator{\mW}{m.W.}
-\DeclareMathOperator{\oW}{o.W.}
-
-\DeclareMathOperator{\Bin}{Bin}
 \DeclareMathOperator{\Hyp}{Hyp}
 \DeclareMathOperator{\Po}{Po}
 \DeclareMathOperator{\Nb}{Nb}
@@ -102,12 +82,22 @@
 
 \newcommand{\mean}{\bar}
 \newcommand{\median}{\tilde}
+\newcommand{\conj}{\overline}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\N}{\mathbb{N}}
-\renewcommand{\sc}{\mathrel{\stackrel{\P}{\longrightarrow}}}
+\newcommand{\cf}{\varphi}
+
+\newcommand{\e}{\mathrm{e}}
+\renewcommand{\i}{\mathrm{i}}
+
+\newcommand{\sk}{\mathrel{\stackrel{\P}{\longrightarrow}}}
+\newcommand{\fsk}{\mathrel{\stackrel{\operatorname{f.s.}}{\longrightarrow}}}
+\newcommand{\lpk}{\mathrel{\stackrel{\mathcal{L}^p}{\longrightarrow}}}
+\newcommand{\vk}{\mathrel{\stackrel{\mathcal{D}}{\longrightarrow}}}
+
 \newcommand{\fs}[1]{~\operatorname{#1-f.s.}}
 \newcommand{\fu}[1]{~\operatorname{#1-f.ü.}}
 
@@ -118,7 +108,92 @@
 	\textsc{Matrikelnummer:}
 
 	\sep
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item $\limsup_{n\to\infty} A_n\defas \bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k$.
+			\item $\liminf_{n\to\infty} A_n\defas \bigcup_{n=1}^\infty\bigcap_{k=n}^\infty A_k$.
+		\end{enumerate}
+	\end{definition}
+	\begin{lemma}[von Borel-Cantelli]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\sum_{n=1}^{\infty}\P(A_n)<\infty\implies \P(\limsup_{n\to\infty}A_n)=0$.
+			\item $(A_n)$ unabh: $\sum_{n=1}^{\infty}\P(A_n)=\infty\implies \P(\limsup_{n\to\infty}A_n)=1$.
+		\end{enumerate}
+	\end{lemma}
+	\sep
+	\begin{definition}[Konvergenzbegriffe]
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_n \fsk X \defiff \P(\set{\omega\in\Omega : \lim_{n\to\infty} X_n(\omega) = X(\omega)}) = 1$,
+			\item $X_n \sk X \defiff \forall\varepsilon>0:\lim_{n\to\infty}\P(\abs{X_n-X}>\varepsilon)=0$,
+			\item $X_n \lpk X \defiff \lim_{n\to\infty} \E\abs{X_n-X}^p = 0$,
+			\item $X_n \vk X \defiff \forall x\in\mathcal{C}(F):\lim_{n\to\infty} F_n(x) = F(x)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Charakterisierungen]
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_n \fsk X \iff \forall\varepsilon>0:\lim\limits_{n\to\infty}\P(\set{\sup_{k\geq n}\abs{X_k-X}>\varepsilon}) = 0$,
+			\item $X_n \fsk X \impliedby\forall \varepsilon>0:\sum_{n=1}^\infty\P(\abs{X_n-X}>\varepsilon)<\infty$,\\
+			\item $X_n \sk X \iff \forall (X_{n_k})~\exists (X_{n_{k_j}}): X_{n_{k_j}}\fsk X$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Rechenregeln]
+		$h$ stetig, $a_n\to a$, $X_n\sk X$, $Y_n\sk Y$.
+		{\setlength{\columnseprule}{0pt}\begin{multicols}{2}
+		\begin{enumerate}[label=(\alph*)]
+			\item $h(X_n)\sk h(X)$
+			\item $a_nX_n\sk aX$
+			\item $aX_n+bY_n\sk aX+bY$
+			\item $X_nY_n\sk XY$
+			\item $\abs{X_n}\sk\abs{X}$
+		\end{enumerate}
+		\end{multicols}}
+	\end{satz}
+	\sep
+	\begin{satz}[Starkes Gesetz großer Zahlen]
+		$(X_n)$ u.i.v.-Folge.
+		\[
+			\E\abs{X_1}<\infty\iff
+			\exists X:\frac{1}{n}\sum_{j=1}^nX_j\fsk X
+		\]
+		In diesem Fall $X=\E X_1 \fs{\P}$
+	\end{satz}
+	\begin{satz}[Kolmogorov-Kriterium]
+		$(X_n)$ unabhängig, $\forall n:\E X_n^2\leq \infty$, $\exists (a_n): \sum_{n=1}^\infty \frac{\V X_n}{a_n^2}\leq \infty$.
+		Dann \[\frac{1}{a_n}\sum_{j=1}^n(X_j-\E X_j)\fsk 0.\]
+	\end{satz}
+	\begin{satz}[Gleichmäßig beschränkte Varianzen]
+		$(X_n)$ unabgängig, $\exists c\in[0,\infty):\sup_{n\in\N}\V X_n\leq c$. Dann
+		\[\frac{1}{n}\sum_{j=1}^n(X_j-\E X_j)\fsk 0.\]
+	\end{satz}
+	\sep
+	\begin{definition}[Charakteristische Funktion]
+		\[
+			\cf_X(t)\defas \E(\e^{\i tX}) = \int_{-\infty}^\infty \e^{\i tx}\P^X(\dd{x})
+		\]
+	\end{definition}
+	\begin{satz}[Eigenschaften]
+		{\setlength{\columnseprule}{0pt}\begin{multicols}{2}
+		\begin{enumerate}[label=(\alph*)]
+			\item $\cf_X(0)=1$, $\abs{\cf_X(t)}\leq 1$,
+			\item $\cf_X$ glm stetig,
+			\item $\cf_X(-t) = \conj{\cf_X(t)}$,
+			\item $\cf_{aX+b}(t) = \e^{\i tb}\cf_X(at)$.
+		\end{enumerate}
+		\end{multicols}}
+	\end{satz}
+	\begin{satz}[Faltung]
+		$X_1,\ldots,X_n$ unabhängig: $\cf_{X_1+\cdots+X_n}(t)=\prod_{j=1}^n\cf_{X_j}(t)$.
+	\end{satz}
+	\begin{satz}[Umkehrformel]
+		Ist $\int_{\infty}^\infty\abs{\cf_X(t)}\dd{t}<\infty$, so hat $X$ die
+		$\lambda^1$-Dichte \[f(x) = \frac{1}{2\pi}\int_{-\infty}^\infty\e^{-\i tx}\cf_X(t)\dd{t}.\]
+	\end{satz}
+	\begin{satz}[Folgerungen]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\P^X=\P^Y\iff\cf_X=\cf_Y$.
+			\item $X\sim -X\iff \forall t\in\R:\cf_X(t)\in\R$.
+		\end{enumerate}
+	\end{satz}
 
-	$f=g\fu{\P}$.
 \end{multicols*}
 \end{document}
