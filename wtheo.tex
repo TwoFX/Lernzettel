@@ -83,6 +83,7 @@
 \newcommand{\mean}{\bar}
 \newcommand{\median}{\tilde}
 \newcommand{\conj}{\overline}
+\newcommand{\ind}{\mathds{1}}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\E}{\mathbb{E}}
@@ -231,6 +232,58 @@
 			\item $\P^X=\P^Y\iff\cf_X=\cf_Y$.
 			\item $X\sim -X\iff \forall t\in\R:\cf_X(t)\in\R$.
 		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{satz}[Lindeberg-Lévy]
+		$(X_n)$ u.i.v, $\E X_1^2<\infty$, $\sigma^2\defas \V X_1>0$, $a\defas \E X_1$.
+		\[
+			\frac{\sum_{j=1}^nX_j - na}{\sigma\sqrt{n}}\vk \Nd(0, 1).
+		\]
+	\end{satz}
+	\begin{definition}[Dreiecksschema] %TODO FIXME AAAAA This is too ugly even for the WTheo Zettel
+		$\set{X_{nj}\given n\in\N, j=1,\ldots,k_n}$. $X_{n1},\ldots,X_{nk_n}$ auf dem
+		gleichen Raum und unabhängig. $0<\sigma_{nj}^2\defas \V X_{nj}<\infty$.
+		$a_{nj}\defas \E X_{nj}$, $\sigma_n^2\defas\sum_{i=1}^{k_n}\sigma_{ni}^2$.
+		$S_n\defas\sum_{i=1}^{k_n}X_{ni}\implies \V S_n=\sigma_n^2$.
+		$Y_{nj}\defas\frac{X_{nj}-a_{nj}}{\sigma_n}\implies \E Y_{nj}=0$.
+		$S_n^*\defas\frac{S_n-\E S_n}{\sqrt{\V S_n}} = \sum_{j=1}^{k_n} Y_{nj}$.
+		$\tau_{nj}^2\defas \V Y_{nj} = \frac{\V X_{nj}}{\sigma_n^2}=\frac{\sigma_{nj}^2}{\sigma_n^2}
+		\implies \sum_{j=1}^{k_n}\tau_{nj}^2=1$.
+	\end{definition}
+	\begin{satz}[Lindeberg-Feller]
+		Dreiecksschema. Lindeberg-Bedingung: $\forall\varepsilon>0:$
+		\[
+			L_n(\varepsilon)\defas \sum_{j=1}^{k_n}\E[Y_{nj}^2\ind\set{\abs{Y_{nj}}\geq\varepsilon}]\to 0.
+		\]
+		Dann $S_n^*\vk\Nd(0, 1)$.
+	\end{satz}
+	\begin{satz}[Ljapunov]
+		Dreiecksschema. $\delta>0$ (man wählt fast immer $\delta\defas 2$) mit
+		\[
+			\lim_{n\to\infty}\frac{1}{\sigma_n^{2+\delta}}\sum_{j=1}^{k_n}\E\left[\abs{X_{nj}-a_{nj}}^{2+\delta}\right]=0.
+		\]
+		Dann $S_n^*\vk\Nd(0, 1)$.
+	\end{satz}
+	\sep
+	\begin{definition}[Übergangswahrscheinlichkeit]
+		$\P_{1, 2}\colon\Omega_1\times\mathcal{A}_2\to\R$ mit
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall \omega_1\in\Omega_1:\P_{1,2}(w_1,\cdot)~\text{ist W-Maß}$.
+			\item $\forall A_2\in\mathcal{S}_2:\P_{1,2}(\cdot,A_2)~\text{$(\mathcal{A}_1,\mathcal{B})$-mb}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{defsatz}[Kopplung]
+		\begin{align*}
+			\P_1\otimes\P_{1,2}(A)\defas&\int_{\Omega_1}\int_{\Omega_2}\ind_A\P_{1,2}(\omega_1,\dd{\omega_2})\P_1(\dd{\omega_1})\\
+			\P_1\otimes\P_{1,2}(A_1\times A_2) = &\int_{A_1}\P_{1,2}(\omega_1, A_2)\P_1(\dd{\omega_1})
+		\end{align*}
+	\end{defsatz}
+	\begin{satz}[Fubini]
+		$f\colon\Omega_1\times\Omega_2\to\overline\R$ $\mathcal{A}_1\otimes\mathcal{A}_2$-mb; nichtnegativ
+		oder $\P_1\otimes\P_{1,2}$-ib.
+		\[
+			\int_{\Omega_1\times\Omega_2}f\dd{\P_1\otimes\P_{1,2}} = \int_{\Omega_1}\int_{\Omega_2}f\P_{1,2}(\omega_1,\dd{\omega_2})\P_1(\dd{\omega_1})
+		\]
 	\end{satz}
 
 \end{multicols*}
