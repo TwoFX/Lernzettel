@@ -86,8 +86,10 @@
 \newcommand{\ind}{\mathds{1}}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
 \newcommand{\E}{\mathbb{E}}
-\newcommand{\BE}[2]{\E[#1|\mathcal{#2}]}
+\newcommand{\EV}[2]{\E[#1|#2]}
+\newcommand{\BE}[2]{\EV{#1}{\mathcal{#2}}}
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\cf}{\varphi}
@@ -298,6 +300,11 @@
 			\P_{1,2}(\omega_1, A_2)\defas&\int_{A_2}g_{1,2}(\omega_1,\omega_2)\mu_2(\dd{\omega_2})\\
 		\end{align*}
 	\end{satz}
+	\begin{defsatz}[Zerlegung]
+		ZV $Z, X$. Dann existiert ÜW $\P^X_Z$ mit $\P^{(Z, X)}=\P^Z\otimes\P^X_Z$.
+		$\P^X_Z$ ist eindeutig bis auf $\P^Z$-Nullmenge.
+		$\P^Z_{Z=z}(\cdot)\defas\P^X_Z(z, \cdot)$ heißt bedingte Verteilung von $X$ unter $Z=z$.
+	\end{defsatz}
 	\begin{satz}[Bedingte Verteilung bei gemeinsamer Dichte]
 		$\mu, \nu$ $\sigma$-endlich, $\P^{(Z, X)}=f(\mu\otimes\nu)$, $f_1(z)\defas\int_{\R^\ell}f(z, x)\nu(\dd{x})$,
 		$g_0\colon\R^\ell\to\R_{\geq0}$ mb, $\int_{\R^\ell}g_0\dd{\nu}=1$.
@@ -342,7 +349,125 @@
 		$g\colon\R\to\R$ konvex, $\E X<\infty$, $\E g(X)<\infty$: $\BE{g(X)}{G}\geq g(\BE{X}{G})$.
 	\end{satz}
 	\begin{satz}[Unabhängige $\sigma$-Algebra]
-		$\mathcal{H}$ und $\sigma(\sigma(X)\cup\mathcal{G})$ unabh: $\BE{X}{G}=\E[X|\sigma(\mathcal{G}\cup\mathcal{H})]$.
+		$\mathcal{H}$ und $\sigma(\sigma(X)\cup\mathcal{G})$ unabh: $\BE{X}{G}=\EV{X}{\sigma(\mathcal{G}\cup\mathcal{H})}$.
+	\end{satz}
+	\begin{satz}[Faktorisierung]
+		$\EV{X}{Z=z}\defas h$ mit $\EV{X}{Z}=h\circ Z$ heißt bedingter Erwartungswert von
+		$X$ unter $Z=z$. $h$ wird durch
+		\[
+			\forall A'\in\mathcal{A}': \int_A'\EV{X}{Z=z}\P^Z(\dd{z})=\int_{Z^{-1}(A')}X\dd{\P}
+		\]
+		$\P$-fast sicher charakterisiert.
+	\end{satz}
+	\begin{definition}[Bedingte Wahrscheinlichkeit]
+		$\P(A|Z)\defas\P(A|\sigma(Z))\defas\EV{\ind_A}{Z}$. $\P(A|Z=z)\defas\EV{\ind_A}{Z=z}$.
+		\begin{align*}
+			\P(A\cap\set{Z\in A'}) &= \int_{A'}\P(A|Z=z)\P^Z(\dd{z})\\
+			\P(A) &= \int_{\Omega'}\P(A|Z=z)\P^Z(\dd{z})
+		\end{align*}
+	\end{definition}
+	\begin{satz}[Bedingter Erwartungswert über bedingte Verteilung]
+		$Z$ ZV, $X$ reellwertig ib. Dann
+		\[
+			\EV{X}{Z=z} = \int_\R x\P^X_{Z=z}(\dd{x}).
+		\]
+	\end{satz}
+	\begin{satz}[Dichten]
+		$\mu, \nu$ $\sigma$-endlich, $X$ reellwertig ib, $\P^{(Z, X)}=f(\mu\otimes\nu)$.
+		Dann
+		\[
+			\EV{X}{Z=z}=\int_\R xf(x|z)\nu(\dd{x}).
+		\]
+	\end{satz}
+	\begin{satz}
+		$f\colon\R^{k+\ell}\to\overline\R$ mb, $\E\abs{f(Z, X)}<\infty$. Dann
+		\[
+			\E f(Z, X) = \int_{R^k}\EV{f(Z, X)}{Z=z}\P^Z(\dd{z})
+		\]
+		mit
+		\[
+			\EV{f(Z, X)}{Z=z}\defas \int_{\R^\ell}f(z, x)\P^X_{Z=z}(\dd{x}).
+		\]
+	\end{satz}
+	\sep
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item Aufsteigende Folge von Sub-$\sigma$-Algebren heißt Filtration.
+			\item $\tau\colon\Omega\to\N_0\cup\set\infty$ heißt Stoppzeit bezüglich
+				$\mathbb{F}=(\F_n)_{n\geq0}$, falls $\forall n\in\N_0:\set{\tau=n}\in\F_n$.
+			\item Stoppzeit mit $\P(\tau<\infty)=1$ heißt endlich.
+			\item $(X_n)_{n\in\N_0}$ heißt adaptiert, falls $X_n$ $\F_n$-messbar.
+			\item $\F_n^X\defas\sigma(X_0,\ldots,X_n)$ heißt natürliche Filtration.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Charakterisierung]
+		$\tau$ ist Stoppzeit genau dann wenn $\forall n\in\N_0:\set{\tau\leq n}\in\F_n$.
+	\end{satz}
+	\begin{definition}[$\sigma$-Algebra der $\tau$-Vergangenheit]
+		$\mathcal{A}_\tau\defas\set{A\in\mathcal{A}\given \forall n\in\N_0:A\cap\set{\tau\leq n}\in\F_n}$.
+	\end{definition}
+	\begin{defsatz}
+		$\tau$ endlich, $(X_n)$ adaptiert. $X_\tau\colon\Omega\to\R$,
+		\[
+			\omega\mapsto\begin{cases}
+				X_{\tau(\omega)}(\omega), &\tau(\omega)<\infty,\\
+				0, &\tau(\omega)=\infty
+			\end{cases}
+		\]
+		ist $\mathcal{A}_\tau$-messbar.
+	\end{defsatz}
+	\begin{definition}
+		$(X_n)$ adaptiert, $\P$-integrierbar heißt
+		\begin{enumerate}[label=(\alph*)]
+			\item Submartingal, falls $\forall n\in\N_0:\EV{X_{n+1}}{\F_n}\geq X_n\fs{\P}$,
+			\item Supermartingal, falls $\forall n\in\N_0:\EV{X_{n+1}}{\F_n}\leq X_n\fs{\P}$,
+			\item Martingal, falls $\forall n\in\N_0:\EV{X_{n+1}}{\F_n} = X_n\fs{\P}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Entsprechend für Supermartingale und Martingale]
+		$(X_n)$ Submartingal. $\EV{X_m}{\F_n}\geq X_n\fs\P$, $\E X_n\leq \E X_{n+1}$.
+	\end{satz}
+	\begin{satz}
+		$(X_n)$ Supermartinal oder Submartingal. $(X_n)$ ist Martinal genau dann wenn
+		$\forall n\geq 1:\E X_n = \E X_0$.
+	\end{satz}
+	\begin{defsatz}[Doobsches Martingal]
+		$X$ ZV, $(\F_n)$ Filtration. $X_n\defas\EV{X}{\F_n}$ ist Martingal.
+	\end{defsatz}
+	\begin{definition}[Prävisibel]
+		$(V_n)$ heißt prävisibel/vorhersagbar, falls $V_n$ $\F_{n-1}$ messbar,
+		wobei $\F_{-1}\defas\set{\varnothing,\Omega}$.
+	\end{definition}
+	\begin{satz}
+		$(X_n)$ vorhersagbares Martingal, dann $X_n=X_0\fs\P$.
+	\end{satz}
+	\begin{satz}[Doob-Zerlegung]
+		$(X_n)$ adaptiert, $\P$-integrierbar. Dann existiert eindeutige Zerlegung
+		$X_n=M_n+V_n$, $(M_n)$ Martingal, $(V_n)$ vorhersagbar, $V_0=0$.
+		$(X_n)$ ist genau dann Submartingal, wenn $(V_n)$ $\fs\P$ monoton wachsend.
+	\end{satz}
+	% TODO FIXME AAAA Orthogonale Zuwächse
+	\begin{satz}
+		$(X_n)$ Martingal, $g\colon\R\to\R$ konvex, $\E\abs{g(X_n)}<\infty$. Dann
+		ist $(g(X_n))$ ein Submartingal.
+	\end{satz}
+	% TODO FIXME AAAA Spielsysteme
+	\begin{satz}
+		$(X_n)$ Martingal, $\tau$ Stoppzeit. $X_{\tau\wedge n}(\omega)\defas X_{\tau(\omega)\wedge n}(\omega)$
+		ist Martingal. Entsprechend für Sub-/Supermartingale.
+	\end{satz}
+	\begin{satz}[Optional Stopping Theorem]
+		$(X_n)$ Martingal, $\tau$ Stoppzeit bzgl. natürlicher Filtration. $\E\tau<\infty$.
+		Es existiere $c\in(0,\infty)$ mit $\forall n\geq 1$:
+		\[
+			\EV{\ind\set{\tau\geq n}\cdot\abs{X_n-X_{n-1}}}{X_0,\ldots,X_{n-1}}\leq c\ind\set{\tau\geq n}\fs\P.
+		\]
+		Dann $\E X_\tau = \E X_0$. Ist $(X_n)$ stattdessen Sub/Supermartingal, so
+		gilt \enquote{$\geq$} bzw. \enquote{$\leq$}.
+	\end{satz}
+	\begin{satz}[Waldsche Gleichung]
+		$(X_n)$ u.i.v., $\E\abs{X_1}<\infty$, $N$ Stoppzeit bzgl. natürlicher Filtration,
+		$\E N<\infty$. Dann $\E(\sum_{j=1}^N X_j) = \E X_1\cdot \E N$.
 	\end{satz}
 
 \end{multicols*}
