@@ -256,7 +256,7 @@
 			\frac{\sum_{j=1}^nX_j - na}{\sigma\sqrt{n}}\vk \Nd(0, 1).
 		\]
 	\end{satz}
-	\begin{definition}[Dreiecksschema] %TODO FIXME AAAAA This is too ugly even for the WTheo Zettel
+	\begin{definition}[Dreiecksschema]
 		$\set{X_{nj}\given n\in\N, j=1,\ldots,k_n}$. $X_{n1},\ldots,X_{nk_n}$ auf dem
 		gleichen Raum und unabhängig. $0<\sigma_{nj}^2\defas \V X_{nj}<\infty$.
 		$a_{nj}\defas \E X_{nj}$, $\sigma_n^2\defas\sum_{i=1}^{k_n}\sigma_{ni}^2$.
@@ -272,6 +272,12 @@
 			L_n(\varepsilon)\defas \sum_{j=1}^{k_n}\E[Y_{nj}^2\ind\set{\abs{Y_{nj}}\geq\varepsilon}]\to 0.
 		\]
 		Dann $S_n^*\vk\Nd(0, 1)$.
+	\end{satz}
+	\begin{satz}[Notwendig für die Lindeberg-Bedingung]
+		Feller-Bedingung:
+		\[
+			\lim_{n\to\infty}\frac{\max_{1\leq j\leq k_n}\sigma_{nj}^2}{\sigma_{n1}^2+\cdots+\sigma_{nk_n}^2}
+		\]
 	\end{satz}
 	\begin{satz}[Ljapunov]
 		Dreiecksschema. $\delta>0$ (man wählt fast immer $\delta\defas 2$) mit
@@ -459,12 +465,22 @@
 		$X_n=M_n+V_n$, $(M_n)$ Martingal, $(V_n)$ vorhersagbar, $V_0=0$.
 		$(X_n)$ ist genau dann Submartingal, wenn $(V_n)$ $\fs\P$ monoton wachsend.
 	\end{satz}
-	% TODO FIXME AAAA Orthogonale Zuwächse
+	\begin{satz}[Orthogonale Zuwächse]
+		$(X_n)$ Martingal, $\E X_n^2<\infty$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall \ell\neq m: \E[(X_m-X_{m-1})(X_\ell - X_{\ell - 1})] = 0$.
+			\item $\V X_n =\V X_0 + \sum_{j=1}^n\E[(X_j - X_{j-1})^2]$.
+		\end{enumerate}
+	\end{satz}
 	\begin{satz}
 		$(X_n)$ Martingal, $g\colon\R\to\R$ konvex, $\E\abs{g(X_n)}<\infty$. Dann
 		ist $(g(X_n))$ ein Submartingal.
 	\end{satz}
-	% TODO FIXME AAAA Spielsysteme
+	\begin{satz}[Spielsystem]
+		$(X_n)$ Martingal, $(C_n)$ prävisibel. $(C\bullet X)_n\defas \sum_{k=1}^n C_k(X_k-X_{k-1})$
+		heißt Martingaltransformation. Falls $\E[C_n(X_n-X_{n-1})] <\infty$, ist $C\bullet X$ ein
+		Martingal. Ist $C_n\geq 0$, so bleibt auch Sub-/Supermartingal erhalten.
+	\end{satz}
 	\begin{satz}
 		$(X_n)$ Martingal, $\tau$ Stoppzeit. $X_{\tau\wedge n}(\omega)\defas X_{\tau(\omega)\wedge n}(\omega)$
 		ist Martingal. Entsprechend für Sub-/Supermartingale.
