@@ -487,37 +487,37 @@
 		\tiny
 		\begin{tabular}{ | M{1.2cm} | M{2.2cm} | M{1cm} | M{2.7cm} | M{2cm} | N}
 			\hline
-			Name & $\P(X=k)$ & $\E X$ & $\V X$ & $X_1 + X_2$ & \\[0.6cm] \hline \hline
-			$\Bin(n, p)$ & $\binom{n}{k}p^k(1-p)^{n-k}$ & $np$ & $np(1-p)$ & $\Bin(n_1+n_2, p)$ & \\[0.6cm] \hline
-			$\G(p)$ & $(1-p)^kp$ & $\frac{1-p}{p}$ & $\frac{1-p}{p^2}$ & $\Nb(2, p)$ & \\[0.6cm] \hline
-			$\Nb(r, p)$ & $\binom{k+r-1}{k}p^r(1-p)^k$ & $r\frac{1-p}{p}$ & $r\frac{1-p}{p^2}$ & $\Nb(r_1 + r_2, p)$ & \\[0.6cm] \hline
-			$\Hyp(n, r, s)$ & $\frac{\binom{r}{k}\binom{s}{n-k}}{\binom{r+s}{n}}$ & $n\frac{r}{r+s}$ & $np(1-p)\left(1-\frac{n-1}{r+s-1}\right)$ & & \\[0.6cm] \hline
-			$\Po(\lambda)$ & $e^{-\lambda}\frac{\lambda^k}{k!}$ & $\lambda$ & $\lambda$ & $\Po(\lambda_1 + \lambda_2)$ & \\[0.6cm] \hline
+			Name & $\P(X=k)$ & $\E X$ & $\V X$ & $X_1 + X_2$ & \\ \hline \hline
+			$\Bin(n, p)$ & $\binom{n}{k}p^k(1-p)^{n-k}$ & $np$ & $np(1-p)$ & $\Bin(n_1+n_2, p)$ & \\ \hline
+			$\G(p)$ & $(1-p)^kp$ & $\frac{1-p}{p}$ & $\frac{1-p}{p^2}$ & $\Nb(2, p)$ & \\ \hline
+			$\Nb(r, p)$ & $\binom{k+r-1}{k}p^r(1-p)^k$ & $r\frac{1-p}{p}$ & $r\frac{1-p}{p^2}$ & $\Nb(r_1 + r_2, p)$ & \\ \hline
+			$\Hyp(n, r, s)$ & $\frac{\binom{r}{k}\binom{s}{n-k}}{\binom{r+s}{n}}$ & $n\frac{r}{r+s}$ & $np(1-p)\left(1-\frac{n-1}{r+s-1}\right)$ & & \\ \hline
+			$\Po(\lambda)$ & $e^{-\lambda}\frac{\lambda^k}{k!}$ & $\lambda$ & $\lambda$ & $\Po(\lambda_1 + \lambda_2)$ & \\ \hline
 		\end{tabular}
 		\begin{tabular}{ | M{1.2cm} | M{4.3cm} | M{2.2cm} | M{1.6cm} | M{1.6cm} | M{3.2cm} | N}
 			\hline
-			Name & $f(x)$ & $F(x)$ & $\E X$ & $\E X^2$ & $\V X$ & \\[0.3cm] \hline \hline
+			Name & $f(x)$ & $F(x)$ & $\E X$ & $\E X^2$ & $\V X$ & \\ \hline \hline
 			$\U(a, b)$ & $\begin{cases}\frac{1}{b-a}, &x\in(a, b)\\0, &\text{sonst}\end{cases}$ &
 				$\begin{cases}0,&x\leq a\\\frac{x-a}{b-a}, &x\in(a, b)\\1,&x\geq b\end{cases}$ &
-				$\frac{a+b}{2}$ & $\frac{a^2+ab+b^2}{3}$ & $\frac{(a-b)^2}{12}$ & \\[1cm] \hline
+				$\frac{a+b}{2}$ & $\frac{a^2+ab+b^2}{3}$ & $\frac{(a-b)^2}{12}$ & \\ \hline
 			$\Exp(\lambda)$ & $\lambda e^{-\lambda x}, x>0$ &
 				$\begin{cases}1-e^{-\lambda x},&x>0\\0,&x\leq 0\end{cases}$ & $\frac{1}{\lambda}$ & $\frac{2}{\lambda^2}$
-				& $\frac{1}{\lambda^2}$ & \\[0.6cm] \hline
+				& $\frac{1}{\lambda^2}$ & \\\hline
 			$\Nd(\mu, \sigma^2)$ & $\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$ & $\Phi(\frac{x-\mu}{\sigma})$
-				& $\mu$ & $\mu^2+\sigma^2$ & $\sigma^2$ & \\[0.6cm] \hline
+				& $\mu$ & $\mu^2+\sigma^2$ & $\sigma^2$ & \\ \hline
 			$\Gd(\alpha, \beta)$ & $\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha - 1}\exp(-\beta x), x>0$
-				& & $\frac{\alpha}{\beta}$ & $\frac{\Gamma(\alpha+2)}{\Gamma(\alpha)\beta^\alpha}$ & $\frac{\alpha}{\beta^2}$ &\\[0.6cm] \hline
+				& & $\frac{\alpha}{\beta}$ & $\frac{\Gamma(\alpha+2)}{\Gamma(\alpha)\beta^\alpha}$ & $\frac{\alpha}{\beta^2}$ &\\ \hline
 			$\Bd(\alpha, \beta)$ & $\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1},x\in(0,1)$
 				& & $\frac{\alpha}{\alpha+\beta}$ & $\frac{B(2+\alpha,\beta)}{B(\alpha, \beta)}$
-				& $\frac{\alpha\beta}{(\alpha+\beta)(\alpha+\beta+1)}$ & \\[0.6cm] \hline
+				& $\frac{\alpha\beta}{(\alpha+\beta)(\alpha+\beta+1)}$ & \\ \hline
 			$\chi_k^2$ & $\mathds{1}_{(0, \infty)}(x)\frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}e^{-\frac{t}{2}}x^{\frac{k}{2}-1}$
-				& & $k$ & & $2k$ & \\[0.6cm] \hline
+				& & $k$ & & $2k$ & \\ \hline
 			$\LN(\mu,\sigma^2)$ & $\mathds{1}_{(0,\infty)}(x)\frac{1}{\sigma x\sqrt{2\pi}}\exp(-\frac{(\log(x)-\mu)^2}{2\sigma^2})$
 				& $\Phi(\frac{\log(x)-\mu}{\sigma})$ & $\exp(\mu+\frac{\sigma^2}{2})$ & $\exp(2(\mu+\sigma^2))$
-				& $\exp(2\mu+\sigma^2)(\exp(\sigma^2)-1)$ & \\[0.6cm] \hline
-			%$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
-			%	& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
-			%	& & & \\[0.6cm] \hline
-			$\Cd$ & $\frac{1}{\pi}\frac{1}{1+x^2}$ & $\frac{1}{\pi}(\arctan(x)-\frac{\pi}{2})$ & $\infty$ & & & \\[0.6cm] \hline
+				& $\exp(2\mu+\sigma^2)(\exp(\sigma^2)-1)$ & \\ \hline
+			$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
+				& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
+				& & & \\ \hline
+			$\Cd$ & $\frac{1}{\pi}\frac{1}{1+x^2}$ & $\frac{1}{\pi}(\arctan(x)-\frac{\pi}{2})$ & $\infty$ & & & \\ \hline
 		\end{tabular}
 \end{document}
