@@ -498,9 +498,10 @@
 		$(X_n)$ u.i.v., $\E\abs{X_1}<\infty$, $N$ Stoppzeit bzgl. natürlicher Filtration,
 		$\E N<\infty$. Dann $\E(\sum_{j=1}^N X_j) = \E X_1\cdot \E N$.
 	\end{satz}
-
 \end{multicols}
-	\begin{minipage}{11.4cm}
+\vspace{0.2cm}
+
+\begin{minipage}{11.35cm}
 	\begin{defsatz}
 		\begin{align*}
 			\Gamma(z)\defas&\int_0^\infty x^{z-1}e^{-x}\dd{x} & \Bd(x, y)\defas&\int_0^1 t^{x-1}(1-t)^{y-1}\dd{t}\\
@@ -518,32 +519,32 @@
 		$\Hyp(n, r, s)$ & $\frac{\binom{r}{k}\binom{s}{n-k}}{\binom{r+s}{n}}$ & $n\frac{r}{r+s}$ & $np(1-p)\left(1-\frac{n-1}{r+s-1}\right)$ & & \\ \hline
 		$\Po(\lambda)$ & $e^{-\lambda}\frac{\lambda^k}{k!}$ & $\lambda$ & $\lambda$ & $\Po(\lambda_1 + \lambda_2)$ & \\ \hline
 	\end{tabular}
-	\end{minipage}
-	\tiny
-	\begin{tabular}{ | M{1.2cm} | M{4.3cm} | M{2.2cm} | M{1.6cm} | M{1.6cm} | M{3.2cm} | N}
-		\hline
-		Name & $f(x)$ & $F(x)$ & $\E X$ & $\E X^2$ & $\V X$ & \\ \hline \hline
-		$\U(a, b)$ & $\begin{cases}\frac{1}{b-a}, &x\in(a, b)\\0, &\text{sonst}\end{cases}$ &
-			$\begin{cases}0,&x\leq a\\\frac{x-a}{b-a}, &x\in(a, b)\\1,&x\geq b\end{cases}$ &
-			$\frac{a+b}{2}$ & $\frac{a^2+ab+b^2}{3}$ & $\frac{(a-b)^2}{12}$ & \\ \hline
-		$\Exp(\lambda)$ & $\lambda e^{-\lambda x}, x>0$ &
-			$\begin{cases}1-e^{-\lambda x},&x>0\\0,&x\leq 0\end{cases}$ & $\frac{1}{\lambda}$ & $\frac{2}{\lambda^2}$
-			& $\frac{1}{\lambda^2}$ & \\\hline
-		$\Nd(\mu, \sigma^2)$ & $\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$ & $\Phi(\frac{x-\mu}{\sigma})$
-			& $\mu$ & $\mu^2+\sigma^2$ & $\sigma^2$ & \\ \hline
-		$\Gd(\alpha, \beta)$ & $\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha - 1}\exp(-\beta x), x>0$
-			& & $\frac{\alpha}{\beta}$ & $\frac{\Gamma(\alpha+2)}{\Gamma(\alpha)\beta^\alpha}$ & $\frac{\alpha}{\beta^2}$ &\\ \hline
-		$\Bd(\alpha, \beta)$ & $\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1},x\in(0,1)$
-			& & $\frac{\alpha}{\alpha+\beta}$ & $\frac{B(2+\alpha,\beta)}{B(\alpha, \beta)}$
-			& $\frac{\alpha\beta}{(\alpha+\beta)(\alpha+\beta+1)}$ & \\ \hline
-		$\chi_k^2$ & $\mathds{1}_{(0, \infty)}(x)\frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}e^{-\frac{t}{2}}x^{\frac{k}{2}-1}$
-			& & $k$ & & $2k$ & \\ \hline
-		$\LN(\mu,\sigma^2)$ & $\mathds{1}_{(0,\infty)}(x)\frac{1}{\sigma x\sqrt{2\pi}}\exp(-\frac{(\log(x)-\mu)^2}{2\sigma^2})$
-			& $\Phi(\frac{\log(x)-\mu}{\sigma})$ & $\exp(\mu+\frac{\sigma^2}{2})$ & $\exp(2(\mu+\sigma^2))$
-			& $\exp(2\mu+\sigma^2)(\exp(\sigma^2)-1)$ & \\ \hline
-		$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
-			& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
-			& & & \\ \hline
-		$\Cd$ & $\frac{1}{\pi}\frac{1}{1+x^2}$ & $\frac{1}{\pi}(\arctan(x)-\frac{\pi}{2})$ & $\infty$ & & & \\ \hline
-	\end{tabular}
+\end{minipage}
+\tiny
+\begin{tabular}{ | M{1.2cm} | M{4.3cm} | M{2.2cm} | M{1.6cm} | M{1.6cm} | M{3.2cm} | N}
+	\hline
+	Name & $f(x)$ & $F(x)$ & $\E X$ & $\E X^2$ & $\V X$ & \\ \hline \hline
+	$\U(a, b)$ & $\begin{cases}\frac{1}{b-a}, &x\in(a, b)\\0, &\text{sonst}\end{cases}$ &
+		$\begin{cases}0,&x\leq a\\\frac{x-a}{b-a}, &x\in(a, b)\\1,&x\geq b\end{cases}$ &
+		$\frac{a+b}{2}$ & $\frac{a^2+ab+b^2}{3}$ & $\frac{(a-b)^2}{12}$ & \\ \hline
+	$\Exp(\lambda)$ & $\lambda e^{-\lambda x}, x>0$ &
+		$\begin{cases}1-e^{-\lambda x},&x>0\\0,&x\leq 0\end{cases}$ & $\frac{1}{\lambda}$ & $\frac{2}{\lambda^2}$
+		& $\frac{1}{\lambda^2}$ & \\\hline
+	$\Nd(\mu, \sigma^2)$ & $\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$ & $\Phi(\frac{x-\mu}{\sigma})$
+		& $\mu$ & $\mu^2+\sigma^2$ & $\sigma^2$ & \\ \hline
+	$\Gd(\alpha, \beta)$ & $\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha - 1}\exp(-\beta x), x>0$
+		& & $\frac{\alpha}{\beta}$ & $\frac{\Gamma(\alpha+2)}{\Gamma(\alpha)\beta^\alpha}$ & $\frac{\alpha}{\beta^2}$ &\\ \hline
+	$\Bd(\alpha, \beta)$ & $\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1},x\in(0,1)$
+		& & $\frac{\alpha}{\alpha+\beta}$ & $\frac{B(2+\alpha,\beta)}{B(\alpha, \beta)}$
+		& $\frac{\alpha\beta}{(\alpha+\beta)(\alpha+\beta+1)}$ & \\ \hline
+	$\chi_k^2$ & $\mathds{1}_{(0, \infty)}(x)\frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}e^{-\frac{t}{2}}x^{\frac{k}{2}-1}$
+		& & $k$ & & $2k$ & \\ \hline
+	$\LN(\mu,\sigma^2)$ & $\mathds{1}_{(0,\infty)}(x)\frac{1}{\sigma x\sqrt{2\pi}}\exp(-\frac{(\log(x)-\mu)^2}{2\sigma^2})$
+		& $\Phi(\frac{\log(x)-\mu}{\sigma})$ & $\exp(\mu+\frac{\sigma^2}{2})$ & $\exp(2(\mu+\sigma^2))$
+		& $\exp(2\mu+\sigma^2)(\exp(\sigma^2)-1)$ & \\ \hline
+	$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
+		& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
+		& & & \\ \hline
+	$\Cd$ & $\frac{1}{\pi}\frac{1}{1+x^2}$ & $\frac{1}{\pi}(\arctan(x)-\frac{\pi}{2})$ & $\infty$ & & & \\ \hline
+\end{tabular}
 \end{document}
