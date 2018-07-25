@@ -126,10 +126,7 @@
 	\end{lemma}
 	\sep
 	\begin{definition}
-		\begin{enumerate}[label=(\alph*)]
-			\item $\limsup_{n\to\infty} A_n\defas \bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k$.
-			\item $\liminf_{n\to\infty} A_n\defas \bigcup_{n=1}^\infty\bigcap_{k=n}^\infty A_k$.
-		\end{enumerate}
+		$\limsup_{n\to\infty} A_n\defas \bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k$.
 	\end{definition}
 	\begin{lemma}[von Borel-Cantelli]
 		\begin{enumerate}[label=(\alph*)]
@@ -137,15 +134,10 @@
 			\item $(A_n)$ unabh: $\sum_{n=1}^{\infty}\P(A_n)=\infty\implies \P(\limsup_{n\to\infty}A_n)=1$.
 		\end{enumerate}
 	\end{lemma}
+	\begin{lemma}[Ungleichung aus Lindeberg-Feller]
+		$z_i, w_i \in \mathbb{D} \implies \abs{\prod_{j=1}^m z_j - \prod_{j=1}^m w_j} \leq \sum_{j=1}^m \abs{z_j - w_j}$.
+	\end{lemma}
 	\sep
-	\begin{definition}[Konvergenzbegriffe]
-		\begin{enumerate}[label=(\alph*)]
-			\item $X_n \fsk X \defiff \P(\set{\omega\in\Omega : \lim_{n\to\infty} X_n(\omega) = X(\omega)}) = 1$,
-			\item $X_n \sk X \defiff \forall\varepsilon>0:\lim_{n\to\infty}\P(\abs{X_n-X}>\varepsilon)=0$,
-			\item $X_n \lpk X \defiff \lim_{n\to\infty} \E\abs{X_n-X}^p = 0$,
-			\item $X_n \vk X \defiff \forall x\in\mathcal{C}(F):\lim_{n\to\infty} F_n(x) = F(x)$.
-		\end{enumerate}
-	\end{definition}
 	\begin{satz}[Charakterisierungen]
 		\begin{enumerate}[label=(\alph*)]
 			\item $X_n \fsk X \iff \forall\varepsilon>0:\lim\limits_{n\to\infty}\P(\set{\sup_{k\geq n}\abs{X_k-X}>\varepsilon}) = 0$,
@@ -248,6 +240,11 @@
 			\item $\P^X=\P^Y\iff\cf_X=\cf_Y$.
 			\item $X\sim -X\iff \forall t\in\R:\cf_X(t)\in\R$.
 		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Momente]
+		Sei $X$ ZV. $\E \abs{X}^r < \infty \implies \cf_X(0) = \i^r \E X^r$.
+		
+		$\abs{\cf_X - \sum_{r=0}^k{\frac{(it)^r}{r!}\E X^r}} \le \E\left[ \frac{2\abs{tX}^k}{k!} \land \frac{2\abs{tX}^{k+1}}{(k+1)!} \right]$
 	\end{satz}
 	\sep
 	\begin{satz}[Lindeberg-Lévy]
