@@ -120,8 +120,8 @@
 	\begin{lemma}[von Scheffé]
 		$\P=f\mu$, $Q=g\mu$, $\P_n=f_n\mu$.
 		\begin{enumerate}[label=(\alph*)]
-			\item $\sup_{A\in\mathcal{A}}\abs{\P(A)-Q(A)}=\frac{1}{2}\int_\Omega\abs{f-g}\dd{\mu}$.
-			\item $f_n\to f\fu{\mu}\implies \lim_{n\to\infty}\int_\Omega\abs{f_n-f}\dd{\mu}=0$.
+			\item $\sup_{A\in\mathcal{A}}\abs{\P(A)-Q(A)}=\frac{1}{2}\smallint_\Omega\abs{f-g}\dd{\mu}$.
+			\item $f_n\to f\fu{\mu}\implies \lim_{n\to\infty}\smallint_\Omega\abs{f_n-f}\dd{\mu}=0$.
 		\end{enumerate}
 	\end{lemma}
 	\sep
@@ -193,7 +193,7 @@
 			\item $\exists F: F_n\vk F$.
 			\item $\exists \cf: \cf_n\to\cf~\text{pktw.}$ und $\cf$ ist stetig in $0$.
 		\end{enumerate}
-		In diesem Fall: $\cf(t)=\int_\R\e^{\i tx}\dd{F(x)}$.
+		In diesem Fall: $\cf(t)=\smallint_\R\e^{\i tx}\dd{F(x)}$.
 	\end{satz}
 	\sep
 	\begin{satz}[Starkes Gesetz großer Zahlen]
@@ -232,8 +232,8 @@
 		$X_1,\ldots,X_n$ unabhängig: $\cf_{X_1+\cdots+X_n}(t)=\prod_{j=1}^n\cf_{X_j}(t)$.
 	\end{satz}
 	\begin{satz}[Umkehrformel]
-		Ist $\int_\R\abs{\cf_X(t)}\dd{t}<\infty$, so hat $X$ die
-		$\lambda^1$-Dichte \[f(x) = \frac{1}{2\pi}\int_\R\e^{-\i tx}\cf_X(t)\dd{t}.\]
+		Ist $\smallint_\R\abs{\cf_X(t)}\dd{t}<\infty$, so hat $X$ die
+		$\lambda^1$-Dichte \[f(x) = \frac{1}{2\pi}\smallint_\R\e^{-\i tx}\cf_X(t)\dd{t}.\]
 	\end{satz}
 	\begin{satz}[Folgerungen]
 		\begin{enumerate}[label=(\alph*)]
@@ -293,15 +293,15 @@
 	\end{definition}
 	\begin{defsatz}[Kopplung]
 		\begin{align*}
-			\P_1\otimes\P_{1,2}(A)\defas&\int_{\Omega_1}\int_{\Omega_2}\ind_A\P_{1,2}(\omega_1,\dd{\omega_2})\P_1(\dd{\omega_1})\\
-			\P_1\otimes\P_{1,2}(A_1\times A_2) = &\int_{A_1}\P_{1,2}(\omega_1, A_2)\P_1(\dd{\omega_1})
+			\P_1\otimes\P_{1,2}(A)\defas&\smallint_{\Omega_1}\smallint_{\Omega_2}\ind_A\P_{1,2}(\omega_1,\dd{\omega_2})\P_1(\dd{\omega_1})\\
+			\P_1\otimes\P_{1,2}(A_1\times A_2) = &\smallint_{A_1}\P_{1,2}(\omega_1, A_2)\P_1(\dd{\omega_1})
 		\end{align*}
 	\end{defsatz}
 	\begin{satz}[Fubini]
 		$f\colon\Omega_1\times\Omega_2\to\overline\R$ $\mathcal{A}_1\otimes\mathcal{A}_2$-mb; nichtnegativ
 		oder $\P_1\otimes\P_{1,2}$-ib.
 		\[
-			\int_{\Omega_1\times\Omega_2}f\dd{\P_1\otimes\P_{1,2}} = \int_{\Omega_1}\int_{\Omega_2}f\P_{1,2}(\omega_1,\dd{\omega_2})\P_1(\dd{\omega_1})
+			\smallint_{\Omega_1\times\Omega_2}f\dd{\P_1\otimes\P_{1,2}} = \smallint_{\Omega_1}\smallint_{\Omega_2}f\P_{1,2}(\omega_1,\dd{\omega_2})\P_1(\dd{\omega_1})
 		\]
 	\end{satz}
 	\begin{satz}[Dichten]
@@ -309,11 +309,11 @@
 		$g_{1,2}\colon\Omega_1\times\Omega_2\to\R_{\geq0}$ $\mathcal{A}_1\otimes\mathcal{A}_2$-mb,
 		$\forall\omega_1\in\Omega_1$:
 		\[
-			\int_{\Omega_1}g_{1, 2}(\omega_1, \omega_2)\mu_2(\dd{\omega_2})=1.
+			\smallint_{\Omega_1}g_{1, 2}(\omega_1, \omega_2)\mu_2(\dd{\omega_2})=1.
 		\]
 		ÜW:
 		\begin{align*}
-			\P_{1,2}(\omega_1, A_2)\defas&\int_{A_2}g_{1,2}(\omega_1,\omega_2)\mu_2(\dd{\omega_2})\\
+			\P_{1,2}(\omega_1, A_2)\defas&\smallint_{A_2}g_{1,2}(\omega_1,\omega_2)\mu_2(\dd{\omega_2})\\
 		\end{align*}
 	\end{satz}
 	\begin{defsatz}[Zerlegung]
@@ -322,15 +322,15 @@
 		$\P^Z_{Z=z}(\cdot)\defas\P^X_Z(z, \cdot)$ heißt bedingte Verteilung von $X$ unter $Z=z$.
 	\end{defsatz}
 	\begin{satz}[Bedingte Verteilung bei gemeinsamer Dichte]
-		$\mu, \nu$ $\sigma$-endlich, $\P^{(Z, X)}=f(\mu\otimes\nu)$, $f_1(z)\defas\int_{\R^\ell}f(z, x)\nu(\dd{x})$,
-		$g_0\colon\R^\ell\to\R_{\geq0}$ mb, $\int_{\R^\ell}g_0\dd{\nu}=1$.
+		$\mu, \nu$ $\sigma$-endlich, $\P^{(Z, X)}=f(\mu\otimes\nu)$, $f_1(z)\defas\smallint_{\R^\ell}f(z, x)\nu(\dd{x})$,
+		$g_0\colon\R^\ell\to\R_{\geq0}$ mb, $\smallint_{\R^\ell}g_0\dd{\nu}=1$.
 		\[
 			f(x|z)\defas\begin{cases*}
 				\frac{f(z, x)}{f_1(z)}, &$f_1(z)>0$,\\
 				g_0(x), &sonst.
 			\end{cases*}
 		\]
-		Dann ist $\P^X_{Z=z}(B)\defas\int_Bf(x|z)\nu(\dd{x})$ eine bedingte Verteilung.
+		Dann ist $\P^X_{Z=z}(B)\defas\smallint_Bf(x|z)\nu(\dd{x})$ eine bedingte Verteilung.
 	\end{satz}
 	\sep
 	\begin{definition}[Bedingte Erwartung]
@@ -368,38 +368,38 @@
 		$\EV{X}{Z=z}\defas h$ mit $\EV{X}{Z}=h\circ Z$ heißt bedingter Erwartungswert von
 		$X$ unter $Z=z$. $h$ wird durch
 		\[
-			\forall A'\in\mathcal{A}': \int_A'\EV{X}{Z=z}\P^Z(\dd{z})=\int_{Z^{-1}(A')}X\dd{\P}
+			\forall A'\in\mathcal{A}': \smallint_A'\EV{X}{Z=z}\P^Z(\dd{z})=\smallint_{Z^{-1}(A')}X\dd{\P}
 		\]
 		$\P$-fast sicher charakterisiert.
 	\end{satz}
 	\begin{definition}[Bedingte Wahrscheinlichkeit]
 		$\P(A|Z)\defas\P(A|\sigma(Z))\defas\EV{\ind_A}{Z}$. $\P(A|Z=z)\defas\EV{\ind_A}{Z=z}$.
 		\begin{align*}
-			\P(A\cap\set{Z\in A'}) &= \int_{A'}\P(A|Z=z)\P^Z(\dd{z})\\
-			\P(A) &= \int_{\Omega'}\P(A|Z=z)\P^Z(\dd{z})
+			\P(A\cap\set{Z\in A'}) &= \smallint_{A'}\P(A|Z=z)\P^Z(\dd{z})\\
+			\P(A) &= \smallint_{\Omega'}\P(A|Z=z)\P^Z(\dd{z})
 		\end{align*}
 	\end{definition}
 	\begin{satz}[Bedingter Erwartungswert über bedingte Verteilung]
 		$Z$ ZV, $X$ reellwertig ib. Dann
 		\[
-			\EV{X}{Z=z} = \int_\R x\P^X_{Z=z}(\dd{x}).
+			\EV{X}{Z=z} = \smallint_\R x\P^X_{Z=z}(\dd{x}).
 		\]
 	\end{satz}
 	\begin{satz}[Dichten]
 		$\mu, \nu$ $\sigma$-endlich, $X$ reellwertig ib, $\P^{(Z, X)}=f(\mu\otimes\nu)$.
 		Dann
 		\[
-			\EV{X}{Z=z}=\int_\R xf(x|z)\nu(\dd{x}).
+			\EV{X}{Z=z}=\smallint_\R xf(x|z)\nu(\dd{x}).
 		\]
 	\end{satz}
 	\begin{satz}
 		$f\colon\R^{k+\ell}\to\overline\R$ mb, $\E\abs{f(Z, X)}<\infty$. Dann
 		\[
-			\E f(Z, X) = \int_{\R^k}\EV{f(Z, X)}{Z=z}\P^Z(\dd{z})
+			\E f(Z, X) = \smallint_{\R^k}\EV{f(Z, X)}{Z=z}\P^Z(\dd{z})
 		\]
 		mit
 		\[
-			\EV{f(Z, X)}{Z=z}\defas \int_{\R^\ell}f(z, x)\P^X_{Z=z}(\dd{x}).
+			\EV{f(Z, X)}{Z=z}\defas \smallint_{\R^\ell}f(z, x)\P^X_{Z=z}(\dd{x}).
 		\]
 	\end{satz}
 	\sep
@@ -498,7 +498,7 @@
 \begin{minipage}{11.35cm}
 	\begin{defsatz}
 		\begin{align*}
-			\Gamma(z)\defas&\int_0^\infty x^{z-1}e^{-x}\dd{x} & \Bd(x, y)\defas&\int_0^1 t^{x-1}(1-t)^{y-1}\dd{t}\\
+			\Gamma(z)\defas&\smallint_0^\infty x^{z-1}e^{-x}\dd{x} & \Bd(x, y)\defas&\smallint_0^1 t^{x-1}(1-t)^{y-1}\dd{t}\\
 			\Gamma(z+1)=&z\Gamma(z) & \Bd(x, y) =& \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
 		\end{align*}
 	\end{defsatz}
