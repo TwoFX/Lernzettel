@@ -128,6 +128,9 @@
 	\begin{definition}
 		$\limsup_{n\to\infty} A_n\defas \bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k$.
 	\end{definition}
+	\begin{satz}[$\epsilon$-$\delta$-Kriterium für absolute Stetigkeit]
+		$\nu(\Omega) < \infty$: \\ $\nu << \mu \iff \forall\epsilon>0\exists\delta>0\forall A\in\mathcal{A}: \mu(A)\le\delta\implies\nu(A)\le\epsilon$.
+	\end{satz}
 	\begin{lemma}[von Borel-Cantelli]
 		\begin{enumerate}[label=(\alph*)]
 			\item $\sum_{n=1}^{\infty}\P(A_n)<\infty\implies \P(\limsup_{n\to\infty}A_n)=0$.
