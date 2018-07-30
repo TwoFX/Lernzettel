@@ -181,10 +181,10 @@
 	\begin{satz}
 		$\mathcal{Q}~\text{straff}\iff\mathcal{Q}~\text{relativ kompakt}$.
 	\end{satz}
-	\begin{satz}
+	\begin{satz}[Straffheit und Verteilungskonvergenz]
 		\begin{enumerate}[label=(\alph*)]
 			\item $X_n\vk D\implies\set{P^{X_n}\given n\in\N}~\text{straff}$.
-			\item $(\set{P^{X_n}\given n\in\N}\wedge \exists Q~\forall (X_{n_k}): X_{n_k}\vk Q)\implies X_n\vk Q$.
+			\item $((X_n)$ straff $\land$ $\exists Q~\forall (X_{n_k}): X_{n_k}\vk Q)\implies X_n\vk Q$.
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Lévy-Cramér]
@@ -205,8 +205,10 @@
 		In diesem Fall $X=\E X_1 \fs{\P}$
 	\end{satz}
 	\begin{satz}[Kolmogorov-Kriterium]
-		$(X_n)$ unabhängig, $\forall n:\E X_n^2<\infty$, $\exists (a_n): \sum_{n=1}^\infty \frac{\V X_n}{a_n^2}<\infty$.
-		Dann \[\frac{1}{a_n}\sum_{j=1}^n(X_j-\E X_j)\fsk 0.\]
+		$(X_n)$ unabhängig, $\forall n:\E X_n^2<\infty$, $\exists (a_n): 0\le a_n\uparrow\infty, \displaystyle\sum_{n=1}^\infty \frac{\V X_n}{a_n^2}<\infty$.
+		Dann
+		\vspace{-1.5em}
+		\[\frac{1}{a_n}\sum_{j=1}^n(X_j-\E X_j)\fsk 0.\]
 	\end{satz}
 	\begin{satz}[Gleichmäßig beschränkte Varianzen]
 		$(X_n)$ unabgängig, $\exists c\in[0,\infty):\sup_{n\in\N}\V X_n\leq c$. Dann
@@ -368,7 +370,7 @@
 		$\EV{X}{Z=z}\defas h$ mit $\EV{X}{Z}=h\circ Z$ heißt bedingter Erwartungswert von
 		$X$ unter $Z=z$. $h$ wird durch
 		\[
-			\forall A'\in\mathcal{A}': \smallint_A'\EV{X}{Z=z}\P^Z(\dd{z})=\smallint_{Z^{-1}(A')}X\dd{\P}
+			\forall A'\in\mathcal{A}': \smallint_{A'}\EV{X}{Z=z}\P^Z(\dd{z})=\smallint_{Z^{-1}(A')}X\dd{\P}
 		\]
 		$\P$-fast sicher charakterisiert.
 	\end{satz}
