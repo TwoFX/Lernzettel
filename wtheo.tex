@@ -23,11 +23,12 @@
 \usepackage{multicol}
 \usepackage{array}
 \usepackage{float}
+\usepackage{xfrac}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
 
 \usepackage{dsfont}
-\usepackage[left=0.8cm, right=0.8cm, top=0.8cm, bottom=0.8cm,landscape]{geometry}
+\usepackage[left=0.8cm, right=0.8cm, top=0.6cm, bottom=0.6cm,landscape]{geometry}
 
 \newcounter{Sec}
 \pagestyle{empty}
@@ -99,6 +100,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\cf}{\varphi}
 
+\DeclareMathOperator{\Cov}{Cov}
+
 \newcommand{\e}{\mathrm{e}}
 \renewcommand{\i}{\mathrm{i}}
 
@@ -117,6 +120,17 @@
 	\textsc{Matrikelnummer:}
 
 	\sep
+	\begin{satz}[Ungleichungen]
+		\begin{enumerate}[label=(\alph*)]
+			\item $\E\abs{XY}\leq (\E\abs{X}^p)^{\sfrac{1}{p}}(\E\abs{Y}^q)^{\sfrac{1}{q}}$, $1<p<\infty$, $\frac{1}{p}+\frac{1}{q}=1$.
+			\item $\abs{\Cov(X, Y)}\leq\sqrt{\V(X)\V(Y)}$
+			\item $(\E\abs{X+Y}^p)^{\sfrac{1}{p}}\leq (\E\abs{X}^p)^{\sfrac{1}{p}}+(\E\abs{Y}^p)^{\sfrac{1}{p}}$, $1\leq p<\infty$.
+			\item $\P(\abs{X}\geq\varepsilon)\leq\frac{\E g(\abs{X})}{g(\varepsilon)}$, $\varepsilon>0$, $g\colon\R_{\geq 0}\to\R$ monoton wachsend,
+			$g(0)\geq 0$.
+			\item $\P(\abs{X}\geq\varepsilon)\leq\frac{\E\abs{X}^p}{\varepsilon^p}$, $\varepsilon>0$, $0<p<\infty$.
+			\item $\P(\abs{X-\E X}\geq\varepsilon)\leq\frac{\V(X)}{\varepsilon^2}$.
+		\end{enumerate}
+	\end{satz}
 	\begin{lemma}[von Scheffé]
 		$\P=f\mu$, $Q=g\mu$, $\P_n=f_n\mu$.
 		\begin{enumerate}[label=(\alph*)]
@@ -176,6 +190,12 @@
 		$\varnothing\neq\mathcal{Q}$ Menge von W-Maßen auf $\mathcal{B}$ heißt straff, falls
 		\[\forall\varepsilon>0~\exists K\subset\R~\text{kompakt}~\forall Q\in\mathcal{Q}:Q(K)\geq 1-\varepsilon.\]
 	\end{definition}
+	\begin{definition}[Stochastische Landau-Notation]
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_n = O_\P(a_n) \defiff (\frac{X_n}{a_n})~\text{straff}$.
+			\item $X_n = o_\P(a_n) \defiff \frac{X_n}{a_n}\sk 0$.
+		\end{enumerate}
+	\end{definition}
 	\begin{definition}[Relative Kompaktheit]
 		$\varnothing\neq\mathcal{Q}$ Menge von W-Maßen auf $\mathcal{B}$ heißt relativ kompakt, falls
 		\[\forall (Q_n)~\text{in $\mathcal{Q}$}~\exists (Q_{n_k}), Q: Q_{n_k}\vk Q.\]
@@ -185,12 +205,15 @@
 		$\mathcal{Q}~\text{straff}\iff\mathcal{Q}~\text{relativ kompakt}$.
 	\end{satz}
 	\begin{satz}[Gilt auch für höhere Momente]
-		$\forall n: \E \abs{X_n} < c < \infty \implies (X_n)$ straff.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\mathcal{Q}~\text{endlich}\implies\mathcal{Q}~\text{straff}$.
+			\item $\sup\E\abs{X_n}<\infty\implies\set{\P^{X_n}}~\text{straff}$.
+		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Straffheit und Verteilungskonvergenz]
 		\begin{enumerate}[label=(\alph*)]
-			\item $X_n\vk D\implies\set{P^{X_n}\given n\in\N}~\text{straff}$.
-			\item $((X_n)$ straff $\land$ $\exists Q~\forall (X_{n_k})$ vk: $X_{n_k}\vk Q)\implies X_n\vk Q$.
+			\item $X_n\vk D\implies\set{\P^{X_n}\given n\in\N}~\text{straff}$.
+			\item $((X_n)$ straff $\land$ $\exists Q~\forall (X_{n_k}) vk: X_{n_k}\vk Q)\implies X_n\vk Q$.
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Lévy-Cramér]
@@ -281,7 +304,7 @@
 	\begin{satz}[Notwendig für die Lindeberg-Bedingung]
 		Feller-Bedingung:
 		\[
-			\lim_{n\to\infty}\frac{\max_{1\leq j\leq k_n}\sigma_{nj}^2}{\sigma_{n1}^2+\cdots+\sigma_{nk_n}^2}.
+			\lim_{n\to\infty}\frac{\max_{1\leq j\leq k_n}\sigma_{nj}^2}{\sigma_{n1}^2+\cdots+\sigma_{nk_n}^2} = 0.
 		\]
 	\end{satz}
 	\begin{satz}[Ljapunov]
