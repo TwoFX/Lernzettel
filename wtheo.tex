@@ -155,6 +155,14 @@
 		$z_i, w_i \in \mathbb{D} \implies \abs{\prod_{j=1}^m z_j - \prod_{j=1}^m w_j} \leq \sum_{j=1}^m \abs{z_j - w_j}$.
 	\end{lemma}
 	\sep
+	\begin{definition}[Konvergenzbegriffe]
+		\begin{enumerate}[label=(\alph*)]
+			\item $X_n \fsk X \defiff \P(\set{\omega\in\Omega : \lim_{n\to\infty} X_n(\omega) = X(\omega)}) = 1$,
+			\item $X_n \sk X \defiff \forall\varepsilon>0:\lim_{n\to\infty}\P(\abs{X_n-X}>\varepsilon)=0$,
+			\item $X_n \lpk X \defiff \lim_{n\to\infty} \E\abs{X_n-X}^p = 0$,
+			\item $X_n \vk X \defiff \forall x\in\mathcal{C}(F):\lim_{n\to\infty} F_n(x) = F(x)$.
+		\end{enumerate}
+	\end{definition}
 	\begin{satz}[Charakterisierungen]
 		\begin{enumerate}[label=(\alph*)]
 			\item $X_n \fsk X \iff \forall\varepsilon>0:\lim\limits_{n\to\infty}\P(\set{\sup_{k\geq n}\abs{X_k-X}>\varepsilon}) = 0$,
@@ -567,9 +575,9 @@
 	$\LN(\mu,\sigma^2)$ & $\mathds{1}_{(0,\infty)}(x)\frac{1}{\sigma x\sqrt{2\pi}}\exp(-\frac{(\log(x)-\mu)^2}{2\sigma^2})$
 		& $\Phi(\frac{\log(x)-\mu}{\sigma})$ & $\exp(\mu+\frac{\sigma^2}{2})$ & $\exp(2(\mu+\sigma^2))$
 		& $\exp(2\mu+\sigma^2)(\exp(\sigma^2)-1)$ & \\ \hline
-	$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
-		& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
-		& & & \\ \hline
+	%$\Wd(\alpha, \beta)$ & $\mathds{1}_{(0,\infty)}(x)\alpha\beta x^{\beta-1} \exp(-\alpha x^\beta)$
+	%	& $1-\exp(-\alpha x^\beta)$ & $\frac{\Gamma(1+\frac{1}{\beta})}{\alpha^{\frac{1}{\beta}}}$
+	%	& & & \\ \hline
 	$\Cd$ & $\frac{1}{\pi}\frac{1}{1+x^2}$ & $\frac{1}{\pi}(\arctan(x)-\frac{\pi}{2})$ & $\infty$ & & & \\ \hline
 \end{tabular}
 \end{document}
