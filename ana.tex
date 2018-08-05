@@ -1318,4 +1318,36 @@
 			\item $X~\text{offen}\implies\forall f\in\L{p},\varepsilon>0~\exists g\in C_c(X,\R):\norm{f-g}_p<\varepsilon$.
 		\end{enumerate}
 	\end{satz}
+	\newpage
+	\textsc{Funktionentheorie: Analysis IV}
+
+	\sep
+	\newpage
+	\textsc{Differentialgleichungen: Analysis IV}
+
+	\sep
+	\begin{definition}[Lokal Lipschitz-stetig]
+		$\varnothing\neq D\subseteq \R\times\R^p$, $f\colon D\to\R^p$ heißt lLs bzgl. $x$
+		$\defiff\forall(x_0, t_0)\in D~\exists\delta>0, L>0~\forall (t, x), (t, \bar{x})\in D$:
+		\[
+			t\in U_\delta(t_0)\wedge x, \bar{x}\in U_\delta(x_0)\implies\norm{f(t, x)-f(t, \bar{x})}\leq L\norm{x-\bar{x}}.
+		\]
+	\end{definition}
+	\begin{satz}[Picard-Lindelöf]
+		$\varnothing\neq D\subseteq\R\times\R^p$ offen, $(x_0, t_0)\in D$, $f\colon D\to\R^p$
+		stetig und lLs. Dann hat das AWP $\begin{cases}x'(t)=f(t, x(t))\\x(t_0)=x_0\end{cases}$
+		eine eindeutige nicht fortsetzbare Lösung $x\colon J\to\R^p$ mit $t_0\in J^\circ$.
+	\end{satz}
+	\begin{satz}
+		AWP wie oben, $x\colon [t_0,t_+)\to\R^p$ eine Lösung, $G_+\coloneqq\set{(t, x(t))\given t\in[t_0,t_+)}\subseteq D$.
+		Es sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $w_+=t_+$
+			\item $\nexists K~\text{kompakt}: G_+\subseteq K\subseteq D$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Autonome Differentialgleichung]
+		$\varnothing\neq D\subseteq \R^p$, $g\colon D\to\R^p$. $x'(t)=g(x(t))$ heißt autonom. $x_0\in D: g(x_0)=0$ heißt
+		stationäre Stelle.
+	\end{definition}
 \end{document}
