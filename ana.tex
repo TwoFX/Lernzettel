@@ -90,6 +90,7 @@
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\dist}{dist}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
@@ -1416,6 +1417,84 @@
 				\int_\gamma g\dd{z}=\int_{\gamma_1}g\dd{z}$. Insbesondere ist dann $L(\gamma)=L(\gamma_1)$.
 		\end{enumerate}
 	\end{definition}
+	\begin{satz}
+		$\gamma\colon I\to\C$ ssd, $f, g\colon\abs{\gamma}\to\C$ stetig, $\lambda, \mu\in\C$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $L(\gamma)=L(\gamma^-)$.
+			\item $\int_{\gamma^-}f\dd{z}=-\int_\gamma f\dd{z}$.
+			\item $\int_\gamma(\lambda f+\mu g)\dd{z}=\lambda\int_\gamma f\dd{z}+\mu\int_\gamma g\dd{z}$.
+			\item Mit $M\coloneqq\max_{z\in\abs{\gamma}}\abs{f(z)}$: $\abs{\int_\gamma f\dd{z}}\leq ML(\gamma)$.
+			\item Ist $f_n\colon\abs{\gamma}\to\C$ stetig, $f_n\to f$ glm: $\int_\gamma f_n\dd{z}\to\int_\gamma f\dd{z}~(n\to\infty)$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Sei $\gamma\colon I\to\C$ ssd, $f\colon\abs{\gamma}\to\C$ stetig, $D\coloneqq \C\setminus\abs{\gamma}$,
+		$z_0\in D$, $g\colon D\to\C$, $g(z)\coloneqq\int_\gamma\frac{\abs{f(w)}}{w-z}\dd{w}$. Weiter
+		\begin{align*}
+			r &\coloneqq \dist(z_0,\abs{\gamma}) = \inf\set{\abs{z_0-w}\given w\in\abs{\gamma}},\\
+			a_n &\coloneqq \int_\gamma\frac{f(w)}{(w-z_0)^{n+1}}\dd{w}.
+		\end{align*}
+		Es gilt
+		\begin{enumerate}[label=(\alph*)]
+			\item $U_r(z_0)\subseteq D$,
+			\item $\forall z\in U_r(z_0): g(z)=\sum_{n=0}^\infty a_n(z-z_0)^n$,
+			\item $g\in H(D)$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Zusammenhandskomponente]
+		$\varnothing\neq D\subseteq\C$ offen, $z\in D$. $D_z\coloneqq\set{w\in D\given
+			\exists~\text{Weg in $D$ von $z$ nach $w$}}$ heißt Zusammenhangskomponente von $D$.
+	\end{definition}
+	\begin{defsatz}[Umlaufzahl]
+		$\gamma\colon I\to\C$ ssd und geschlossen, $D\coloneqq\C\setminus\abs{\gamma}$.
+		Für $z\in D$ heißt
+		\[
+			n(\gamma, z)\coloneqq\frac{1}{2\pi\i}\int_\gamma\frac{1}{w-z}\dd{w}
+		\]
+		die Umlaufzahl von $\gamma$ bezüglich $z$. Es gilt:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall z\in D: n(\gamma, z)\in\mathbb{Z}$.
+			\item $z\mapsto n(\gamma, z)$ ist konstant auf jeder Zusammenhangskomponente.
+			\item Auf der unbeschränkten Zusammenhangskomponente ist die Umlaufzahl $0$.
+		\end{enumerate}
+	\end{defsatz}
+	\begin{satz}
+		$I\coloneqq [a, b]$, $\gamma\colon I\to\C$ sei ein ssd Weg, $f\colon D\to\C$ stetig,
+		$F\colon D\to\C$ eine SF von $f$ auf $D$. Dann $\int_\gamma f\dd{z}=F(\gamma(b))-F(\gamma(a))$.
+	\end{satz}
+	\begin{satz}[Lemma von Goursat]
+		Sei $f\colon D\to\C$ stetig, $p\in D$, $f\in H(D\setminus\set{p})$, $\Delta\subseteq D$ ein Dreieck.
+		Dann $\int_{\partial\Delta}f\dd{z}=0$.
+	\end{satz}
+	\begin{satz}[Der lokale Cauchysche Integralsatz]
+		$D$ konvex, $f\colon D\to\C$ stetig, $p\in D$, $f\in H(D\setminus\set{p})$.
+		Dann besitzt $f$ auf $D$ eine SF.
+	\end{satz}
+	\begin{satz}[Die lokale Cauchysche Integralformel]
+		$D$ konvex, $f\in H(D)$, $\gamma$ ssd geschlossener Weg in $D$. Dann für $z\in D\setminus\abs{\gamma}$:
+		\[
+			f(z)n(\gamma, z)=\frac{1}{2\pi\i}\int_\gamma\frac{f(w)}{w-z}\dd{w}.
+		\]
+	\end{satz}
+	\begin{satz}[Der Anfang vom Ende, a.k.a. warum Funktionentheorie doch langweilig ist]\label{pre}
+		Sei $f\in H(D)$, $z_0\in D$, $R\coloneqq\dist(z_0,\partial D)$. Dann existiert $(a_n)$ in $\C$ mit
+		$\forall z\in U_R(z_0): f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n$.
+	\end{satz}
+	\begin{satz}[Eigentlich ist jeder Satz ab hier kein Satz mehr, sondern eine Folgerung aus \ref{pre}]
+		Sei $f\in H(D)$. Dann ist $f$ beliebig oft komplex differenzierbar.
+	\end{satz}
+	\begin{satz}[von Morera]
+		Sei $f\colon D\to\C$ stetig und für jedes Dreieck $\Delta\subseteq D$ gelte
+		$\int_{\partial\Delta}f\dd{z}=0$. Dann $f\in H(D)$.
+	\end{satz}
+	\begin{satz}
+		Sei $f\in H(D)$, $a\in D$ und $m\in\mathbb{N}$. Dann sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\exists g\in H(D): g(a)\neq 0\wedge \forall z\in D: (z-a)^mg(z)$,
+			\item $0=f(a)=f'(a)=\cdots=f^{(m-1)}(a)$, $f^{(m)}(a)\neq 0$.
+		\end{enumerate}
+		$g$ und $m$ sind eindeutig bestimmt; $m$ heißt die Ordnung der Nullstelle $a$ von $f$.
+	\end{satz}
 	\newpage
 	\textsc{Differentialgleichungen: Analysis IV}
 
