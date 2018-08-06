@@ -1342,12 +1342,102 @@
 		AWP wie oben, $x\colon [t_0,t_+)\to\R^p$ eine Lösung, $G_+\coloneqq\set{(t, x(t))\given t\in[t_0,t_+)}\subseteq D$.
 		Es sind äquivalent:
 		\begin{enumerate}[label=(\alph*)]
-			\item $w_+=t_+$
+			\item $\omega_+=t_+$
 			\item $\nexists K~\text{kompakt}: G_+\subseteq K\subseteq D$.
 		\end{enumerate}
 	\end{satz}
-	\begin{definition}[Autonome Differentialgleichung]
+	\sep
+	\begin{definition}[Autonome Differentialgleichung] % TODO FIXME AAAAAAAAAAAAA lLs
 		$\varnothing\neq D\subseteq \R^p$, $g\colon D\to\R^p$. $x'(t)=g(x(t))$ heißt autonom. $x_0\in D: g(x_0)=0$ heißt
 		stationäre Stelle.
 	\end{definition}
+	\begin{satz}
+		$g\colon D\to\R^p$ stetig, $x\colon [t_1,\infty)\to\R^p$ Lösung der autonomen Gleichung,
+		es existiere $x_0\coloneqq\lim_{t\in\infty}x(t)\in D$. Dann $x_0$ stationär, $x'(t)\to 0~(t\to\infty)$.
+	\end{satz}
+	\begin{satz}
+		$D\subseteq\R$ Intervall, $g\colon D\to\R$ stetig, $x\colon I\to\R$ löst autonome Gleichung. Dann ist $x$
+		monoton.
+	\end{satz}
+	\begin{definition}[Bahn]
+		Löst $x\colon I\to\R^p$ die autonome Gleichung, so heißt $x(I)\subseteq\R^p$ Bahn.
+	\end{definition}
+	\begin{definition}[Erstes Integral]
+		$H\in C^1(D,\R)$ mit $\forall x\in D: H'(x)\cdot f(x)=0$ heißt erstes Integral der autonomen Gleichung.
+	\end{definition}
+	\begin{satz}
+		$H$ erstes Integral, $x\colon I\to\R^p$ löst autonome Gleichung. Dann $\exists c\in\R~\forall t\in I: H(x(t)) = c$.
+	\end{satz}
+	\begin{defsatz}[Stabilität]
+		Sei $x_0$ stationär.
+		\begin{enumerate}[label=(\alph*)]
+			\item $x_0$ heißt stabil, wenn $\forall\varepsilon>0~\exists\delta>0~\forall x_1\in D:
+				\norm{x_1-x_0}<\delta\implies \omega_+=\infty\wedge\forall t\geq t_0:\norm{x(t)-x_0}<\varepsilon$,
+				wobei $x\colon [t_0,\omega_+)\to\R^p$ die nach rechts nicht fortsetzbare Lösung des AWP
+				$\begin{cases}x'(t)=f(x(t))\\x(t_0)=x_1\end{cases}$ ist.
+			\item $x_0$ heißt asymptotisch stabil, falls $x_0$ stabil und $x(t)\to x_0~(t\to\infty)$.
+			\item $x_0$ heißt instabil, falls $x_0$ nicht stabil.
+		\end{enumerate}
+		Diese Definitionen sind unabhängig von $t_0$.
+	\end{defsatz}
+	\begin{satz}[Stabilitätssatz] % TODO FIXME AAAAAAAAA f g und alles
+		Sei $x_0$ stationär, $f$ differenzierbar in $x_0$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $\Re\lambda<0$ für \emph{jeden}
+				Eigenwert $\lambda$ von $f'(x_0)$, so ist $x_0$ asympotisch stabil.
+			\item Ist $\Re\lambda>0$ für \emph{einen} Eigenwert $\lambda$ von $f'(x_0)$, so ist
+				$x_0$ instabil.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Lyapunov-Funktion]
+		$r>0: U_r(0)\subseteq D$. $V\colon U_r(0)\to\R$ stetig db heißt Lyapunov-Funktion
+		zu $x'=f(x)$ im Punkt $x_0=0$, falls $V(0)=0, \forall x\in \dot{U}_r(0): V(x)>0,
+		\forall x\in U_r(0): V'(x)\cdot f(x)\leq 0$.
+	\end{definition}
+	\begin{satz}
+		Hat $x'=f(x)$ LF $V\colon U_r(0)\to\R$, so ist $x_0=0$ stabil. Gilt weiter
+		$\forall x\in\dot{U}_r(0): V'(x)\cdot f(x)<0$, so ist $x_0=0$ asymptotisch stabil.
+	\end{satz}
+	\sep
+	\begin{definition}[Randwertprobleme]
+		$a, b\in\R$, $I\coloneqq [a, b]$, $q, r\in C(I)$, $p\in C^1(I)$, $p>0$ auf $I$,
+		$\alpha_0,\alpha_1,\beta_0,\beta_1\in\R$, $(\alpha_0,\alpha_1)\neq(\beta_0,\beta_1)$, $\eta_a,\eta_b\in\R$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $L\colon C^2(I)\to C(I)$; $u\mapsto (pu')'+qu = pu''+p'u'+qu$ heißt selbstadjungierter
+				Differentialoperator 2. Ordnung.
+			\item $R_a, R_b\colon C^2(I)\to\R$; $u\mapsto\begin{cases}\alpha_0 u(a)+\alpha_1p(a)u'(a)\\
+				\beta_0u(b)+\beta_1p(b)u'(b)\end{cases}$ heißen Randoperatoren.
+			\item $\begin{cases}Lu(t)=r(t)\\R_a(u)=\eta_a\\R_b(u)=\eta_b\end{cases}$ heißt
+				Sturmsches Randwertproblem.
+			\item RWP heißt homogen, falls $r=0$, $\eta_a=0=\eta_b$.
+			\item Dirichletsches RWP hat Randoperatoren erster Art: $R_au=u(a)$, $R_bu=u(b)$.
+			\item Neumannsches RWP hat Randoperatoren zweiter Art: $R_au=u'(a)$, $R_bu=u'(b)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $u_S\colon I\to\R$ eine feste spezielle Lösung, so haben alle Lösungen
+				die Form $u=u_S+u_H$ für eine Lösung $u_H\colon I\to\R$ des homogenen RWP.
+			\item Für $a_0, a_1, s\in C(I)$ lässt sich das RWP $\begin{cases}u''(t)+a_1(t)u'(t)+a_0(t)u(t)=s(t)\\
+				\alpha_0u(a)=\alpha_1u'(a)=\eta_a\\\beta_0u(b)+\beta_1u'(b)=\eta_b\end{cases}$ als sturmsches
+				RWP formulieren.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Es sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item Das sturmsche RWP ist für jedes $r,\eta_a,\eta_b$ eindeutig lösbar;
+			\item Das homogene RWP ist nur trivial lösbar;
+			\item Für jedes FS $u_1, u_2\colon I\to\R$ von $Lu=0$ gilt $\det\begin{pmatrix}
+				R_au_1 & R_au_2\\ R_bu_1 & R_bu_2\end{pmatrix}\neq 0$,
+		\end{enumerate}
+		wobei die letzte Aussage genau dann für alle FS gilt, wenn sie für ein FS gilt.
+	\end{satz}
+	\begin{satz}
+		Seien $u, v\colon I\to\R$ Lösungen von $Lu=0$. Dann gilt:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\exists c\in\R~\forall t\in I: p(t)(u(t)v'(t) - v(t)u'(t))=c$.
+			\item $u, v$ ist FS von $Lu$ genau dann wenn $c\neq 0$.
+		\end{enumerate}
+	\end{satz}
 \end{document}
