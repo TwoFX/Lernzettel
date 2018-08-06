@@ -63,8 +63,10 @@
 \renewcommand{\d}{\dd}
 \renewcommand{\P}{\mathcal{P}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\A}{\mathfrak{A}}
 \newcommand{\B}{\mathfrak{B}}
+\renewcommand{\i}{\mathrm{i}}
 \newcommand{\compl}[1]{#1^\mathsf{c}}
 \newcommand{\sa}{$\sigma$-Algebra}
 \newcommand{\Ri}{\mathfrak{R}}
@@ -86,6 +88,8 @@
 \DeclareMathOperator{\rot}{rot}
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
@@ -1322,6 +1326,96 @@
 	\textsc{Funktionentheorie: Analysis IV}
 
 	\sep
+	\begin{definition}
+		$\varnothing\neq D\subseteq\C$ offen. $f\colon D\to\C$ heißt komplex differenzierbar
+		in $z_0\in D$, falls $f'(z_0)\coloneqq\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}$ in $\C$
+		existiert.
+	\end{definition}
+	\begin{defsatz}[Die Cauchy-Riemannschen Differentialgleichungen]
+		$f=u+\i v$ ist in $z_0=x_0+\i y_0$ komplex db genau dann wenn $u, v$ in $(x_0, y_0)$
+		reell db sind und
+		\begin{align*}
+			u_x(x_0, y_0) &= v_y(x_0, y_0), & u_y(x_0, y_0) &= -v_x(x_0, y_0)
+		\end{align*}
+		gilt. In diesem Fall haben wir $f'(z_0) = u_x(x_0, y_0) + \i v_x(x_0, y_0) = v_y(x_0, y_0) - \i u_y(x_0, y_0)$.
+	\end{defsatz}
+	\begin{satz}[Potenzreihen]
+		Sei $(a_n)$ eine Folge in $\C$, $z_0\in\C$. Beträchte die PR $\sum_{n=0}^\infty a_n(z-z_0)^n$.
+		$\varrho\coloneqq\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}}$. $R\coloneqq\frac{1}{\varrho}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Falls $R=0$, so konvergiert die PR nur in $z=z_0$.
+			\item Falls $R=\infty$, so konvergiert die PR absolut für jedes $z\in\C$.
+			\item Falls $0<R<\infty$, konvergiert die PR in jedem $z\in U_R(z_0)$ absolut
+			und divergiert in jedem $z$ mit $\abs{z-z_0}>R$.
+			\item Die PR konvergiert auf jedem kompakten $K\subseteq U_R(z_0)$ gleichmäßig.
+			\item $f\colon U_R(z_0)\to\C$; $z\mapsto \sum_{n=0}^\infty a_n(z-z_0)^n$ ist stetig.
+			\item $f\in H(U_R(z_0))$ mit $f'(z) = \sum_{n=1}^\infty na_n(z-z_0)^{n-1}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}
+		$\varnothing\neq D\subseteq\C$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $D$ heißt zusammenhängend, falls $\forall A, B\subseteq D~\text{offen}:
+				A\cap B=\varnothing, A\cup B=D\implies A=\varnothing\vee B=\varnothing$.
+			\item $D$ heißt Gebiet, falls $D$ offen und zusammenhängend.
+			\item $D$ heißt wegzusammenhängend, falls $\forall z_1, z_2~\exists \gamma\colon [0, 1]\to D: \gamma(0)=z_1, \gamma(1)=z_2$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		$\varnothing\neq D\subseteq\C$ ist genau dann zusammenhängend, wenn $D$ wegzusammenhängend ist.
+	\end{satz}
+	\begin{satz}
+		Sei $D$ ein Gebiet, $f\in H(D)$, $f'=0$ auf $D$. Dann ist $f$ auf $D$ konstant.
+	\end{satz}
+	\begin{definition}
+		Es sei $w\in\C\setminus\set{0}$, $n\in\mathbb{N}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $z\in\C: z^n=w$ heißt $n$-te Wurzel von $w$.
+			\item $z\in\C: \exp(z)=w$ heißt Logarithmus von $w$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		Sei $a, b, z\in\C, w\in \C\setminus\set{0}, x, y\in\R$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\exp(a+b)=\exp(a)\exp(b)$. Insbesondere $\exp(a)\neq 0$.
+			\item $\exp(x)=e^x$, $\exp(\i y) = \cos y + \i\sin y$, $\abs{\exp(\i y)} = 1$.
+			\item Für $z=\i x+y:\exp(z)=e^x(\cos y +\i\sin y)$. $e^z\coloneqq\exp{z}$.
+			\item $z=\abs{z}e^{\i\Arg z}$.
+			\item $\forall k\in\mathbb{Z}:e^z=e^{z+2k\pi\i}$.
+			\item $\cos z+\i\sin z = e^{\i z}$, $\cos z=\frac{1}{2}(e^{\i z}+e^{-\i z})$, $\sin z = \frac{1}{2\i}(e^{\i z}-e^{-\i z})$,
+				$\sin^2 z + \cos^2 z= 1$.
+			\item $\cos z = 0\iff\exists k\in\mathbb{Z}: z=(k+\frac{1}{2})\pi$, $\sin z = 0\iff\exists k\in\mathbb{Z}:z=k\pi$.
+			\item $z~\text{ist Logarithmus von $w$}\iff\exists k\in\mathbb{Z}: z = \log\abs{w}+\i\Arg w+2k\pi\i$.
+			\item $e^z=1\iff\exists k\in\mathbb{Z}:z=2k\pi\i$.
+			\item $z_0,\ldots, z_{n-1}$ mit $z_k\coloneqq\sqrt[n]{\abs{w}}\exp(\frac{\i}{n}(\Arg w+2k\pi))$ sind paarweise
+				verschieden und alle $n$-ten Wurzeln von $w$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}
+		\begin{enumerate}[label=(\alph*)]
+			\item Für $w\in\C\setminus\set{0}$ definiere den Hauptwert des Logarithmus $\Log w\coloneqq \log\abs{w}+\i\Arg w$.
+			\item $\C_-\coloneqq\C\setminus\set{z\in\R\given z\leq 0}$ heißt die geschlitzte Ebene.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		$D\coloneqq\set{z\in\C\given \abs{\Im z}<\pi}$ ist ein Gebiet. Definiere $f\colon D\to\C$, $z\mapsto e^z$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $f$ ist auf $D$ injektiv.
+			\item $f(D) = \C_-$.
+			\item $f$ besitzt die Umkehrfunktion $\Log$ auf $\C_-$.
+			\item $\Log\in H(\C_-)$ mit $\forall w\in\C_-:\Log'(w) = \frac{1}{w}$.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{definition}
+		Seien $\gamma\colon [a,b]\to\C$, $\gamma_1\colon[\alpha,\beta]\to\C$ ssd, $f\colon\abs{\gamma}\to\C$ stetig.
+		\begin{enumerate}
+			\item $L(\gamma)\coloneqq\int_a^b\abs{\gamma'(t)}\dd{t}$ heißt die Länge von $\gamma$.
+			\item $\int_\gamma f\dd{z}\coloneqq \int_\gamma f(z)\dd{z}\coloneqq\int_a^bf(\gamma(t))\cdot\gamma'(t)\dd{t}$ heißt Wegintegral.
+			\item $\gamma, \gamma_1~\text{äquivalent}\defiff \abs{\gamma}=\abs{\gamma_1}\wedge\forall g\in C(\abs{\gamma}, \C):
+				\int_\gamma g\dd{z}=\int_{\gamma_1}g\dd{z}$. Insbesondere ist dann $L(\gamma)=L(\gamma_1)$.
+		\end{enumerate}
+	\end{definition}
 	\newpage
 	\textsc{Differentialgleichungen: Analysis IV}
 
