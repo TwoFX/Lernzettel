@@ -1436,8 +1436,65 @@
 	\begin{satz}
 		Seien $u, v\colon I\to\R$ Lösungen von $Lu=0$. Dann gilt:
 		\begin{enumerate}[label=(\alph*)]
-			\item $\exists c\in\R~\forall t\in I: p(t)(u(t)v'(t) - v(t)u'(t))=c$.
+			\item $\exists c(u,v)\coloneqq c\in\R~\forall t\in I: p(t)(u(t)v'(t) - v(t)u'(t))=c$.
 			\item $u, v$ ist FS von $Lu$ genau dann wenn $c\neq 0$.
 		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Für $\tau\in I$: $u_\tau(t)\coloneqq\frac{1}{c}(u(\tau)v(t)-u(t)v(\tau))$.
+		Sei $u, v\colon I\to\R$ ein FS von $Lu=0$. Für $t\in I$ definiere \[u_S(t)\coloneqq\int_a^tu_\tau(t)r(\tau)\dd{\tau}.\]
+		Dann ist $u_S(a)=0=u_S'(a)$, also $R_au_S=0$. Weiter ist $u_S$ eine spezielle Lösung von $Lu=r$.
+	\end{satz}
+	\begin{definition}
+		Ein FS $u, v\colon I\to\R$ von $Lu=0$ heißt zulässig, wenn $R_au=0=R_bv\wedge R_bu\neq 0\neq R_av$.
+	\end{definition}
+	\begin{satz}
+		Das homogene RWP sei nur trivial lösbar.
+		\begin{enumerate}[label=(\alph*)]
+			\item Es gibt zulässige FS von $Lu=0$.
+			\item Sind $u, v$ und $\tilde{u},\tilde{v}$ zulässige FS von $Lu=0$, so
+				$\exists\alpha,\beta\in\R:\tilde{u}=\alpha u, \tilde{v}=\beta v,
+				c(\tilde{u},\tilde{v})=\alpha\beta c(u, v)$. Insbesondere $\alpha\beta\neq 0$.
+		\end{enumerate}
+	\end{satz}
+	\begin{definition}[Die Greensche Funktion]
+		Es sei $u, v\colon I\to\R$ ein zulässiges FS von $Lu=0$.
+		\[G(t,\tau)\coloneqq\begin{cases}\frac{v(t)u(\tau)}{c(u, v)}, &a\leq\tau\leq t\leq b,\\
+			\frac{v(\tau)u(t)}{c(u, v)}, &a\leq t\leq\tau\leq b\end{cases}
+		\]
+		heißt die Greensche Funktion zu $L, R_a, R_b$.
+	\end{definition}
+	\begin{satz}
+		Das homogene RWP sei nur trivial lösbar.
+		Das halbhomogene RWP $\begin{cases}Lu(t)=r(t)\\R_au=R_bu=0\end{cases}$ hat die Lösung
+		$w(t)=\int_a^b G(t,\tau)r(\tau)\dd{\tau}$.
+	\end{satz}
+	\begin{satz}
+		Das homogene RWP sei nur trivial lösbar. Sei $u, v\colon I\to\R$ ein zulässiges FS
+		von $Lu=0$, $G$ die Greensche Funktion und $w$ wie oben. Dann ist für $t\in I$ durch
+		\[
+			\tilde{w}(t)\coloneqq w(t)+\frac{\eta_b}{R_bu}u(t)+\frac{\eta_a}{R_av}v(t)
+		\]
+		die eindeutige Lösung des sturmschen RWP auf $I$ gegeben.
+	\end{satz}
+	\begin{definition}[Das namenlose RWP]
+		$I\coloneqq [0, 1]$, $D\coloneqq I\times\R$, $f\colon D\to\R$ stetig.
+		$\begin{cases}u''(t)=f(t,u(t))\\0=u(0)=u(1)\end{cases}$ ist das namenlose RWP.
+	\end{definition}
+	\begin{satz}
+		Definiere $T\colon C(I)\to C(I)$ durch $Tu(x)\coloneqq\int_0^1G(x, t)f(t, u(t))\dd{t}$.
+		Sei $r, u\in C(I)$, $\Phi(x)\coloneqq\int_0^1G(x, t)r(t)\dd{t}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\Psi\in C^2(I)$, $\Psi''=r$, $\Psi(0)=\Psi(1)=0$.
+			\item $u$ löst das namenlose RWP genau dann wenn $Tu=u$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Lettenmeyer]
+		Es sei $L\in(0,\pi^2)$ und $\forall t\in[0,1], x, \bar{x}\in\R:\abs{f(t, x)-f(t,\bar{x})}\leq L\abs{x-\bar{x}}$.
+		Dann hat das namenlose RWP genau eine Lösung auf $I$.
+	\end{satz}
+	\begin{satz}[Existenzsatz]
+		Seien $A\geq 0$, $0\leq B<\pi^2$ und $\forall t\in I, x\in\R:\abs{f(t, x)}\leq A+b\abs{x}$. Dann
+		hat das namenlose RWP eine Lösung auf $I$.
 	\end{satz}
 \end{document}
