@@ -67,6 +67,7 @@
 \newcommand{\A}{\mathfrak{A}}
 \newcommand{\B}{\mathfrak{B}}
 \renewcommand{\i}{\mathrm{i}}
+\newcommand{\D}{\mathbb{D}}
 \newcommand{\compl}[1]{#1^\mathsf{c}}
 \newcommand{\sa}{$\sigma$-Algebra}
 \newcommand{\Ri}{\mathfrak{R}}
@@ -1441,7 +1442,7 @@
 			\item $g\in H(D)$.
 		\end{enumerate}
 	\end{satz}
-	\begin{definition}[Zusammenhandskomponente]
+	\begin{definition}[Zusammenhangskomponente]
 		$\varnothing\neq D\subseteq\C$ offen, $z\in D$. $D_z\coloneqq\set{w\in D\given
 			\exists~\text{Weg in $D$ von $z$ nach $w$}}$ heißt Zusammenhangskomponente von $D$.
 	\end{definition}
@@ -1478,7 +1479,7 @@
 	\end{satz}
 	\begin{satz}[Der Anfang vom Ende, a.k.a. warum Funktionentheorie doch langweilig ist]\label{pre}
 		Sei $f\in H(D)$, $z_0\in D$, $R\coloneqq\dist(z_0,\partial D)$. Dann existiert $(a_n)$ in $\C$ mit
-		$\forall z\in U_R(z_0): f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n$.
+		$\forall z\in U_R(z_0): f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n$. Es gilt $a_n=\frac{f^{(n)}(z_0)}{n!}$.
 	\end{satz}
 	\begin{satz}[Eigentlich ist jeder Satz ab hier kein Satz mehr, sondern eine Folgerung aus \ref{pre}]
 		Sei $f\in H(D)$. Dann ist $f$ beliebig oft komplex differenzierbar.
@@ -1495,6 +1496,100 @@
 		\end{enumerate}
 		$g$ und $m$ sind eindeutig bestimmt; $m$ heißt die Ordnung der Nullstelle $a$ von $f$.
 	\end{satz}
+	\sep
+	\begin{definition}[Nullstellen]
+		Sei $f\colon D\to\C$, $A\subseteq\C$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $Z(f)\coloneqq\set{z\in D\given f(z)=0}$.
+			\item $A$ heißt diskret in $D$, falls $A$ keine HP in $D$ hat, also falls
+				$\forall a\in D~\exists r>0: U_r(a)\subseteq D\wedge A\cap \dot{U}_r(a)=\varnothing$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}
+		$D$ Gebiet, $f\in H(D)$ \emph{nicht} konstant.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall a\in Z(f)~\exists m\in\mathbb{N}, g\in H(D): g(a)\neq 0 \wedge \forall z\in D: f(z)=(z-a)^mg(z)$.
+			\item $Z(f)$ ist diskret in $D$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Der Identitätssatz]
+		Sei $D$ ein Gebiet, $f, g\in H(D)$, $A\coloneqq\set{z\in D\given f(z)=g(z)}$
+		habe einen Häufungspunkt in $D$. Dann $f=g$ auf $D$.
+	\end{satz}
+	\begin{definition}[Singularitäten]
+		Sei $a\in D$ mit $f\in H(D\setminus\set{a})$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $a$ heißt isolierte Singularität von $f$.
+			\item $a$ heißt hebbare Singularität von $f$, falls $\exists g\in H(D): \forall z\in D\setminus\set{a}: f(z)=g(z)$.
+			\item $a$ heißt Pol, falls $\exists g\in H(D), m\in\mathbb{N}: g(a)\neq 0\wedge\forall z\in D\setminus\set{a}: f(z) = \frac{g(z)}{(z-a)^m}$.
+				$m$ ist eineutig bestimmt und heißt Ordnung des Pols.
+			\item Ist $a$ weder hebbar noch ein Pol, so heißt $a$ wesentliche Singularität.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Der Riemannsche Hebbarkeitssatz]
+		Es sind äquivalent:
+		\begin{enumerate}[label=(\alph*)]
+			\item $f$ hat in $a$ eine hebbare Singularität.
+			\item $\exists r>0: U_r(a)\subseteq D\wedge f~\text{beschränkt auf $U_r(a)$}$
+			\item $\lim_{z\to a}f(z)$ existiert in $\C$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Der Satz von Casorati-Weierstraß]
+		Sei $a$ wesentlich, $r>0$ mit $U_r(a)\subseteq D$. Dann $\overline{f(\dot{U}_r(a))}=\C$.
+	\end{satz}
+	\begin{satz}[Charakterisierung von Polen]
+		\begin{enumerate}[label=(\alph*)]
+			\item $a~\text{Pol}\iff \abs{f(z)}\to\infty~(z\to a)$.
+			\item $a~\text{Pol der Ordnung $m$}\iff \lim_{z\to a}(z-a)^mf(z)\in\C\setminus\set{0}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Die Cauchysche Integralformel für Ableitungen]
+		Sei $D$ konvex, $f\in H(D)$, $\gamma$ ssd geschlossen. Dann für $n\in\mathbb{N}_0, z\in D\setminus\abs{\gamma}$:
+		\[
+			f^{(n)}(z)n(\gamma, z) = \frac{n!}{2\pi\i}\int_\gamma \frac{f(w)}{(w-z)^{n+1}}\dd{w}
+		\]
+	\end{satz}
+	\begin{satz}[Der Satz von Liouville]
+		Sei $f\in H(\C)$ beschränkt. Dann ist $f$ konstant auf $\C$.
+	\end{satz} %TODO FIXME AAAAA Lemma 7.13?
+	\begin{satz}[Der Satz von der Gebietstreue]
+		Es sei $f\colon H(D)$ nicht konstant. Ist $D$ offen, so ist $f(D)$ offen. Ist $D$ ein Gebiet, so ist $f(D)$ ein Gebiet.
+	\end{satz}
+	\begin{satz}[Das Maximumsprinzip und das Minimumsprinzip]
+		$D$ Gebiet, $f\in H(D)$ nicht konstant.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\abs{f}$ hat auf $D$ kein lokales Maximum.
+			\item Ist $Z(f)=\varnothing$, so hat $\abs{f}$ auf $D$ kein lokales Minimum.
+			\item Ist $D$ beschränkt und $f\colon\overline{D}\to\C$ stetig, so gilt $\forall z\in D: \abs{f(z)} < \max_{w\in\partial D}\abs{f(w)}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Das Lemma von Schwarz]
+		Sei $f\in H(\D)$, $f(\D)\subseteq\D$, $f(0)=0$. Dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\abs{f'(0)}\leq 1$, $\forall z\in\D:\abs{f(z)}\leq \abs{z}$.
+			\item $(\abs{f'(0)}=1\vee\exists z_0\in\D\setminus\set{0}:\abs{f(z_0)}=\abs{z_0})\implies\exists c\in\C:\abs{c}=1\wedge\forall z\in\D:
+				f(z)=cz$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[So eine Art Umkehrsatz]
+		$f\in H(D)$, $z_0\in D$, $f'(z_0)\neq 0$. Dann $\exists r>0:U_r(z_0)\subseteq D$, sodass
+		\begin{enumerate}[label=(\alph*)]
+			\item $\forall z_1, z_2\in U_r(z_0): \abs{f(z_1)-f(z_2)}\geq\frac{1}{2}\abs{f'(z_0)}\abs{z_1-z_2}$.
+			\item $f$ ist auf $U_r(z_0)$ injektiv.
+			\item $f(U_r(z_0))$ ist ein Gebiet.
+			\item $f^{-1}\in H(f(U_r(z_0)))$ mit $\forall w\in f(U_r(z_0)): (f^{-1})'(w)=\frac{1}{f'(f^{-1}(w))}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Ist $f\in H(D)$ injektiv, so ist $f'\neq 0$ auf $D$.
+	\end{satz}
+	\begin{satz}[Ein Injektivitätskriterium]
+		$D$ konvex, $f\in H(D)$, $\Re f'\neq 0$ oder $\Im f'\neq 0$ auf $D$. Dann ist $f$ auf $D$ injektiv.
+	\end{satz}
+	\begin{definition}[Lokal gleichmäßige Konvergenz]
+		$(f_n)$ Folge in $H(D)$ konvergiert auf $D$ lokal gleichmäßig, falls $(f_n)$ auf
+		jeder kompakten Teilmenge von $D$ gleichmäßig konvergiert.
+	\end{definition}
 	\newpage
 	\textsc{Differentialgleichungen: Analysis IV}
 
