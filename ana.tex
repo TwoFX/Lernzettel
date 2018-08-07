@@ -1590,6 +1590,122 @@
 		$(f_n)$ Folge in $H(D)$ konvergiert auf $D$ lokal gleichmäßig, falls $(f_n)$ auf
 		jeder kompakten Teilmenge von $D$ gleichmäßig konvergiert.
 	\end{definition}
+	\begin{satz}[Der Konvergenzsatz von Weierstraß]
+		$(f_n)$ konvergiere auf $D$ lokal gleichmäßig gegen $f\colon D\to\C$. Dann
+		$f\in H(D)$ und $(f_n')$ konvergiertauf $D$ lokal gleichmäßig gegen $f'$.
+	\end{satz}
+	\begin{definition}[Kette]
+		Sind $\gamma_1,\ldots,\gamma_m$ ssd Wege in $\C$, so definiere $\Gamma\coloneqq \gamma_1\oplus\cdots\oplus\gamma_m$
+		durch
+		\begin{align*}
+			\abs{\Gamma}&\coloneqq \abs{\gamma_1}\cup\cdots\cup\abs{\gamma_m},
+			& \int_\Gamma f\dd{z} &\coloneqq \sum_{j=1}^m\int_{\gamma_j}f\dd{z}.
+		\end{align*}
+		\begin{enumerate}[label=(\alph*)]
+			\item Sind alle $\gamma_j$ geschlossen, so heißt $\Gamma$ ein Zyklus.
+			\item $\Gamma$ heißt nullhomolog in $D$, falls $\forall \alpha\in \C\setminus D: n(\Gamma, \alpha) = 0$.
+			\item $\Gamma_1, \Gamma_2$ heißen nullhomolog in $D$, falls $\Gamma_1\oplus\Gamma_2^-$ nullhomoloh in $D$,
+				also falls $\forall \alpha\in\C\setminus D: n(\Gamma_1,\alpha)=n(\Gamma_2,\alpha)$.
+			\item Gebiet $D$ heißt einfach zusammenhängend, falls jeder Zyklus in $D$ nullhomolog in $D$.
+		\end{enumerate}
+	\end{definition}
+	\begin{satz}[Der globale Cauchysche Integralsatz und die globale Cauchysche Integralformel]
+		$f\in H(D)$, $\Gamma, \Gamma_1, \Gamma_2$ Zyklen in $D$, $\Gamma$ nullhomolog in $D$, $\Gamma_1, \Gamma_2$ homolog in $D$.
+		\begin{enumerate}[label=(\alph*)]
+			\item $\int_\Gamma f\dd{z}=0$.
+			\item $\int_{\Gamma_1} f\dd{z}=\int_{\Gamma_2}f\dd{z}$.
+			\item $\forall z\in D\setminus\abs{\Gamma}:f(z)n(\Gamma, z) = \frac{1}{2\pi\i}\int_\Gamma\frac{f(w)}{w-z}\dd{z}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Cauchy für einfach zusammenhängende Gebiete]
+		Sei $D$ einfach zusammenhängend, $\Gamma$ Zyklus in $D$. Dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\int_\Gamma f\dd{z}=0$.
+			\item $\forall n\in\mathbb{N}_0, z\in D\setminus\abs{\Gamma}:f^{(n)}(z)n(\Gamma, z)=\frac{n!}{2\pi\i}\int_\Gamma\frac{f(w)}{(w-z)^{n+1}}\dd{w}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}
+		Sei $D$ einfach zusammenhängend, $f\in H(D)$. Wir haben:
+		\begin{enumerate}[label=(\alph*)]
+			\item $f$ besitzt auf $D$ eine Stammfunktion.
+			\item $Z(f)=\varnothing\implies\exists g\in H(D): e^g=f$.
+			\item $Z(f)=\varnothing\implies\forall n\in\mathbb{N}~\exists h\in H(D): h^n=f$.
+		\end{enumerate}
+	\end{satz}
+	\sep
+	\begin{defsatz}
+		$f\in H(D\setminus\set{a})$ hat genau dann in $a$ einen Pol der Ordnung $m$, wenn eindeutige $c_1,\ldots,c_m\in\C$
+		existieren, sodass $c_m\neq 0$ und $z\mapsto f(z)-\sum_{k=1}^m\frac{c_k}{(z-a)^k}$ in $a$ eine hebbare Singularität hat.
+		$Q(z)\coloneqq\sum_{k=1}^m\frac{c_k}{(z-a)^k}$ heißt der Hauptteil von $f$ in $a$. $\Res(f, a)\coloneqq c_1$ heißt das
+		Residuum von $f$ in $a$.
+	\end{defsatz}
+	\begin{definition}
+		$f\colon D\to\C$ heißt meromorph, falls $A\subseteq D$ existiert, sodass $A$ in
+		$D$ diskret, $f\in H(D\setminus A)$ und jedes $a\in A$ ein Pol von $f$.
+	\end{definition}
+	\begin{satz}[Residuensatz, I]
+		Sei $f\in M(D)$, $A$ die Menge der Pole von $f$ in $D$, $\Gamma$ Zyklus in $D\setminus A$,
+		$\Gamma$ nullhomolog in $D$, $B\coloneqq\set{a\in A\given n(\Gamma, a)\neq 0}$. Dann ist $B$ endlich
+		und
+		\[
+			\frac{1}{2\pi\i}\int_\Gamma f\dd{z}=\sum_{a\in A}\Res(f, a)n(\Gamma, a).
+		\]
+	\end{satz}
+	\begin{definition}
+		Sei $f\in H(D)$, $C\subseteq D$. $N(f, C)$ bezeichnet die Anzahl der Nullstellen
+		von $f$ in $C$, wobei jede Nullstelle mit ihrer Vielfachheit gezählt wird.
+	\end{definition}
+	\begin{satz}[Das Argumentprinzip]
+		Sei $D$ ein Gebiet, $f\in H(D)$, $\gamma$ ssd geschlossen in $D$ mit $\forall a\in D\setminus\abs{\gamma}: n(\gamma, a)\in\set{0, 1}$,
+		$\gamma$ nullhomolog in $D$, $\forall z\in\abs{\gamma}:f(z)\neq 0$, $D_1\coloneqq\set{a\in D\given n(\gamma, a)=1}$. Dann:
+		\[
+			N(f, D_1)=\frac{1}{2\pi\i}\int_\gamma\frac{f'(z)}{f(z)}\dd{z}.
+		\]
+	\end{satz}
+	\begin{satz}[Satz von Rouché]
+		Seien $D, f, \gamma, D_1$ wie oben, $g\in H(D)$ mit $\forall z\in\abs{\gamma}: \abs{f(z)-g(z)}<\abs{g(z)}$.
+		Dann $N(f, D_1)=N(g, D_1)$.
+	\end{satz}
+	\begin{satz}[Satz von Hurwitz]
+		Sei $D$ ein Gebiet, $(f_n)$ eine Folge in $H(D)$ mit $\forall n\in\mathbb{N}:Z(f_n)=\varnothing$,
+		die auf $D$ lokal gleichmäßig gegen $f\colon D\to\C$ konvergiert. Dann $Z(f)\in\set{\varnothing, D}$.
+	\end{satz}
+	\begin{definition}[Donut]
+		Sei $0\leq r<R\leq \infty$, $z_0\in\C$. $A(r, R, z_0)\coloneqq\set{z\in\C\given r<\abs{z-z_0}<R}$.
+	\end{definition}
+	\begin{defsatz}[Laurentreihe]
+		$f\in H(A(r, R, z_0))$. Es existiert eine eindeutig bestimmte Folge $(a_n)_{n\in\mathbb{Z}}$, sodass:
+		\begin{enumerate}[label=(\alph*)]
+			\item $\sum_{n=0}^\infty a_n(z-z_0)^n$ konvergiert lokal gleichmäßig auf $U_R(z_0)$ und heißt
+				Nebenteil von $f$ in $z_0$.
+			\item $\sum_{n=1}^\infty a_{-n}(z-z_0)^{-n}$ konvergiert lokal gleichmäßig auf $\set{z\in\C\given\abs{z-z_0}>r}$
+				und heißt der Hauptteil von $f$ in $z_0$. $\Res(f, z_0)\coloneqq a_{-1}$ heißt das Residuum von $f$ in $z_0$.
+			\item Für die Laurentreihe von $f$ in $z_0$ haben wir für alle $z\in A(r, R, z_0)$:
+				\[
+					f(z)=\sum_{n=-\infty}^\infty a_n(z-z_0)^n\coloneqq \sum_{n=0}^\infty a_n(z-z_0)^n+\sum_{n=1}^\infty a_{-n}(z-z_0)^{-n}.
+				\]
+			\item Für alle $\varrho\in(r, R), n\in\mathbb{Z}$ gilt mit $\gamma_\varrho(t)\coloneqq z_0+\varrho^{\i t}$
+				\[
+					a_n=\frac{1}{2\pi\i}\int_{\gamma_\varrho}\frac{f(w)}{(w-z)^{n+1}}\dd{w}.
+				\]
+		\end{enumerate}
+	\end{defsatz}
+	\begin{satz}[Charakterisierungen]
+		Sei $z_0\in D$, $f\in H(D\setminus\set{z_0})$, $R>0$ mit $U_R(z_0)\subseteq D$. Weiter
+		$f(z)=\sum_{n=-\infty}^\infty a_n(z-z_0)^n$ die Laurentreihe von $f$ in $z_0$. Dann:
+		\begin{enumerate}[label=(\alph*)]
+			\item $z_0~\text{hebbar}\iff\forall n\in\mathbb{N}: a_{-n}=0$.
+			\item $z_0~\text{Pol der Ordnung $m$}\iff a_{-m}\neq 0\wedge\forall n>m: a{-n}=0$.
+			\item $z_0~\text{wesentlich}\iff a_{-n}\neq 0~\text{für unendlich viele $n\in\mathbb{N}$}$.
+		\end{enumerate}
+	\end{satz}
+	\begin{satz}[Residuensatz, II]
+		Sei $A\subseteq D$ diskret in $D$, $f\in H(D\setminus A)$, $\Gamma$ ein Zyklus in $D\setminus A$,
+		$\Gamma$ nullhomolog in $D$. Dann:
+		\[
+			\frac{1}{2\pi\i}\int_\Gamma f\dd{z}=\sum_{a\in A}\Res(f, a)n(\Gamma, a).
+		\]
+	\end{satz}
 	\newpage
 	\textsc{Differentialgleichungen: Analysis IV}
 
