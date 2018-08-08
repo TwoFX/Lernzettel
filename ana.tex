@@ -1639,6 +1639,20 @@
 		$Q(z)\coloneqq\sum_{k=1}^m\frac{c_k}{(z-a)^k}$ heißt der Hauptteil von $f$ in $a$. $\Res(f, a)\coloneqq c_1$ heißt das
 		Residuum von $f$ in $a$.
 	\end{defsatz}
+	\begin{satz}[Eine lustige Formel]
+		Seien $f, g\in H(D)$ nicht konstant Null. $z_0\in D$ eine Nullstelle der Ordnung
+		$n$ von $f$, $m$ von $g$. Ist $n\geq m>0$, so gilt
+		\[
+			\lim_{z\to z_0}\frac{f(z)}{g(z)}=\frac{f^{(m)}(z)}{g^{(m)}(z)}.
+		\]
+	\end{satz}
+	\begin{satz}[Berechnung von Residuen]
+		$D$ offen, $f\in H(D\setminus\set{z_0})$ habe in $z_0$ Pol der Ordnung $m$. Dann
+		\[
+			\Res(f, z_0) = \frac{1}{(m-1)!}\lim_{z\to z_0}g^{(m-1)}(z),
+		\]
+		wobei $g$ die Funktion $z \mapsto (z-z_0)^mf(z)$ holomorph fortsetzt.
+	\end{satz}
 	\begin{definition}
 		$f\colon D\to\C$ heißt meromorph, falls $A\subseteq D$ existiert, sodass $A$ in
 		$D$ diskret, $f\in H(D\setminus A)$ und jedes $a\in A$ ein Pol von $f$.
