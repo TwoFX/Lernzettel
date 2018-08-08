@@ -1551,7 +1551,7 @@
 	\end{satz}
 	\begin{satz}[Der Satz von Liouville]
 		Sei $f\in H(\C)$ beschränkt. Dann ist $f$ konstant auf $\C$.
-	\end{satz} %TODO FIXME AAAAA Lemma 7.13?
+	\end{satz}
 	\begin{satz}[Der Satz von der Gebietstreue]
 		Es sei $f\colon H(D)$ nicht konstant. Ist $D$ offen, so ist $f(D)$ offen. Ist $D$ ein Gebiet, so ist $f(D)$ ein Gebiet.
 	\end{satz}
@@ -1731,16 +1731,18 @@
 		\end{enumerate}
 	\end{satz}
 	\sep
-	\begin{definition}[Autonome Differentialgleichung] % TODO FIXME AAAAAAAAAAAAA lLs
-		$\varnothing\neq D\subseteq \R^p$, $g\colon D\to\R^p$. $x'(t)=g(x(t))$ heißt autonom. $x_0\in D: g(x_0)=0$ heißt
+	\begin{definition}[Autonome Differentialgleichung]
+		$\varnothing\neq D\subseteq \R^p$, $f\colon D\to\R^p$. Es gelte $\forall x_0\in D~\exists~\text{Umgebung $U$ von $x_0$}: g|_{U\cap D}
+		~\text{Lipschitz auf $U\cap D$}$.
+		$x'(t)=f(x(t))$ heißt autonom. $x_0\in D: f(x_0)=0$ heißt
 		stationäre Stelle.
 	\end{definition}
 	\begin{satz}
-		$g\colon D\to\R^p$ stetig, $x\colon [t_1,\infty)\to\R^p$ Lösung der autonomen Gleichung,
+		$f\colon D\to\R^p$ stetig, $x\colon [t_1,\infty)\to\R^p$ Lösung der autonomen Gleichung,
 		es existiere $x_0\coloneqq\lim_{t\in\infty}x(t)\in D$. Dann $x_0$ stationär, $x'(t)\to 0~(t\to\infty)$.
 	\end{satz}
 	\begin{satz}
-		$D\subseteq\R$ Intervall, $g\colon D\to\R$ stetig, $x\colon I\to\R$ löst autonome Gleichung. Dann ist $x$
+		$D\subseteq\R$ Intervall, $f\colon D\to\R$ stetig, $x\colon I\to\R$ löst autonome Gleichung. Dann ist $x$
 		monoton.
 	\end{satz}
 	\begin{definition}[Bahn]
@@ -1752,6 +1754,16 @@
 	\begin{satz}
 		$H$ erstes Integral, $x\colon I\to\R^p$ löst autonome Gleichung. Dann $\exists c\in\R~\forall t\in I: H(x(t)) = c$.
 	\end{satz}
+	\begin{verfahren}[Lösungen]
+		Ist $H$ ein erstes Integral mit $H'(x, y)\neq 0$ falls $(x, y$) kein Equilibium ist, trifft für jede Lösung
+		genau eine der folgenden Aussagen zu.
+		\begin{enumerate}[label=(\alph*)]
+			\item Die Lösung ist stationär.
+			\item Die Lösung konvergiert gegen ein Equilibrium.
+			\item Die Lösung ist unbeschränkt.
+			\item Die Lösung liegt auf einer kompakten Höhenlinie und ist periodisch.
+		\end{enumerate}
+	\end{verfahren}
 	\begin{defsatz}[Stabilität]
 		Sei $x_0$ stationär.
 		\begin{enumerate}[label=(\alph*)]
@@ -1764,7 +1776,7 @@
 		\end{enumerate}
 		Diese Definitionen sind unabhängig von $t_0$.
 	\end{defsatz}
-	\begin{satz}[Stabilitätssatz] % TODO FIXME AAAAAAAAA f g und alles
+	\begin{satz}[Stabilitätssatz]
 		Sei $x_0$ stationär, $f$ differenzierbar in $x_0$.
 		\begin{enumerate}[label=(\alph*)]
 			\item Ist $\Re\lambda<0$ für \emph{jeden}
