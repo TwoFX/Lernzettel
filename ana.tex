@@ -92,6 +92,7 @@
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Log}{Log}
 \DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spur}{spur}
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
@@ -1753,7 +1754,7 @@
 	\end{definition}
 	\begin{satz}
 		$f\colon D\to\R^p$ stetig, $x\colon [t_1,\infty)\to\R^p$ Lösung der autonomen Gleichung,
-		es existiere $x_0\coloneqq\lim_{t\in\infty}x(t)\in D$. Dann $x_0$ stationär, $x'(t)\to 0~(t\to\infty)$.
+		es existiere $x_0\coloneqq\lim_{t\to\infty}x(t)\in D$. Dann $x_0$ stationär, $x'(t)\to 0~(t\to\infty)$.
 	\end{satz}
 	\begin{satz}
 		$D\subseteq\R$ Intervall, $f\colon D\to\R$ stetig, $x\colon I\to\R$ löst autonome Gleichung. Dann ist $x$
@@ -1769,13 +1770,13 @@
 		$H$ erstes Integral, $x\colon I\to\R^p$ löst autonome Gleichung. Dann $\exists c\in\R~\forall t\in I: H(x(t)) = c$.
 	\end{satz}
 	\begin{verfahren}[Lösungen]
-		Ist $H$ ein erstes Integral mit $H'(x, y)\neq 0$ falls $(x, y$) kein Equilibium ist, trifft für jede Lösung
+		Ist $H$ ein erstes Integral mit $H'(x, y)\neq 0$ falls $(x, y)$ kein Equilibrium ist, trifft für jede Lösung
 		genau eine der folgenden Aussagen zu.
 		\begin{enumerate}[label=(\alph*)]
 			\item Die Lösung ist stationär.
 			\item Die Lösung konvergiert gegen ein Equilibrium.
 			\item Die Lösung ist unbeschränkt.
-			\item Die Lösung liegt auf einer kompakten Höhenlinie und ist periodisch.
+			\item Die Lösung liegt auf einer kompakten Höhenlinie ohne Equilibrium und ist periodisch.
 		\end{enumerate}
 	\end{verfahren}
 	\begin{defsatz}[Stabilität]
@@ -1799,6 +1800,13 @@
 				$x_0$ instabil.
 		\end{enumerate}
 	\end{satz}
+	\begin{verfahren}[Eigenwerte]
+		Es sei $M\in\R^{n\times n}$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Ist $\spur M<0$, $\det M>0$, so gilt $\lambda<0$ für jeden Eigenwert $\lambda$
+				von $M$.
+		\end{enumerate}
+	\end{verfahren}
 	\begin{definition}[Lyapunov-Funktion]
 		$r>0: U_r(0)\subseteq D$. $V\colon U_r(0)\to\R$ stetig db heißt Lyapunov-Funktion
 		zu $x'=f(x)$ im Punkt $x_0=0$, falls $V(0)=0, \forall x\in \dot{U}_r(0): V(x)>0,
