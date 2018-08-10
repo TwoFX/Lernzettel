@@ -20,7 +20,6 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{enumitem}
-\usepackage{stmaryrd}
 
 \usepackage{faktor}
 
@@ -1492,7 +1491,7 @@
 	\begin{satz}
 		Sei $f\in H(D)$, $a\in D$ und $m\in\mathbb{N}$. Dann sind äquivalent:
 		\begin{enumerate}[label=(\alph*)]
-			\item $\exists g\in H(D): g(a)\neq 0\wedge \forall z\in D: (z-a)^mg(z)$,
+			\item $\exists g\in H(D): g(a)\neq 0\wedge \forall z\in D: f(z)=(z-a)^mg(z)$,
 			\item $0=f(a)=f'(a)=\cdots=f^{(m-1)}(a)$, $f^{(m)}(a)\neq 0$.
 		\end{enumerate}
 		$g$ und $m$ sind eindeutig bestimmt; $m$ heißt die Ordnung der Nullstelle $a$ von $f$.
@@ -1554,7 +1553,7 @@
 		Sei $f\in H(\C)$ beschränkt. Dann ist $f$ konstant auf $\C$.
 	\end{satz}
 	\begin{satz}[Der Satz von der Gebietstreue]
-		Es sei $f\colon H(D)$ nicht konstant. Ist $D$ offen, so ist $f(D)$ offen. Ist $D$ ein Gebiet, so ist $f(D)$ ein Gebiet.
+		Es sei $f\in H(D)$ nicht konstant. Ist $D$ offen, so ist $f(D)$ offen. Ist $D$ ein Gebiet, so ist $f(D)$ ein Gebiet.
 	\end{satz}
 	\begin{satz}[Das Maximumsprinzip und das Minimumsprinzip]
 		$D$ Gebiet, $f\in H(D)$ nicht konstant.
@@ -1593,7 +1592,7 @@
 	\end{definition}
 	\begin{satz}[Der Konvergenzsatz von Weierstraß]
 		$(f_n)$ konvergiere auf $D$ lokal gleichmäßig gegen $f\colon D\to\C$. Dann
-		$f\in H(D)$ und $(f_n')$ konvergiertauf $D$ lokal gleichmäßig gegen $f'$.
+		$f\in H(D)$ und $(f_n')$ konvergiert auf $D$ lokal gleichmäßig gegen $f'$.
 	\end{satz}
 	\begin{definition}[Kette]
 		Sind $\gamma_1,\ldots,\gamma_m$ ssd Wege in $\C$, so definiere $\Gamma\coloneqq \gamma_1\oplus\cdots\oplus\gamma_m$
@@ -1605,7 +1604,7 @@
 		\begin{enumerate}[label=(\alph*)]
 			\item Sind alle $\gamma_j$ geschlossen, so heißt $\Gamma$ ein Zyklus.
 			\item $\Gamma$ heißt nullhomolog in $D$, falls $\forall \alpha\in \C\setminus D: n(\Gamma, \alpha) = 0$.
-			\item $\Gamma_1, \Gamma_2$ heißen nullhomolog in $D$, falls $\Gamma_1\oplus\Gamma_2^-$ nullhomoloh in $D$,
+			\item $\Gamma_1, \Gamma_2$ heißen homolog in $D$, falls $\Gamma_1\oplus\Gamma_2^-$ nullhomolog in $D$,
 				also falls $\forall \alpha\in\C\setminus D: n(\Gamma_1,\alpha)=n(\Gamma_2,\alpha)$.
 			\item Gebiet $D$ heißt einfach zusammenhängend, falls jeder Zyklus in $D$ nullhomolog in $D$.
 		\end{enumerate}
@@ -1615,7 +1614,7 @@
 		\begin{enumerate}[label=(\alph*)]
 			\item $\int_\Gamma f\dd{z}=0$.
 			\item $\int_{\Gamma_1} f\dd{z}=\int_{\Gamma_2}f\dd{z}$.
-			\item $\forall z\in D\setminus\abs{\Gamma}:f(z)n(\Gamma, z) = \frac{1}{2\pi\i}\int_\Gamma\frac{f(w)}{w-z}\dd{z}$.
+			\item $\forall z\in D\setminus\abs{\Gamma}:f(z)n(\Gamma, z) = \frac{1}{2\pi\i}\int_\Gamma\frac{f(w)}{w-z}\dd{w}$.
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}[Cauchy für einfach zusammenhängende Gebiete]
@@ -1641,7 +1640,7 @@
 		Residuum von $f$ in $a$.
 	\end{defsatz}
 	\begin{satz}[Eine lustige Formel]
-		Seien $f, g\in H(D)$ nicht konstant Null. $z_0\in D$ eine Nullstelle der Ordnung
+		Seien $f, g\in H(D)$ nicht konstant Null, $z_0\in D$ eine Nullstelle der Ordnung
 		$n$ von $f$, $m$ von $g$. Ist $n\geq m>0$, so gilt
 		\[
 			\lim_{z\to z_0}\frac{f(z)}{g(z)}=\frac{f^{(m)}(z)}{g^{(m)}(z)}.
@@ -1699,7 +1698,7 @@
 				\[
 					f(z)=\sum_{n=-\infty}^\infty a_n(z-z_0)^n\coloneqq \sum_{n=0}^\infty a_n(z-z_0)^n+\sum_{n=1}^\infty a_{-n}(z-z_0)^{-n}.
 				\]
-			\item Für alle $\varrho\in(r, R), n\in\mathbb{Z}$ gilt mit $\gamma_\varrho(t)\coloneqq z_0+\varrho^{\i t}$
+			\item Für alle $\varrho\in(r, R), n\in\mathbb{Z}$ gilt mit $\gamma_\varrho(t)\coloneqq z_0+\varrho e^{\i t}$
 				\[
 					a_n=\frac{1}{2\pi\i}\int_{\gamma_\varrho}\frac{f(w)}{(w-z)^{n+1}}\dd{w}.
 				\]
@@ -1719,6 +1718,13 @@
 		$\Gamma$ nullhomolog in $D$. Dann:
 		\[
 			\frac{1}{2\pi\i}\int_\Gamma f\dd{z}=\sum_{a\in A}\Res(f, a)n(\Gamma, a).
+		\]
+	\end{satz}
+	\begin{satz}[Relle Integrale]
+		Es seien $P$ und $Q$ Polynome, wobei der Grad von $Q$ um mindestens zwei größer sei als der von $P$.
+		Die Funktion $f(z)\coloneqq \frac{P(z)}{Q(z)}$ habe auf der rellen Achse keine Pole. Dann
+		\[
+			\int_{-\infty}^\infty f\dd{x}=2\pi\i\sum_{\Im z>0}\Res(f, z).
 		\]
 	\end{satz}
 	\newpage
@@ -1837,7 +1843,7 @@
 			\item Ist $u_S\colon I\to\R$ eine feste spezielle Lösung, so haben alle Lösungen
 				die Form $u=u_S+u_H$ für eine Lösung $u_H\colon I\to\R$ des homogenen RWP.
 			\item Für $a_0, a_1, s\in C(I)$ lässt sich das RWP $\begin{cases}u''(t)+a_1(t)u'(t)+a_0(t)u(t)=s(t)\\
-				\alpha_0u(a)=\alpha_1u'(a)=\eta_a\\\beta_0u(b)+\beta_1u'(b)=\eta_b\end{cases}$ als sturmsches
+				\alpha_0u(a)+\alpha_1u'(a)=\eta_a\\\beta_0u(b)+\beta_1u'(b)=\eta_b\end{cases}$ als sturmsches
 				RWP formulieren.
 		\end{enumerate}
 	\end{satz}
@@ -1846,8 +1852,8 @@
 		\begin{enumerate}[label=(\alph*)]
 			\item Das sturmsche RWP ist für jedes $r,\eta_a,\eta_b$ eindeutig lösbar;
 			\item Das homogene RWP ist nur trivial lösbar;
-			\item Für jedes FS $u_1, u_2\colon I\to\R$ von $Lu=0$ gilt $\det\begin{pmatrix}
-				R_au_1 & R_au_2\\ R_bu_1 & R_bu_2\end{pmatrix}\neq 0$,
+			\item Für jedes FS $u, v\colon I\to\R$ von $Lu=0$ gilt $\det\begin{pmatrix}
+				R_au & R_av\\ R_bu & R_bv\end{pmatrix}\neq 0$,
 		\end{enumerate}
 		wobei die letzte Aussage genau dann für alle FS gilt, wenn sie für ein FS gilt.
 	\end{satz}
@@ -1855,7 +1861,7 @@
 		Seien $u, v\colon I\to\R$ Lösungen von $Lu=0$. Dann gilt:
 		\begin{enumerate}[label=(\alph*)]
 			\item $\exists c(u,v)\coloneqq c\in\R~\forall t\in I: p(t)(u(t)v'(t) - v(t)u'(t))=c$.
-			\item $u, v$ ist FS von $Lu$ genau dann wenn $c\neq 0$.
+			\item $u, v$ ist FS von $Lu=0$ genau dann wenn $c\neq 0$.
 		\end{enumerate}
 	\end{satz}
 	\begin{satz}
@@ -1901,7 +1907,7 @@
 	\end{definition}
 	\begin{satz}
 		Definiere $T\colon C(I)\to C(I)$ durch $Tu(x)\coloneqq\int_0^1G(x, t)f(t, u(t))\dd{t}$.
-		Sei $r, u\in C(I)$, $\Phi(x)\coloneqq\int_0^1G(x, t)r(t)\dd{t}$.
+		Sei $r, u\in C(I)$, $\Psi(x)\coloneqq\int_0^1G(x, t)r(t)\dd{t}$.
 		\begin{enumerate}[label=(\alph*)]
 			\item $\Psi\in C^2(I)$, $\Psi''=r$, $\Psi(0)=\Psi(1)=0$.
 			\item $u$ löst das namenlose RWP genau dann wenn $Tu=u$.
