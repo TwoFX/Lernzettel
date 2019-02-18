@@ -44,13 +44,97 @@
 	\stepcounter{Sec}%
 	}
 \newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
+\newcommand\defas\coloneqq
 
 \DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+\DeclarePairedDelimiter\scp{\langle}{\rangle}
 \newcommand\restr[2]{{#1_{\mkern 1mu \vrule height 2ex\mkern2mu #2}}}
+
+\newcommand\qf{(b_j, c_j)_{j=1}^s}
+\newcommand\poly{\mathcal{P}}
+\newcommand\qs{\sum_{j=1}^sb_jg(c_j)}
 
 \begin{document}
 	\textsc{Numerische Mathematik I}
 
 	\sep
+	\begin{defsatz}[Orthogonalpolynome]
+		\begin{enumerate}[label=(\alph*)]
+			\item
+				$\omega\colon(a, b)\to\mathbb{R}_{>0}$ heißt Gewichtsfunktion, falls für alle $k\in\mathbb{N}_0$ das Integral
+				\[
+					\mu_k\defas\int_a^b\omega(x)\abs{x}^k\dd{x}
+				\]
+				existiert.
+			\item Auf dem Vektorraum der stetigen $\omega$-gewichtet quadratisch integrierbaren Funktionen
+				gibt es das Skalarprodukt
+				\[
+					\scp{f, g}\defas \int_a^b\omega(x)f(x)g(x)\dd{x}.
+				\]
+			\item Es gibt eine, bis auf Skalierung eindeutige, Folge von Polynomen $\phi_0, \ldots$ mit
+				\[
+					\phi_k\in\poly_k\setminus\poly_{k-1},\qquad \forall q\in\poly_{k-1}: \scp{\phi_k, q}=0.
+				\]
+				$\phi_k$ heißt das $k$-te Orthogonalpolynom bezüglich $\omega$. Seine Nullstellen sind reel, einfach, und
+				liegen in $(a, b)$.
+			\item Die Orthogonalpolynnome bezüglich $\omega\equiv 1$ heißen Legendre-Polynome.
+		\end{enumerate}
 
+	\end{defsatz}
+	\begin{defsatz}[Quadraturformeln]
+		\begin{enumerate}[label=(\alph*)]
+			\item
+				Eine $s$-stufige Quadraturformal $\qf$ mit Knoten $(c_j)$ und Gewichten $(b_j)$ ist gegeben durch
+				\[
+					I(g) \defas \int_0^1g(t)\dd{t}\approx\qs.
+				\]
+			\item
+				Eine Quadraturformel $\qf$ hat Ordnung $p$ genau dann wenn $\forall g\in\poly_{p-1}: I(g) = \qs$.
+			\item
+				Eine Quadraturformel $\qf$ hat Ordnung $p$ genau dann wenn
+				\[
+					\forall q\in\set{1,\ldots,p}: \sum_{j=1}^s b_j c_j^{q-1} = \frac{1}{q}.
+				\]
+				Die Ordnung einer Quatraturformel ist höchstens $2s$.
+			\item $\qf$ heißt symmetrisch genau dann wenn $\forall j\in\set{1,\ldots,s}: c_j=1-c_{s+1-j}\wedge b_j=b_{s+1-j}$.
+			\item Die maximale Ordnung einer symmetrischen Quadraturformel ist gerade.
+			\item Für feste $c_1<\dots<c_s$ existieren eindeutige $b_1,\ldots, b_s$ sodass $\qf$ Ordnung $p\geq s$ hat. Genauer gilt
+				\[
+					b_j=\int_0^1\ell_j(t)\dd{t}, \qquad
+					\ell_j(t) = \frac{\prod_{k\neq j}(t-c_k)}{\prod_{k\neq j}(c_j-c_k)}.
+				\]
+			\item Für $c_1<\dots<c_j$ heißt $\poly_s\ni M(t)\defas \prod_{j=1}^s (t-c_j)$ das Knotenpolynom.
+			\item $\qf$ mit Ordnung $p\geq s$ hat Ordnung $s+m$ genau dann, wenn
+			\[
+				\forall g\in\poly_{m-1}: \int_0^1 M(t)g(t)\dd{t}=0.
+			\]
+			\item Es existiert eine eindeutige Quadraturformel der Ordnung $2s$. Sie hat die
+				Knoten $c_i = \frac{1}{2}(1+\lambda_i)$, wobei $\lambda_i$ die Nullstellen des $s$-ten
+				Legendrepolynoms bezeichnet.
+		\end{enumerate}
+		% TODO: Simpsonregel etc.
+	\end{defsatz}
+	\begin{defsatz}[Quadraturfehler]
+		\begin{enumerate}[label=(\alph*)]
+			\item $E(g)\defas \int_0^1g(t)\dd{t}-\qs$ heißt Fehlerfunktional.
+			\item Der Peano-Kern ist gegeben durch
+			\[
+				K_p(\tau)\defas E(t\mapsto \sigma_{p,\tau}(t)), \qquad \sigma_{p,\tau}(t)\defas\frac{(t-\tau)^{p-1}_+}{(p-1)!}=
+				\begin{cases}
+					\frac{(t-\tau)^{p-1}}{(p-1)!}, &t>\tau\\
+					0, &t\leq\tau.
+				\end{cases}
+			\]
+			\item Hat $\qf$ Ordnung $p$ und $g$ $p$-mal stetig differenzierbar, so haben wir
+			\[
+				E(g)=\int_0^1 K_p(\tau)g^{(p)}(\tau)\dd{\tau}.
+			\]
+			\item Falls $K_p(\tau)\geq 0$ oder $K_p(\tau)\leq 0$ für alle $\tau\in(0, 1)$, so
+			\[
+				\exists\tau^*\in[0, 1]:E(g) = g^{(p)}(\tau^*)\int_0^1K_p(\tau)\dd{\tau}.
+			\]
+			\item Genaue Fehlerschranken $\leadsto$ Skript
+		\end{enumerate}
+	\end{defsatz}
+	% TODO: Adaptives Programm? \eps-Algorithmus?
 \end{document}
