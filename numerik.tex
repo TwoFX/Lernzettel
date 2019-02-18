@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\usepackage[framed]{ntheorem}
+
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\usepackage{parskip}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[left=1.8cm, right=1.8cm, top=1.8cm, bottom=2.5cm]{geometry}
+
+\newcounter{Sec}
+
+\theoremstyle{marginbreak}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{Definition}[Sec]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{defsatz}[definition]{Definition und Satz}
+\newtheorem{verfahren}[definition]{Verfahren}
+\newtheorem{defver}[definition]{Definition und Verfahren}
+\newtheorem{defsatzver}[definition]{Definition, Satz und Verfahren}
+\newtheorem{satzver}[definition]{Satz und Verfahren}
+\newtheorem{folgerung}[definition]{Folgerung}
+
+\MakeOuterQuote{"}
+
+\newcommand{\sep}{%
+	\rule{\textwidth}{0.3pt}%
+	\stepcounter{Sec}%
+	}
+\newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+\newcommand\restr[2]{{#1_{\mkern 1mu \vrule height 2ex\mkern2mu #2}}}
+
+\begin{document}
+	\textsc{Numerische Mathematik I}
+
+	\sep
+
+\end{document}
