@@ -65,6 +65,8 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Kern}{Kern}
 \DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Stab}{Stab}
 \undef\v
 \DeclareMathOperator{\v}{v}
 
@@ -137,6 +139,11 @@
 		\item Monoid $(M, *)$ mit $\forall x\in M~\exists y\in M: x*y=y*x=e$.
 		\item Für Gruppe $(G, *)$ heißt Untermagma $U$ mit $U^{-1}\subseteq U$ Untergruppe.
 		\item Untergruppe $N\leq G$ mit $\forall n\in N, g\in G: gng^{-1}\in N$ heißt Normalteiler $U\nt G$.
+		\item Gruppe $G$ heißt einfach, wenn sie nicht trivial ist und als einzige Normalteiler $\set{e_G}$ und
+			$G$ hat.S
+		\item Ist $S$ eine Menge, so heißt eine Gruppe $F$ mit einer Abbildung $f\colon S\to F$ frei über $S$, falls
+			für jede Gruppe $G$ und jede Abbildung $\varphi\colon S\to G$ genau ein Gruppenhomomorphismus $\Phi\colon F\to G$
+			mit $\varphi=\Phi\circ f$ existiert.
 	\end{enumerate}
 \end{definition}
 \begin{defsatz}[von Lagrange]
@@ -163,4 +170,83 @@
 \begin{satz}[Der erste Isomorphiesatz]
 	Es sei $G$ eine Gruppe, $H\leq G$, $N\nt G$. Dann ist $HN\leq G$ und $H/(N\cap H)\cong (HN)/N$.
 \end{satz}
+\sep
+\begin{definition}[Gruppenoperation]
+	Es sei $(G, *)$ eine Gruppe und $M$ eine Menge.
+	\begin{enumerate}[label=(\alph*)]
+		\item Eine Operation von $G$ auf $M$ ist eine Abbildung $\bullet\colon G\cross M\to M$, sodass:
+			\begin{enumerate}[label=(\alph*)]
+				\item $\forall m\in M: e_G\bullet m=m$,
+				\item $\forall m\in M, g_1, g_2\in G: g_1\bullet (g_2\bullet m) = (g_1*g_2)\bullet m$.
+			\end{enumerate}
+		\item Eine Operation von $G$ auf $M$ ist ein Gruppenhomomorphismus $\Phi\colon G\to\Sym(M)$.
+		\item Für $m\in M$ heißt $G\bullet m$ Bahn von $m$ unter $G$.
+		\item Für $m\in M$ heißt $\Stab_G(m)\coloneqq\set{g\in G\given g\bullet m=m}$ der
+			Stabilisator von $m$.
+		\item $M^G\coloneqq\set{m\in M\given\forall g\in G:g\bullet m=m}$ ist die Menge der
+			Fixpunkte.
+	\end{enumerate}
+\end{definition}
+\begin{satz}[Die Bahnbilanzformel]
+	$G$ operiere auf der endlichen Menge $M$. $R\subseteq M$ sei Vertretersystem der
+	Bahnen. Dann $\abs{M}=\sum_{r\in R}(G:\Stab_G(r))$.
+\end{satz}
+\begin{definition}[Sylowgruppe]
+	Sei $p\in\P$, $G$ endliche Gruppe.
+	\begin{enumerate}[label=(\alph*)]
+		\item $G$ heißt $p$-Gruppe, falls $\abs{G}$ eine $p$-Potenz ist.
+		\item $U\leq G$ heißt $p$-Sylowgrupe, falls $\exists e, f\in\N: \abs{G}=\abs{U}\cdot f$,
+			$\abs{U}=p^e$, $p\ndivides f$.
+	\end{enumerate}
+\end{definition}
+\begin{satz}[Erster Sylowsatz]
+	Sei $p\in\P$, $G$ endliche Gruppe. Dann existiert in $G$ mindestens eine $p$-Sylowgruppe.
+\end{satz}
+\begin{satz}[Zweiter Sylowsatz]
+	Sei $p\in\P$, $G$ endliche Gruppe. Seien $e, f\in\N$ so, dass $\abs{G}=p^e\cdot f$
+	und $p\ndivides f$. Dann:
+	\begin{enumerate}[label=(\alph*)]
+		\item Jede $p$-Untergruppe $H$ von $G$ ist in einer $p$-Sylowgruppe von $G$ enthalten.
+		\item Je zwei $p$-Sylowgruppen von $G$ sind zueinander konjugiert.
+		\item Die Anzahl der $p$-Sylowgruppen ist ein Teiler von $f$.
+		\item Die Anzahl der $p$-Sylowgruppen von $G$ lässt bei Division durch $p$ den
+			Rest 1.
+	\end{enumerate}
+\end{satz}
+\sep
+
+Lokalisierungen!
+
+\sep
+\begin{definition}[Was ist eigentlich ein Ring?]
+	Ein Ring ist eine Menge $R$ mit zwei Verknüpfungen $+$ und $\cdot$, wobei
+	$(R, +)$ eine abelsche Gruppe mit Neutralelement $0$ ist, $\cdot$ assoziativ ist,
+	das Neutralelement $1$ besitzt und ferner $\forall a, b, c, d\in R$:
+	\begin{enumerate}[label=(\alph*)]
+		\item $(a+b)\cdot c = ac+bc$,
+		\item $a\cdot(c+d)=ac+ad$.
+	\end{enumerate}
+\end{definition}
+\begin{satz}[Der Chinesische Restsatz $\heartsuit$]
+	$R$ kommutativer Ring, $I, J$ Ideale in R mit $I+J=R$. Dann $R/(I\cap J)\cong R/I\cross R/J$.
+\end{satz}
+\begin{definition}[Was ist eigentlich ein Modul?]
+	Für einen Ring $R$ ist ein $R$-Modul eine abelsche Gruppe $M$ mit einer
+	Skalarmultiplikation $\cdot\colon R\cross M\to M$, wobei
+	\begin{alignat*}
+		\forall r, s\in R, m\in M: &&\  (r+s)\cdot m=&\ r\cdot m + s\cdot m,\\
+		\forall r\in R, m, n\in M: &&\ r\cdot(m+n) =&\ r\cdot m + r\cdot n,\\
+		\forall r,s\in R, m\in M: &&\ (rs)\cdot m =&\ r\cdot(s \cdot m),\\
+		\forall m\in M: &&\ 1\cdot m =&\ m.
+	\end{alignat*}
+\end{definition}
+\begin{definition}[Oder eine Algebra?]
+	Mit Ring $R$ ist eine $R$-Algebra ein Ring $A$ und ein Morphismus
+	$\sigma\colon R\to A$, sodass $\forall r\in R, a\in A:\sigma(r) a = a\sigma(r)$.
+
+	In anderen Worten ist eine $R$-Algebra ein $R$-Modul, das eine Multiplikation
+	besitzt, die bezüglich der Skalarmultiplikation bilinear ist. Man denke an
+	$R[X]$.
+\end{definition}
 \end{document}
+
